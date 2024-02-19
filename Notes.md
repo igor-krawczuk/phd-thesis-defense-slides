@@ -37,7 +37,7 @@ symmetries
 need multi-modality anyway
 interesting research bit
 graph generation
-### Slide 3: Mini Overview SotA at 2019
+### Slide 3: Mini Overview SotA at 2019 T
 
 - Google does place & route and other cool neural stuff => we don't do that, no energy to compete w google
 - netlists are underdeveloped though (show examplles)

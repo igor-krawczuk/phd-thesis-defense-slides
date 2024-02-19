@@ -1,34 +1,47 @@
 \documentclass[11pt,xcolor={dvipsnames},hyperref={pdftex,pdfpagemode=UseNone,hidelinks,pdfdisplaydoctitle=true},usepdftitle=false]{beamer}
 \usepackage{presentation}
 % Enter title of presentation PDF:
-\hypersetup{pdftitle={Presentation Title}}
+\hypersetup{pdftitle={PhD Defense 2024-02-28: Graph generative deep learning models with an application to circuit topologies}}
 % Enter link to PDF file with figures:
 \newcommand{\pdf}{figures.pdf}
 
+\usepackage{subfiles}
 \begin{document}
 % Enter presentation title:
-\title{Presentation Title}
+\title{\justifying Graph generative deep learning models with an application to circuit topologies}
 % Enter presentation information:
 \information%
 % Enter link to research paper (optional; comment line if not needed):
-[https://github.com/pmichaillat/latex-presentation]%
+%[https://github.com/pmichaillat/latex-presentation]%
 % Enter presentation authors:
-{Author 1, Author 2}%
+{Igor Krawczuk}%
 % Enter presentation location and date (optional; comment line if not needed):
-{Location -- Date}
+{EPF Lausanne,  2024-02-28}
 \frame{\titlepage}
 
+
 % Fill out content of presentation:
+\subfile{motivation}
+
 \begin{frame}
-\frametitle{Slide title}
-\begin{itemize}
-\item Consectetur adipiscing elit
-\item Sed do eiusmod tempor incididunt
-\item Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-\item Ut labore et dolore magna aliqua
-\end{itemize}
+  \frametitle{Equivariance \& Geometric DL}
 \end{frame}
+%% WP1
+\begin{frame}[t]
+  \frametitle{Geometric Graph Generation}
+  
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Prior Art in Graph Generation}
+  
+\end{frame}
+
+\begin{frame}[t]
+  \frametitle{Collision probelm}
+  
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Slide with a very, very long title: Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat}
