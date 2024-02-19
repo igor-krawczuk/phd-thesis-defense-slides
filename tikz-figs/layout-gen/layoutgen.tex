@@ -94,6 +94,10 @@
 \draw[dottarr] (iterate.west) -| (ctrlPR) |- (layout.west);
 \draw[dottarr] (iterate.west) -| (ctrlPR) |- (conceptidea.west);
 
+% draw a dot around the shared sections
+% this is the same, and what we can optimize
+\node (bothsynth) at ($(semiopt.north west)!0.5!(fullopt.north east) + (0.0,0.25)$) {Topology Synthesis};
+\draw[dotted] ($(semiopt.north west)+(-1.1,0.1)$) -|($(fullopt.north east)+(0.1,0.1)$)  |- ($(fullmap.south east)+(0.1,-0.25)$) -| ($(semimap.south west)+(-0.50,-0.25)$) -- ($(semiopt.north west)+(-1.1,0.1)$);
 
 
 
