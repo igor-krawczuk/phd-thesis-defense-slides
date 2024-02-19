@@ -1,0 +1,255 @@
+\documentclass[11pt,xcolor={dvipsnames},hyperref={pdftex,pdfpagemode=UseNone,hidelinks,pdfdisplaydoctitle=true},usepdftitle=false]{beamer}
+\usepackage{presentation}
+% Enter title of presentation PDF:
+\hypersetup{pdftitle={Presentation Title}}
+% Enter link to PDF file with figures:
+\newcommand{\pdf}{figures.pdf}
+
+\begin{document}
+% Enter presentation title:
+\title{Presentation Title}
+% Enter presentation information:
+\information%
+% Enter link to research paper (optional; comment line if not needed):
+[https://github.com/pmichaillat/latex-presentation]%
+% Enter presentation authors:
+{Author 1, Author 2}%
+% Enter presentation location and date (optional; comment line if not needed):
+{Location -- Date}
+\frame{\titlepage}
+
+% Fill out content of presentation:
+\begin{frame}
+\frametitle{Slide title}
+\begin{itemize}
+\item Consectetur adipiscing elit
+\item Sed do eiusmod tempor incididunt
+\item Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+\item Ut labore et dolore magna aliqua
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Slide with a very, very long title: Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat}
+Lorem ipsum dolor sit amet:
+\begin{itemize}
+\item Consectetur adipiscing elit
+\item Sed do eiusmod tempor incididunt
+\item Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+\item Ut labore et dolore magna aliqua
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Slide with nested list}
+\begin{itemize}
+\item Lorem ipsum dolor sit amet
+\item Consectetur adipiscing elit
+\item Sed do eiusmod tempor incididunt:
+\begin{itemize}
+\item Quis nostrud exercitation ullamco laboris Quis nostrud exercitation ullamco laboris. Quis nostrud exercitation ullamco laboris. Quis nostrud exercitation ullamco laboris.
+\item Nisi ut aliquip ex ea commodo consequat
+\item Duis aute irure dolor in reprehenderit in voluptate
+\item Velit esse cillum dolore eu fugiat nulla pariatur
+\end{itemize}
+\item Ut labore et dolore magna aliqua
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Slide with numbered list}
+\begin{enumerate}
+\item Lorem ipsum dolor sit amet
+\item Consectetur adipiscing elit
+\item Sed do eiusmod tempor incididunt
+\item Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+\item Ut labore et dolore magna aliqua
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Slide with nested numbered list}
+\begin{enumerate}
+\item Lorem ipsum dolor sit amet
+\item Consectetur adipiscing elit
+\item Sed do eiusmod tempor incididunt:
+\begin{enumerate}
+\item Lorem ipsum dolor sit amet, consectetur adipisicing elit
+\item Ut enim ad minim veniam
+\item Quis nostrud exercitation ullamco laboris nisi ut aliquip
+\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+\end{enumerate}
+\item Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+\item Ut labore et dolore magna aliqua
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\heading{Section title}
+\end{frame}
+
+\begin{frame}
+\frametitle{Slide with math}
+\begin{itemize}
+\item Here are some Greek letters in math: $\alpha + \Gamma - \zeta \times \Lambda$
+\item Here are some blackboard bold letters: $\mathbb{R} + \mathbb{Q} - \mathbb{Z}$
+\item Here are some calligraphic letters: $\mathcal{A} - \mathcal{B} + \mathcal{Z} / \mathcal{H}$
+\item Here are some symbols and operators: $\ln(u) \in Q \to \cos(\theta) \leq \sin(\pi)$
+\item Here is an equation:
+\begin{equation*}
+\int_{0}^{\infty}e^{-\delta t} \ln(c_{j}(t))+ \mathcal{U}(b_{j}(t) - \mathcal{B}(t))- \frac{\zeta}{4} h_{j}(t) -\frac{\gamma}{8} \pi_{j}(t)^2\,dt
+\end{equation*}
+\item Here is a display with two equations, including bold math:
+\begin{align*}
+\bm{c}(\bm{t}) &= \prod_{j} \prod_{k} \bm{c}_{jk}(\bm{t})^{(\epsilon-1)/\epsilon} \\
+\dot{b}_{j}(t) &= i(t) b_{j}(t) + p_{j}(t)  y_{j}(t) - \sum_0^1 p_{k}(t) c_{jk}(t)\,dk
+\end{align*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Slide with alerts}
+\begin{itemize}
+\item Here is a basic alert: \al{important text}
+\item Here is a basic alert on the second click: \al[2]{important text}
+\item Here is a basic alert on the third click: \al[3]{important text}
+\item Here are various alerts to flag the sign of numbers:
+\begin{itemize}
+\item Positive number: \alg{+5}
+\item Negative number: \alr{-10}
+\item Zero number: \alb{0.0}
+\end{itemize}
+\item The same alerts on the second and third clicks:
+\begin{itemize}
+\item Positive number: \alg[2-3]{+5}
+\item Negative number: \alr[2-3]{-10}
+\item Zero number: \alb[2-3]{0.0}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\heading{Slides with graphs}
+\end{frame}
+
+\begin{frame}
+\frametitle{Caption for the graph}
+\includegraphics[scale=0.3,page=4]{\pdf}%
+\end{frame}
+
+\begin{frame}
+\frametitle{Caption for the graphs (one graph per click)}
+\includegraphics<1>[scale=0.3,page=1]{\pdf}%
+\includegraphics<2>[scale=0.3,page=2]{\pdf}%
+\includegraphics<3>[scale=0.3,page=3]{\pdf}%
+\includegraphics<4>[scale=0.3,page=5]{\pdf}%
+\end{frame}
+
+\begin{frame}
+\heading{Slide with table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Caption for the table}
+\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lcccc}
+\toprule
+ & Column 1 & Column 2 & Column 3 & Column 4\\
+\midrule
+Line 1 & A  & B & C  & C \\
+Line 2 & D & E & F & C \\ 
+Line 3 & G & H & I & C \\ 
+\midrule
+Line 4 & J & K & L & C \\ 
+Line 5 & M & N & O & C \\ 
+\bottomrule
+\end{tabular*}
+\end{frame}
+
+\begin{frame}
+\heading{A long section title: Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat}
+\end{frame}
+
+\begin{frame}
+\frametitle{Pictograms}
+\begin{itemize}
+\item implication: this \so that
+\item sequential events: this \then that
+\item something is going up: \up
+\item something is going down: \down
+\item something is not changing: \flat 
+\item equivalency: something \iff something equivalent 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label=firstSlide]
+\frametitle{Button}
+\begin{enumerate}
+\item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua.
+\item  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+\item Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. 
+\item Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\end{enumerate}
+\hyperlink{backupSlide}{\beamergotobutton{Go to a first backup slide}}
+\hyperlink{anotherBackupSlide}{\beamergotobutton{Go to another backup slide}}
+\end{frame}
+
+\begin{frame}[allowframebreaks=0.8]
+\frametitle{Slide with long derivation or long reference list}
+\begin{itemize}
+\item lorem 
+\item ipsum 
+\item dolor 
+\item sit 
+\item amet
+\item consectetur 
+\item adipisicing 
+\item elit
+\item sed
+\item do
+\item eiusmod
+\item tempor
+\item incididunt
+\item ut
+\item labore
+\item et 
+\item dolore 
+\item magna 
+\item aliqua
+\item ut enim
+\item ad minim 
+\item veniam
+\end{itemize}
+\end{frame}
+
+\lastslide
+
+\begin{frame}[label=backupSlide]
+\frametitle{First backup slide}
+\begin{itemize}
+\item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua.
+\item  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+\item Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. 
+\end{itemize}
+\hyperlink{firstSlide}{\beamergotobutton{Return to main slide}}
+\end{frame}
+
+\begin{frame}[label=anotherBackupSlide]
+\frametitle{Another backup slide}
+\begin{enumerate}
+\item Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua.
+\item  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+\item Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. 
+\end{enumerate}
+\hyperlink{firstSlide}{\beamergotobutton{Return to main slide}}
+\end{frame}
+
+\end{document}
