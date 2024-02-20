@@ -1,16 +1,6 @@
-\documentclass[tikz,border=10pt,dvipsnames]{standalone}
-\usetikzlibrary{
-  arrows.meta,                        % for arrow tips
-  backgrounds,                        % for background layer
-  bending,
-  ext.paths.ortho,                    % for ortho paths
-  positioning,
-  ext.positioning-plus,               % for 
-  ext.node-families.shapes.geometric, % loads ext.node-families and
-% shapes.geometric,                   % for ellipse
-  calc,                               % for ($$)
-  backgrounds %https://tex.stackexchange.com/questions/230224/how-to-change-the-background-color-in-tikz
-}
+% !TeX root = ../../presentation.tex
+\documentclass[../../presentation.tex]{subfiles}
+\begin{document}
 % node styles
 \tikzstyle{flowstep} = [rectangle, draw, text centered, rounded corners, minimum height=2em]
 \tikzstyle{concept}=[flowstep,fill=orange!20]
@@ -34,54 +24,102 @@
  east)$);}}
 }
 
-\begin{document}
 %source: andreas burg https://ee222-winter19-01.courses.soe.ucsc.edu/system/files/attachments/EE222W19_Lect1_Part2-Introduction.pdf
 
-% TODO add an image to each level, unveil in 2nd step all at once
 \begin{tikzpicture}
   % first flow nodes
+  \visible<2->{
 \node[flowstep](conceptidea) at (3,0) {Concept or Idea};
+}
+  \visible<3->{
 \node[concept](projspec)[below=of conceptidea]{Project Specification};
+\only<3-10>{
+\draw[happypath](conceptidea) -- (projspec);
+}% 
+\only<11->{
+  \draw[happypath](conceptidea) -- (projspec) node [midway,left]{\$};
+}
+}
+  \visible<4->{
 \node[designstep](archstep)[below=of projspec]{Architectural design}; % high level specification,break into logical blocks
+}
+  \visible<4->{
 \node[simstep](highsimulation)[below=of projspec]{High Level Simulation}; % often adhoc
+\draw[happypath](projspec) -- (highsimulation);
+}
+  \visible<5->{
 \node[designstep](schematic)[below=of highsimulation]{Functional Design}; %Schematic
+\only<5 -11>{
+\draw[happypath](highsimulation) -- (schematic);
+}
+\only<12->{
+\draw[happypath](highsimulation) -- (schematic)node [midway,left]{\$\$};
+}
+}
+\visible<5->{
 \node[simstep](simulation)[below=of schematic]{Behavioural Simulation}; % VHDL model
+\draw[happypath](schematic) edge (simulation);
+}
+\visible<6->{
 \node[flowstep,fill fraction={green!20}{blue!20}{0.5}](layout)[below=of simulation]{Layout Creation}; % can either be full custom or semi custom, will involve netlist,floor plan place and route
+\only<6-11>{
+\draw[happypath](simulation) -- (layout);
+}
+\only<12->{
+\draw[happypath](simulation) -- (layout) node [midway, left,color=green!40]{\$\$} node [midway, right,color=blue!40]{{\$\$\$}};
+}
+}
+
+\visible<7->{
 \node[simstep](postsim)[below=of layout]{Post-Layout Simulation}; % VHDL model
+\draw[happypath](layout) edge (postsim);
+
+}
+\visible<8->{
 \node[expensivestep](tapeout)[below=of postsim]{Tapeout}; % VHDL model
+
+
+\only<8-13>{
+\draw[happypath](postsim) -- (tapeout);
+}
+\only<14->{
+\draw[happypath](postsim) -- (tapeout) node [midway,left,color=red]{\$\$\$\$\$\$\$\$\$\$};
+}
+
+}
+\visible<9->{
 \node[veristep](physmeas)[below=of tapeout]{Measurements}; % VHDL model
+\draw[happypath](tapeout) edge (physmeas);
+}
+\visible<10->{
 \node[flowstep](chip) [below=of physmeas] {Functioning Chip};
+\draw[happypath](physmeas) edge (chip);
+}
 
 % now happy path
-\draw[happypath](conceptidea) -- (projspec) node [midway,left]{\$};
-\draw[happypath](projspec) -- (highsimulation);
-\draw[happypath](highsimulation) -- (schematic) node [midway,left]{\$\$};
-\draw[happypath](schematic) edge (simulation);
-\draw[happypath](simulation) -- (layout) node [midway, left]{\$\$} node [midway, right,color=blue!40]{\$\$\$};
-\draw[happypath](layout) edge (postsim);
-\draw[happypath](postsim) -- (tapeout) node [midway,left,color=red]{\$\$\$\$\$\$\$\$\$\$};
-\draw[happypath](tapeout) edge (physmeas);
-\draw[happypath](physmeas) edge (chip);
+%\draw[happypath](physmeas) edge (chip);
 % unhappy path
+\visible<13->{
 % control points for  cleaner paths
-\node (ctrlPS) [left=of projspec] {};
-\node (ctrlHS) [left=of highsimulation.west,below=of ctrlPS] {};
-\draw[unhappypath] (highsimulation.west) -| (ctrlHS.center) -- (ctrlPS.center) -> (projspec.west);
-\node (ctrlFD) [left=of schematic,below=of ctrlHS] {};
-\node (ctrlBS) [below=of ctrlFD,left=of simulation] {};
-\draw[unhappypath] (simulation.west) -| (ctrlBS.center) |- (ctrlFD.center) -> (schematic.west);
-\draw[unhappypathna] (ctrlBS.center) |- (ctrlPS.center);
-\node (ctrlLG) [left=of layout,below=of ctrlBS] {};
-\node (ctrlPLS) [below=of ctrlLG,left=of postsim] {};
-\draw[unhappypath] (postsim.west) -| (ctrlPLS.center) |- (ctrlLG.center) -> (layout.west);
-\draw[unhappypathna] (ctrlPLS.center) |- (ctrlFD.center);
-\draw[unhappypathna] (ctrlPLS.center) |- (ctrlPS.center);
+\node (ctrlHS) [left=of highsimulation.west] {};
+\draw[unhappypath] (highsimulation.west) -| ($(ctrlHS.east)$) |- (projspec.west);
+\node (ctrlBS) [below=of ctrlHS,left=of simulation] {};
+\draw[unhappypath] (simulation.west) -| (ctrlBS.center) |- (schematic.west);
+\draw[unhappypath] (simulation.west) -| (ctrlBS.center) |- (projspec.west);
+\node (ctrlPLS) [below=of ctrlBS,left=of postsim] {};
+\draw[unhappypath] (postsim.west) -| (ctrlPLS.west) |- (layout.west);
+\draw[unhappypath] (postsim.west) -| (ctrlPLS.west) |- (schematic.west);
+\draw[unhappypath] (postsim.west) -| (ctrlPLS.west) |- (projspec.west);
 \node (ctrlTO) [right=of tapeout] {};
 \node (ctrlMeas) [below=of ctrlTO,right=of physmeas] {};
+}
+\visible<14->{
 \draw[veryunhappypath] (physmeas.east) -|(ctrlMeas.center) |- (layout.east);
 \draw[veryunhappypath] (physmeas.east) -|(ctrlMeas.center) |- (schematic.east);
 \draw[veryunhappypath] (physmeas.east) -|(ctrlMeas.center) |- (projspec.east);
+}
 
 % *very* unhappy paths
 \end{tikzpicture}
+
 \end{document}

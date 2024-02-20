@@ -8,6 +8,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsthm,eucal,bbold,bm}
 \usepackage[italic,eulergreek,symbolmisc]{mathastext}
+\usepackage{mathtools}
 \usepackage{url}
 
 % Microtypography
@@ -132,9 +133,27 @@
 \def\then{$\rightsquigarrow\,$}
 \def\so{{$\implies$}}
 \def\iff{{$\shortiff$}}
+% tikz definitions
+\usepackage{tikz}
+\usetikzlibrary{
+  arrows.meta,                        % for arrow tips
+  backgrounds,                        % for background layer
+  bending,
+  ext.paths.ortho,                    % for ortho paths
+  positioning,
+  ext.positioning-plus,               % for 
+  ext.node-families.shapes.geometric, % loads ext.node-families and
+% shapes.geometric,                   % for ellipse
+  calc,                               % for ($$)
+  backgrounds, %https://tex.stackexchange.com/questions/230224/how-to-change-the-background-color-in-tikz
+  overlay-beamer-styles,
+}
 
 % --- Last slide ---
 
 \newcommand{\lastslide}{{\setbeamercolor{normal text}{bg=mygray}\begin{frame}\end{frame}}}
 \usepackage{ragged2e}
+\usepackage[style=numeric,backend=biber,sorting=none]{biblatex}
+\addbibresource{./bibexport.bib}
+
 

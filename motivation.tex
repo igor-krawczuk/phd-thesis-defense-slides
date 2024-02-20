@@ -2,42 +2,77 @@
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
 
-\begin{frame}
+\begin{frame}[label=maybedone]
 \frametitle{EDA Flow Overview}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \includegraphics[width=\columnwidth]{./images/analog-Integrated-circuit-design-flow-.png} 
+      \centering
+      \resizebox{!}{0.8\textheight}{
+      \subfile{./tikz-figs/designflow/flow.tex}
+    }
     \end{column}
     \begin{column}{0.5\textwidth}
-      
+      \centering
+    \resizebox{\columnwidth}{!}{%0.8\textheight}{
+      \subfile{./tikz-figs/layout-gen/layoutgen.tex}
+    }
     \end{column}
   \end{columns}
 \end{frame}
 
-\begin{frame}
-\frametitle{Motivation}
+\begin{frame}[label=todo]
+\frametitle{Topology Synthesis: From Macros to Graphs}
+% motivate why the netlist is the right abstraction level *and* why prior art didn't deal with them directly
+\begin{columns}
+  {\small
+  \begin{column}{0.5\textwidth}
+   \begin{itemize}
+     \item industry has various subtly different variations: physical synthesis, high level synthesis,logic synthesis, topology synthesis\\\visible<2->{$\Rightarrow$ for our purposes, all the same }
+     \item prior work going back to 1957 generally approaches synthesis as a special instance of Church's problem \cite{churchApplicationRecursiveArithmetic1963}, i.e. special case of program synthesis.
+     \item Circuit topology is modeled as a string of symbols representing circuit functionality, from which a topology is then inferred. Some work explores other representations \cite{rojecAnalogCircuitTopology2018} but fundamentally even latest work \cite{fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023,fanSpecificationTopologyAutomatic2021f,zhaoAutomatedTopologySynthesis2022a} work does not conceive of a circuit as a single \emph{graph} but instead as a \emph{sequence of hierarchical symbols} with a clear ordering
+   \end{itemize} 
+  \end{column}
+}
+  \begin{column}{0.5\textwidth}
+  \centering
+  \includegraphics[width=\columnwidth,height=0.45\textheight]{example-image-a}\\%netlist code,textual vis}
+  \includegraphics[width=\columnwidth,height=0.45\textheight]{example-image-b}%netlist graph}
+  \end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[label=todo]
+\frametitle{Why Represent Topologies as Graphs}
 \begin{itemize}
-\item Consectetur adipiscing elit
-\item Sed do eiusmod tempor incididunt
-\item Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
-\item Ut labore et dolore magna aliqua
+  \item automatically encode topological isomorphisms (note: might not be enough for \emph{circuit} isomorphisms \cite{wangFunctionalityMattersNetlist2022c}
+  \item naturally captures relational and compositional structure
+  \item amenable to preserving notions of locality non-planar, high dimensional structure (important for multi-layer layouting)
+  \item naturally abstracts the level in the hiearchy away and subsumes prior modeling - building blocks, devices, subcircuits all become nodes
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Why Netlist Topologies}
+\begin{frame}[label=working]
+  \frametitle{Netlists are Graphs are Graphs}
+  \begin{itemize}
+    \item For the purpose of the thesis, a circuit $\mathcal{C}$ is just a graph $\mathcal{G}\coloneq \lbrace\mathcal{E},\mathval{V},\mathcal{Y} \rbrace$.
+    \item In general,we represent each edge 
+  \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{SotA 20219}
-
+\begin{frame}[label=working]
+\frametitle{SotA Topology Synthesis}
+\begin{itemize}
+  \item show \cite{zhaoAutomatedTopologySynthesis2022a} work, comment on it in images
+  \item show BAG, other sota
+\end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[label=working]
 \frametitle{Desiderata}
-
+\begin{itemize}
+  \item foo
+\end{itemize}
 \end{frame}
+
   
 \end{document}
 

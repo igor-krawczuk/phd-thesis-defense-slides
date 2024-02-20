@@ -1,16 +1,6 @@
-\documentclass[tikz,border=10pt,dvipsnames]{standalone}
-\usetikzlibrary{
-  arrows.meta,                        % for arrow tips
-  backgrounds,                        % for background layer
-  bending,
-  ext.paths.ortho,                    % for ortho paths
-  positioning,
-  ext.positioning-plus,               % for 
-  ext.node-families.shapes.geometric, % loads ext.node-families and
-% shapes.geometric,                   % for ellipse
-  calc,                               % for ($$)
-  backgrounds %https://tex.stackexchange.com/questions/230224/how-to-change-the-background-color-in-tikz
-}
+% !TeX root = ../../presentation.tex
+\documentclass[../../presentation.tex]{subfiles}
+\begin{document}
 % node styles
 \tikzstyle{flowstep} = [rectangle, draw, text centered, rounded corners, minimum height=2em]
 \tikzstyle{question} = [ellipse, draw, text centered, rounded corners]
@@ -39,43 +29,47 @@
  east)$);}}
 }
 
-\begin{document}
 %source: andreas burg https://ee222-winter19-01.courses.soe.ucsc.edu/system/files/attachments/EE222W19_Lect1_Part2-Introduction.pdf
 
 % TODO add an image to each level, unveil in 2nd step all at once
 \begin{tikzpicture}
   % first flow nodes
+  \visible<14->{
 \node[concept](conceptidea) at (3,0) {Behavioural specification};
 \node[flowstep,fill fraction={green!20}{blue!20}{0.5}](layout)[below=of conceptidea]{Layout Creation}; % can either be full custom or semi custom, will involve netlist,floor plan place and route
+\draw[arr] (conceptidea) -- (layout);
+}
 % semi custom
+  \visible<15->{
 \node[semistep](semicustom) [below left=of layout,fill=green!20] {Semi-Custom-Design};
-\node[semistep](semiopt) [below =of semicustom,fill=green!20] {Optimization};
-\node[semistep](semimap) [below =of semiopt,fill=green!20] {Technology Mapping};
-\node[semistep](semipr) [below =of semimap,fill=green!20] {Place + Route};
 %full custom
 \node[fullstep](fullcustom) [below right=of layout,fill=blue!20] {Full-Custom-Design};
+}
+%both do topology synthesis step
+\visible<16->{
+\node[semistep](semiopt) [below =of semicustom,fill=green!20] {Optimization};
+\node[semistep](semimap) [below =of semiopt,fill=green!20] {Technology Mapping};
+%fullcustom
 \node[fullstep](fullopt) [below =of fullcustom,fill=blue!20] {Topology Selection};
 \node[fullstep](fullmap) [below =of fullopt,fill=blue!20] {Sizing};
-\node[fullstep](fullpr) [below =of fullmap,fill=blue!20] {Manual Layouting};
-\node (centerfin) at ($(semipr)!0.5!(fullpr)$){};
-\node[simstep](layoutverif) [below =of centerfin] {Layout Verification (DRC+LVS)};
-\node[simstep](postsim) [below =of layoutverif] {Post Layout Simulation};
-
-\node[question] (meetsspec) [below=of postsim]{Meets specificaton?};
-\node[flowstep] (iterate) [below left=of meetsspec] {Iterate the process};
-\node[expensivestep] (tapeout) [below right=of meetsspec] {Tapeout};
-% draw arrows
-\draw[arr] (conceptidea) -- (layout);
 \draw[arr,green!40] (layout.west) -| (semicustom.north);
 \draw[arr,green!40] (semicustom) -- (semiopt);
 \draw[arr,green!40] (semiopt) -- (semimap) ;
-\draw[arr,green!40] (semimap) -- (semipr) ;
-\draw[arr] (semipr) |- (layoutverif.west);
-
 \draw[arr,blue!40] (layout.east) -| (fullcustom.north);
 \draw[arr,blue!40] (fullcustom) -- (fullopt);
 \draw[arr,blue!40] (fullopt) -- (fullmap) ;
+}
+\visible<17->{
+\node[semistep](semipr) [below =of semimap,fill=green!20] {Place + Route};
+\node[fullstep](fullpr) [below =of fullmap,fill=blue!20] {Manual Layouting};
+\draw[arr,green!40] (semimap) -- (semipr) ;
 \draw[arr,blue!40] (fullmap) -- (fullpr) ;
+}
+\visible<18->{
+\node (centerfin) at ($(semipr)!0.5!(fullpr)$){};
+\node[simstep](layoutverif) [below =of centerfin] {Layout Verification (DRC+LVS)};
+% if layout verification fails, we go back
+\draw[arr] (semipr) |- (layoutverif.west);
 \draw[arr] (fullpr) |- (layoutverif.east);
 %
 
@@ -85,19 +79,29 @@
 \draw[dottarr] (layoutverif.north) |- (semipr);
 \draw[dottarr] (layoutverif.north) |- (semimap);
 \draw[dottarr] (layoutverif.north) |- (semiopt);
-
+\node[simstep](postsim) [below =of layoutverif] {Post Layout Simulation};
 \draw[arr] (layoutverif) -- (postsim);
+
+\node[question] (meetsspec) [below=of postsim]{Meets specificaton?};
 \draw[arr] (postsim) -- (meetsspec);
+\node[flowstep] (iterate) [below left=of meetsspec] {Iterate the process};
+\node[expensivestep] (tapeout) [below right=of meetsspec] {Tapeout};
 \draw[arr,red] (meetsspec) -| (iterate.north) node [midway, above]{No};
 \draw[arr,green] (meetsspec) -| (tapeout.north) node [midway, above]{Yes};
-\node (ctrlPR) [left=of semipr];
+\node (ctrlPR) [left=of semipr]{};
 \draw[dottarr] (iterate.west) -| (ctrlPR) |- (layout.west);
 \draw[dottarr] (iterate.west) -| (ctrlPR) |- (conceptidea.west);
-
+}
+\visible<19->{
 % draw a dot around the shared sections
 % this is the same, and what we can optimize
-\node (bothsynth) at ($(semiopt.north west)!0.5!(fullopt.north east) + (0.0,0.25)$) {Topology Synthesis};
-\draw[dotted] ($(semiopt.north west)+(-1.1,0.1)$) -|($(fullopt.north east)+(0.1,0.1)$)  |- ($(fullmap.south east)+(0.1,-0.25)$) -| ($(semimap.south west)+(-0.50,-0.25)$) -- ($(semiopt.north west)+(-1.1,0.1)$);
+\node (bothsynth) at ($(semiopt.north west)!0.5!(fullopt.north east) + (0.0,0.25)$) {Circuit Topology Synthesis};
+\draw[dashed] ($(semiopt.north west)+(-1.1,0.1)$) -|($(fullopt.north east)+(0.1,0.1)$)  |- ($(fullmap.south east)+(0.1,-0.25)$) -| ($(semimap.south west)+(-0.50,-0.25)$) -- ($(semiopt.north west)+(-1.1,0.1)$);
+}
+% draw arrows
+
+
+
 
 
 

@@ -1,11 +1,17 @@
 \documentclass[11pt,xcolor={dvipsnames},hyperref={pdftex,pdfpagemode=UseNone,hidelinks,pdfdisplaydoctitle=true},usepdftitle=false]{beamer}
+% load standlone first
 \usepackage{presentation}
 % Enter title of presentation PDF:
 \hypersetup{pdftitle={PhD Defense 2024-02-28: Graph generative deep learning models with an application to circuit topologies}}
 % Enter link to PDF file with figures:
 \newcommand{\pdf}{figures.pdf}
 
+% load subfiles last
 \usepackage{subfiles}
+\includeonlyframes{title,working}
+%\includeonlyframes{title,working,maybedone}
+%later on do
+%\includeonlyframes{title,working,done,rest,maybedone}
 \begin{document}
 % Enter presentation title:
 \title{\justifying Graph generative deep learning models with an application to circuit topologies}
@@ -17,7 +23,7 @@
 {Igor Krawczuk}%
 % Enter presentation location and date (optional; comment line if not needed):
 {EPF Lausanne,  2024-02-28}
-\frame{\titlepage}
+\frame[label=title]{\titlepage}
 
 
 % Fill out content of presentation:
@@ -42,6 +48,7 @@
   
 \end{frame}
 
+\if0
 
 \begin{frame}
 \frametitle{Slide with a very, very long title: Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat}
@@ -239,6 +246,7 @@ cillum dolore eu fugiat nulla pariatur.
 \end{itemize}
 \end{frame}
 
+\fi
 \lastslide
 
 \begin{frame}[label=backupSlide]
