@@ -53,8 +53,10 @@
 \begin{frame}[label=working]
   \frametitle{Netlists are Graphs are Graphs}
   \begin{itemize}
-    \item For the purpose of the thesis, a circuit $\mathcal{C}$ is just a graph $\mathcal{G}\coloneq \lbrace\mathcal{E},\mathval{V},\mathcal{Y} \rbrace$.
-    \item In general,we represent each edge 
+    \item For the purpose of the thesis, a circuit $\mathcal{C}$ is just an attributed graph $\mathcal{G}\coloneq \lbrace\mathcal{E},\mathcal{V},\mathcal{Y} \rbrace$.
+    \item In general,we represent each edge,node and global feature as vectors $e_{ij},x_i,y_k \in \mathbb{R}^{d_e/d_v/d_{y_k}}$ and aggregate them into tensors $E\in\mathbb{R}^{n\times n \times d_e},X\in\mathbb{R}^{n\times d_v},Y\in\mathbb{R}^{d_y=\sum_k d_{y_k}}$
+    \item specific device and sub-circuits, their parametrization, special input/output nodes etc. are all encoded in these attributes
+    \item  by using sparse representations e.g. COO, tensor representations are tractable
   \end{itemize}
 \end{frame}
 
@@ -63,13 +65,20 @@
 \begin{itemize}
   \item show \cite{zhaoAutomatedTopologySynthesis2022a} work, comment on it in images
   \item show BAG, other sota
+  \item comment: all based on rewriting rules and constructions
+  \item ML based methods taxonomy
 \end{itemize}
 \end{frame}
 
 \begin{frame}[label=working]
-\frametitle{Desiderata}
+  \frametitle{Why does nobody use graphs directly yet? \visible<2->{Desiderata}
+  }
+Need a method able to model relations and compositions naturally that trades of  %GNNs/set networks
 \begin{itemize}
-  \item foo
+  \item<2-> compact parametrization...
+  \item<3-> fast sampling...
+  \item<4-> of high fidelity samples...
+    \item<5-> while scaling to netlist sized graphs 
 \end{itemize}
 \end{frame}
 

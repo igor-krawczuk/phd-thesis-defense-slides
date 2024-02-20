@@ -8,7 +8,7 @@
 
 % load subfiles last
 \usepackage{subfiles}
-\includeonlyframes{title,working}
+%\includeonlyframes{title,working}
 %\includeonlyframes{title,working,maybedone}
 %later on do
 %\includeonlyframes{title,working,done,rest,maybedone}
@@ -25,28 +25,13 @@
 {EPF Lausanne,  2024-02-28}
 \frame[label=title]{\titlepage}
 
-
-% Fill out content of presentation:
+%introduce design flow, why do we need topology synthesis, why graphs,w hat do we need
 \subfile{motivation}
+%SotA at outset, start working on GG-GAN
+\subfile{gg_gan}
+\subfile{diffusion}
+\subfile{conclusion}
 
-\begin{frame}
-  \frametitle{Equivariance \& Geometric DL}
-\end{frame}
-%% WP1
-\begin{frame}[t]
-  \frametitle{Geometric Graph Generation}
-  
-\end{frame}
-
-\begin{frame}[t]
-  \frametitle{Prior Art in Graph Generation}
-  
-\end{frame}
-
-\begin{frame}[t]
-  \frametitle{Collision probelm}
-  
-\end{frame}
 
 \if0
 

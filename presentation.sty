@@ -153,7 +153,8 @@
 
 \newcommand{\lastslide}{{\setbeamercolor{normal text}{bg=mygray}\begin{frame}\end{frame}}}
 \usepackage{ragged2e}
-\usepackage[style=numeric,backend=biber,sorting=none]{biblatex}
+\usepackage[style=authoryear-icomp,backend=biber,sorting=none]{biblatex}
 \addbibresource{./bibexport.bib}
 
-
+\newcommand{\citep}[1]{(\cite{#1})}
+\newcommand{\citet}[1]{\cite{{#1}}}

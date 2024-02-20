@@ -1,0 +1,51 @@
+% !TeX root = presentation.tex
+\documentclass[./presentation.tex]{subfiles}
+\begin{document}
+\begin{frame}[label=working]
+  \frametitle{SotA Graph Generative Models at outset (2019)}
+  \begin{itemize}
+    \item GraphRNN, GRAN, BiGG: autoregressive likelihood $\implies$ order dependent,high latency
+    \item MolGAN: GAN, non PE generator, fixed size matrix  $\implies$ no size extrapolation,mode collapse
+    \item CondGEN: VAE-GAN hybrid, FNN generator $\implies$ VAE limitations \citep{bousquetOptimalTransportGenerative2017a, genevayGANVAEOptimal2017e}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[label=working]
+  \frametitle{Equivariance \& Geometric DL}
+\end{frame}
+%% WP1
+\begin{frame}[label=working,t]
+  \frametitle{Geometric Graph Generation}
+  
+\end{frame}
+
+\begin{frame}[label=working,t]
+  \frametitle{Collision problem}
+  
+\end{frame}
+\begin{frame}[label=working,t]
+  \frametitle{Resolution: Latent identifiers}
+  
+\end{frame}
+\begin{frame}[label=working,t]
+  \frametitle{Results}
+  
+\end{frame}
+\begin{frame}[label=working,t]
+  \frametitle{Results (latency)}
+  
+\end{frame}
+
+%backup slide: asymmetrical embeddings are important
+
+\begin{frame}[label=working,t]
+  \frametitle{Impact}
+  \begin{itemize}
+    \item strengths: low latency\checkmark, compact\checkmark,scaling to medium graphs\checkmark, weaknesses: training stability,expressiveness, scaling to \emph{very}large graphs
+    \item \citep{vignacTopNEquivariantSet2021d} further analyzed the empirical observations, the impact of $\Phi$ and proposed an alternative latent parametrization
+    \item \citep{martinkusSPECTRESpectralConditioning2022b} further improve the model with more powerful models and spectral conditioning, setting a new SotA in structure generation
+  \end{itemize}
+\end{frame}
+
+\end{document}
+
