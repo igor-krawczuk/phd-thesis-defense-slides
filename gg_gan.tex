@@ -2,22 +2,43 @@
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
 \begin{frame}[label=working]
-  \frametitle{SotA Graph Generative Models at outset (2019)}
+  \frametitle{Why does nobody use graphs directly yet? \visible<2->{Desiderata}
+  }
+  %WHY now and how will we deal with it?=> prepare for benefits of equivaraince
+Need a method able to 
+\begin{itemize}
+    \visible<3->{\item model relations and compositions naturally with...} %GNNs/set networks give this
+    \visible<3->{\item compact parametrization...} % GG-GAN gives this, digress *kinda* gives this, hgd does again
+    \visible<4->{\item fast sampling...} % and this, digress kinda gives this, hgd gives this
+    \visible<5->{\item high fidelity ...} %digress, hgd gives this
+    \visible<6->{\item while scaling to netlist sized graphs } % ggg kinda gives this, digress kinda , hgd does
+\end{itemize}
+\end{frame}
+\begin{frame}[label=working]
+%% WP1
+  \frametitle{Equivariance \& Geometric DL}
+  Group action $G$, e.g. Permutation Group.
+  Invariant $f(G(x;\theta))=f(x;\theta)$
+  Equivariant $f(G(x);\theta)=G(f(x;\theta))$
+  Both if we parametrize and learn $f(x;\theta)$, both remove the dependency of $\nabla_\theta f(x)$ from the effect of a group action on $x$$\implies$ the network does not need to learn $G$ as a factor of variation,improving sample complexity for generalizeable learning\citep{elesedyProvablyStrictGeneralisation2021b}, benefit of equivariant parametrization
+\end{frame}
+\begin{frame}[label=working,t]
+  \frametitle{Geometric Graph Generation}
+  %need to explain this
+  %https://en.wikipedia.org/wiki/Spatial_network
+  %threshold graph
+  
+\end{frame}
+\begin{frame}[label=working]
+  \frametitle{SotA (Geometric) Graph Generative Models at outset (2019)}
   \begin{itemize}
-    \item GraphRNN, GRAN, BiGG: autoregressive likelihood $\implies$ order dependent,high latency
+    \item GraphRNN, GRAN, BiGG: autoregressive likelihood $\implies$ order dependent,high latency%TODO cite the paper that shows that order matters
     \item MolGAN: GAN, non PE generator, fixed size matrix  $\implies$ no size extrapolation,mode collapse
-    \item CondGEN: VAE-GAN hybrid, FNN generator $\implies$ VAE limitations \citep{bousquetOptimalTransportGenerative2017a, genevayGANVAEOptimal2017e}
+    \item CondGEN: VAE-GAN hybrid, FNN generator $\implies$ VAE limitations \citep{bousquetOptimalTransportGenerative2017a, genevayGANVAEOptimal2017e}%we want to be blind to permutation *once done*; during *training* we can impose orderings/identities as long as it happens in the latent state and agnostic to the data?
   \end{itemize}
 \end{frame}
 
-\begin{frame}[label=working]
-  \frametitle{Equivariance \& Geometric DL}
-\end{frame}
-%% WP1
-\begin{frame}[label=working,t]
-  \frametitle{Geometric Graph Generation}
-  
-\end{frame}
+%PROBLEM: no big graphs=> why?
 
 \begin{frame}[label=working,t]
   \frametitle{Collision problem}

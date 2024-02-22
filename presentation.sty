@@ -1,23 +1,41 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 % --- Fonts ---
+\usepackage[french,german,english]{babel}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% EDOC THESIS TEMPLATE: Variant 1.0 -> Latin modern, large text width&height
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \usefonttheme{professionalfonts}
-\usepackage{sourcesanspro}
-\usepackage{sourcecodepro}
+\usepackage{lmodern} % use this to fix blurry typewriter text font
+%\usepackage[scaled=1.24]{nimbusmononarrow}% typewriter font
+\usepackage{nimbusmononarrow}% typewriter font
+%\usepackage[scale=1.11,sfdefault,pf,osf,subscriptcorrection]{notomath}
+\usepackage{notomath}
+% load NotoSans as mainfont, then newtxmath with option notosans
+% option subscriptcorrection passed to newtxmath
+%\usepackage[book,medium,scaled=1,sfdefault]{FiraSans}
+%\setmainfont{NotoSans}
+%\usepackage{sourcesanspro}
+%\usepackage{sourcecodepro}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath,amssymb,amsthm,eucal,bbold,bm}
-\usepackage[italic,eulergreek,symbolmisc]{mathastext}
-\usepackage{mathtools}
+\usepackage{amsmath,amssymb,amsthm,bm,amsfonts}
+%\usepackage[italic,eulergreek,symbolmisc]{mathastext}
+%\usepackage{mathastext}
 \usepackage{url}
 
 % Microtypography
 \usepackage{microtype}
-\DisableLigatures[f]{encoding = *, family = * }
+\usepackage{mathtools}
+%\DisableLigatures[f]{encoding = *, family = * }
 
 % Correct spacing around letters in math
-\MTsetmathskips{y}{1mu}{0mu}
-\MTsetmathskips{j}{1.5mu}{0mu}
+%\MTsetmathskips{y}{1mu}{0mu}
+%\MTsetmathskips{j}{1.5mu}{0mu}
 
 % --- Beamer theme ---
 
@@ -60,10 +78,10 @@
 % --- Slide numbers ---
 
 % No slide numbers by default
-\setbeamertemplate{footline}{}
+%\setbeamertemplate{footline}{}
 
 % Uncomment the line below to insert slide numbers
-% \setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}[frame number]
 
 % --- Title slide ---
 
@@ -76,7 +94,7 @@
 \NewDocumentCommand{\information}{o g g}{%
 \author[]{#2%
 \IfValueT{#3}{\vspace{5mm}\\#3}%
-\IfValueT{#1}{\vspace{5mm}\\\color{mygray}{\footnotesize Available at \url{#1}}}%
+\IfValueT{#1}{\vspace{5mm}\\\color{mygray}{\footnotesize #1}}%
 }\date[]{}}
 
 % --- Lists ---
@@ -153,8 +171,17 @@
 
 \newcommand{\lastslide}{{\setbeamercolor{normal text}{bg=mygray}\begin{frame}\end{frame}}}
 \usepackage{ragged2e}
-\usepackage[style=authoryear-icomp,backend=biber,sorting=none]{biblatex}
+%
+\usepackage[style=authoryear,backend=biber,sorting=none]{biblatex}
+\renewcommand*{\finalnamedelim}{%
+  \ifnumgreater{\value{liststop}}{2}{}{}%
+  \addspace\&\addspace}
+%stick with full name for now, do the shorter one for later
+%\usepackage[style=alphabetic,backend=biber,sorting=none]{biblatex}
 \addbibresource{./bibexport.bib}
 
 \newcommand{\citep}[1]{(\cite{#1})}
 \newcommand{\citet}[1]{\cite{{#1}}}
+\usepackage{dsfont}
+\newcommand{\ffootnote}[1]{\footnote[frame]{#1}}
+

@@ -1,8 +1,31 @@
 % !TeX root = presentation.tex
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
+%MOTIVATION: circuit design, but we go abstract
+\begin{frame}[label=working]
+  \frametitle{Motivation: Abstracting Circuit Design to Graph Generation}
+  Circuit design
+  %ADD slide motivating circuit design (AI chips etc
+  %%ADD cietation for the "dark art" thing
+  % add image of a circuit
+\end{frame}
+
+\begin{frame}[label=working]
+  %WHAT does this thesis do
+  \frametitle{Motivation: Abstracting Circuit Design to Graph Generation}
+  \centering
+  {\large 
+    \only<4->{\emph{Automated }}Circuit Design =\\\visible<2->{
+    \uncover<2>{Specification +}\\\only<2>{ Circuit Topology Design +\\ Layout Creation}
+    \only<3>{Circuit Topology \emph{Generation} +\\ Layout \emph{Generation}}% not technical
+    \only<4->{\only<4>{\emph{Graph} Generation}\only<5>{$\underbrace{\text{\emph{Graph} Generation}}_{\text{this thesis}}$} +\\ \uncover<4>{\emph{Physics Constrained Graph Embedding} \ffootnote{\cite{aggarwalMultilayerGridEmbeddings1985,chungEmbeddingGraphsBooks1987,gebotysOptimalVLSIArchitectural2012,shaulyDesignRulesSemiconductor2022}}}}}
+    % abstract
+}
+%TODO: maybe add images as interludes in the automation for constraints
+\end{frame}
 
 \begin{frame}[label=maybedone]
+% WHY does it matter
 \frametitle{EDA Flow Overview}
   \begin{columns}
     \begin{column}{0.5\textwidth}
@@ -20,43 +43,46 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}[label=todo]
+\begin{frame}[label=working]
+  %WHAT is our approach and why is it novel
 \frametitle{Topology Synthesis: From Macros to Graphs}
 % motivate why the netlist is the right abstraction level *and* why prior art didn't deal with them directly
 \begin{columns}
-  {\small
   \begin{column}{0.5\textwidth}
-   \begin{itemize}
-     \item industry has various subtly different variations: physical synthesis, high level synthesis,logic synthesis, topology synthesis\\\visible<2->{$\Rightarrow$ for our purposes, all the same }
-     \item prior work going back to 1957 generally approaches synthesis as a special instance of Church's problem \cite{churchApplicationRecursiveArithmetic1963}, i.e. special case of program synthesis.
-     \item Circuit topology is modeled as a string of symbols representing circuit functionality, from which a topology is then inferred. Some work explores other representations \cite{rojecAnalogCircuitTopology2018} but fundamentally even latest work \cite{fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023,fanSpecificationTopologyAutomatic2021f,zhaoAutomatedTopologySynthesis2022a} work does not conceive of a circuit as a single \emph{graph} but instead as a \emph{sequence of hierarchical symbols} with a clear ordering
-   \end{itemize} 
-  \end{column}
-}
+  {\tiny
+      \begin{itemize}
+        \item industry has various subtly different variations: physical synthesis, high level synthesis,logic synthesis, topology synthesis\\\visible<2->{$\Rightarrow$ for our purposes, all the same }
+        \item prior work going back to 1957 generally approaches synthesis as a special instance of Church's problem \cite{churchApplicationRecursiveArithmetic1963}, i.e. special case of program synthesis.
+       \item Circuit topology is modeled as a string of symbols representing circuit functionality, from which a topology is then inferred. Some work explores other representations \citep{rojecAnalogCircuitTopology2018} but majority of work \citep{fanSpecificationTopologyAutomatic2021f,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023} does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of hierarchical symbols} with a clear ordering
+     \end{itemize}
+   }
+  \end{column}%
   \begin{column}{0.5\textwidth}
   \centering
-  \includegraphics[width=\columnwidth,height=0.45\textheight]{example-image-a}\\%netlist code,textual vis}
-  \includegraphics[width=\columnwidth,height=0.45\textheight]{example-image-b}%netlist graph}
+  \includegraphics[width=\columnwidth,height=0.40\textheight]{example-image-a}\\%netlist code,textual vis}
+  \includegraphics[width=\columnwidth,height=0.40\textheight]{example-image-b}%netlist graph}
   \end{column}
 \end{columns}
 \end{frame}
+
 \begin{frame}[label=todo]
 \frametitle{Why Represent Topologies as Graphs}
+%WHY is it beneficial (also add abstraction as a virtue)
 \begin{itemize}
   \item automatically encode topological isomorphisms (note: might not be enough for \emph{circuit} isomorphisms \cite{wangFunctionalityMattersNetlist2022c}
   \item naturally captures relational and compositional structure
   \item amenable to preserving notions of locality non-planar, high dimensional structure (important for multi-layer layouting)
-  \item naturally abstracts the level in the hiearchy away and subsumes prior modeling - building blocks, devices, subcircuits all become nodes
+  \item naturally abstracts the level in the hierachy away and subsumes prior modeling - building blocks, devices, subcircuits all become nodes
 \end{itemize}
 \end{frame}
 
 \begin{frame}[label=working]
-  \frametitle{Netlists are Graphs are Graphs}
+  \frametitle{Topologies are Netlists are Graphs}
   \begin{itemize}
-    \item For the purpose of the thesis, a circuit $\mathcal{C}$ is just an attributed graph $\mathcal{G}\coloneq \lbrace\mathcal{E},\mathcal{V},\mathcal{Y} \rbrace$.
-    \item In general,we represent each edge,node and global feature as vectors $e_{ij},x_i,y_k \in \mathbb{R}^{d_e/d_v/d_{y_k}}$ and aggregate them into tensors $E\in\mathbb{R}^{n\times n \times d_e},X\in\mathbb{R}^{n\times d_v},Y\in\mathbb{R}^{d_y=\sum_k d_{y_k}}$
+    \item For the purpose of the thesis, a circuit $\Circ$ is just an attributed graph $\gG\coloneq \lbrace\gE,\gV,\gY \rbrace$.
+    \item In general,we represent each edge,node and global feature as vectors $\edge_{ij},\node_i,\globaly_k \in \bbR{d_e/d_v/d_{y_k}}$ and aggregate them into tensors $\edges\in\bbR{n\times n \times d_e},\nodes\in\bbR{n\times d_v},\globalyall\in\bbR{d_y=\sum_k d_{y_k}}$
     \item specific device and sub-circuits, their parametrization, special input/output nodes etc. are all encoded in these attributes
-    \item  by using sparse representations e.g. COO, tensor representations are tractable
+    %\item further optimization, e.g. \cite{jangSimpleScalableRepresentation2023a}
   \end{itemize}
 \end{frame}
 
@@ -67,18 +93,6 @@
   \item show BAG, other sota
   \item comment: all based on rewriting rules and constructions
   \item ML based methods taxonomy
-\end{itemize}
-\end{frame}
-
-\begin{frame}[label=working]
-  \frametitle{Why does nobody use graphs directly yet? \visible<2->{Desiderata}
-  }
-Need a method able to model relations and compositions naturally that trades of  %GNNs/set networks
-\begin{itemize}
-  \item<2-> compact parametrization...
-  \item<3-> fast sampling...
-  \item<4-> of high fidelity samples...
-    \item<5-> while scaling to netlist sized graphs 
 \end{itemize}
 \end{frame}
 

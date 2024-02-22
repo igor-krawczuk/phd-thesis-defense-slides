@@ -6,6 +6,7 @@
 % Enter link to PDF file with figures:
 \newcommand{\pdf}{figures.pdf}
 
+\input{math.tex}
 % load subfiles last
 \usepackage{subfiles}
 %\includeonlyframes{title,working}
@@ -14,11 +15,11 @@
 %\includeonlyframes{title,working,done,rest,maybedone}
 \begin{document}
 % Enter presentation title:
-\title{\justifying Graph generative deep learning models with an application to circuit topologies}
+\title{\justifying Graph generative deep learning models with an application\\ to circuit topologies}
 % Enter presentation information:
 \information%
 % Enter link to research paper (optional; comment line if not needed):
-%[https://github.com/pmichaillat/latex-presentation]%
+[Work Done: LSM@EPFL 2017-2019,LIONS@EPFL 2019-2024]%
 % Enter presentation authors:
 {Igor Krawczuk}%
 % Enter presentation location and date (optional; comment line if not needed):
@@ -27,9 +28,16 @@
 
 %introduce design flow, why do we need topology synthesis, why graphs,w hat do we need
 \subfile{motivation}
-%SotA at outset, start working on GG-GAN
+%SotA at outset, start working on GG-GAN, Message passing locality assumption, power of GNNs etc.
 \subfile{gg_gan}
+%GG contributions: latent identifiers during training, maintain PE, collision problem, geometric identifiers is beneficial (put theorem), latency low, *FEATURES*, strong generator architecture + discriminator, *asymmetrical* geometrical embeddings!
 \subfile{diffusion}
+%% clement reached out, we developed the model together to use the features (not possible with continuous relaxations, check, discrete state spaces allows to use GGG features=> put references, strong architecture *again*, decomposition of target distribution
+%spectre put even stronger architecuter
+% swingnn even stronger architctur etc.
+% mahdi reached out, higen autoregressive work, developed, feature computation, ordinal diffusion, edge dependence
+%maybe circuits, otherwise  just checkboxes, check asusumptions
+% other related work (sparsediff)
 \subfile{conclusion}
 
 
