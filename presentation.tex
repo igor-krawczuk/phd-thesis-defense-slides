@@ -9,6 +9,7 @@
 \input{math.tex}
 % load subfiles last
 \usepackage{subfiles}
+\includeonlyframes{title,workingonly}
 %\includeonlyframes{title,working}
 %\includeonlyframes{title,working,maybedone}
 %later on do
@@ -25,6 +26,28 @@
 % Enter presentation location and date (optional; comment line if not needed):
 {EPF Lausanne,  2024-02-28}
 \frame[label=title]{\titlepage}
+
+\begin{frame}[label=done]
+  \frametitle{Presentation Structure}
+  %\framesubtitle{test}
+  \centering
+  \begin{enumerate}
+    \item Motivation:
+      \begin{enumerate}
+        \item Why should care about circuit topology synthesis?
+        \item Why abstracting them to graph generation is the right move?
+      \end{enumerate}
+    \item Background %explain why graphs weren't used before for ML in eda,explain GNNs, explain why (they were but for rule based/symbolic approaches)
+    \item Contributions
+      \begin{enumerate}
+        \item Geometric Graph GAN
+        \item DiGress
+        \item Hierarchical Community Structured Graph Diffusion
+      \end{enumerate}
+    \item Conclusions % put the impact slide here, summarize each
+  \end{enumerate} 
+  \vspace{1cm} %adjust to vertically center later
+\end{frame}
 
 %introduce design flow, why do we need topology synthesis, why graphs,w hat do we need
 \subfile{motivation}

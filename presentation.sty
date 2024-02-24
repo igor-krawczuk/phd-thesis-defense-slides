@@ -43,30 +43,34 @@
 \usecolortheme[]{seagull}
 \setbeamercovered{transparent}
 \setbeamertemplate{navigation symbols}{}
+%define colors
+\colorlet{myblack}{black!85!}
+\colorlet{mygray}{gray!60!}
 
 % --- Font sizes and shapes ---
 
 \setbeamerfont{title}{size=\huge, series=\scshape}
 \setbeamerfont{author}{size=\large}
 \setbeamerfont{frametitle}{series=\scshape}
-\setbeamertemplate{frametitle}{\MakeLowercase{\insertframetitle}}
+\setbeamertemplate{frametitle}{\MakeLowercase{\insertframetitle}\newline\textcolor{gray!60}{\small{\insertframesubtitle}}}
+%\setbeamertemplate{frametitle}{\textbf{\insertframetitle}\\\insertframesubtitle}
 \setbeamertemplate{frametitle continuation}{[\insertcontinuationcount]}
 \setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
 \setbeamerfont{button}{size=\footnotesize}
+\setbeamerfont{framesubtitle}{series=\scshape,size=\tiny}
 
 % --- Spacing ---
 
 \usepackage[onehalfspacing]{setspace}
 \setbeamertemplate{title page}[default][left,leftskip=-8pt]
-\addtobeamertemplate{frametitle}{\vskip3mm}{}
+%\addtobeamertemplate{frametitle}{\vskip3mm}{}
 \setbeamersize{text margin left=5mm,text margin right=5mm}
 
 % --- Color ---
 
-\colorlet{myblack}{black!85!}
-\colorlet{mygray}{gray!60!}
 \setbeamercolor{title}{fg=myblack}
 \setbeamercolor{frametitle}{fg=myblack}
+\setbeamercolor{framesubtitle}{fg=mygray}
 \setbeamercolor{normal text}{fg=myblack}
 \setbeamercolor{itemize item}{fg=mygray}
 \setbeamercolor{itemize subitem}{fg=mygray} 

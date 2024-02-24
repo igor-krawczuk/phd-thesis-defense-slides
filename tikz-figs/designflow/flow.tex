@@ -1,5 +1,52 @@
 % !TeX root = ../../presentation.tex
-\documentclass[../../presentation.tex]{subfiles}
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+% --- Fonts ---
+\usepackage[french,german,english]{babel}
+\usepackage{lmodern} % use this to fix blurry typewriter text font
+%\usepackage[scaled=1.24]{nimbusmononarrow}% typewriter font
+\usepackage{nimbusmononarrow}% typewriter font
+\usepackage{notomath}
+\usepackage[T1]{fontenc}
+% tikz definitions
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{
+  arrows.meta,                        % for arrow tips
+  backgrounds,                        % for background layer
+  bending,
+  ext.paths.ortho,                    % for ortho paths
+  positioning,
+  ext.positioning-plus,               % for 
+  ext.node-families.shapes.geometric, % loads ext.node-families and
+% shapes.geometric,                   % for ellipse
+  calc,                               % for ($$)
+  backgrounds, %https://tex.stackexchange.com/questions/230224/how-to-change-the-background-color-in-tikz
+  overlay-beamer-styles,
+}
+\newcommand{\visible}[1]{#1}
+\newcommand{\only}[1]{#1}
+
+% thanks https://tex.stackexchange.com/a/62032
+\usepackage{xparse}
+
+\ExplSyntaxOn
+
+\NewDocumentCommand{\getenv}{om}
+ {
+  \sys_get_shell:nnN { kpsewhich ~ --var-value ~ #2 } { } \l_tmpa_tl
+  \tl_trim_spaces:N \l_tmpa_tl
+  \IfNoValueTF { #1 }
+   {
+    \tl_use:N \l_tmpa_tl
+   }
+   {
+    \tl_set_eq:NN #1 \l_tmpa_tl
+   }
+ }
+
+\ExplSyntaxOff
 \begin{document}
 % node styles
 \tikzstyle{flowstep} = [rectangle, draw, text centered, rounded corners, minimum height=2em]
@@ -118,8 +165,17 @@
 \draw[veryunhappypath] (physmeas.east) -|(ctrlMeas.center) |- (schematic.east);
 \draw[veryunhappypath] (physmeas.east) -|(ctrlMeas.center) |- (projspec.east);
 }
+% mark project spec and functional design as topology generation as wel
+\if0
+\node (projtopgen) at ($(projspec.north west)+(-0.1,0.25)$) {Graph Generation!};
+\draw[dashed] ($(projspec.north west)+(-0.1,0.1)$) -|($(projspec.north east)+(0.1,0.1)$)  |- ($(projspec.south east)+(0.1,-0.25)$) -| ($(projspec.south west)+(-0.10,-0.1)$) -- ($(projspec.north west)+(-0.1,0.1)$);
+\fi
+\if0
+\node (schemtopgen) at ($(schematic.north west)+(-0.1,0.25)$) {Graph Generation!};
+\draw[dashed] ($(schematic.north west)+(-0.1,0.1)$) -|($(schematic.north east)+(0.1,0.1)$)  |- ($(schematic.south east)+(0.1,-0.25)$) -| ($(schematic.south west)+(-0.10,-0.1)$) -- ($(schematic.north west)+(-0.1,0.1)$);
+\fi
+
 
 % *very* unhappy paths
 \end{tikzpicture}
-
 \end{document}

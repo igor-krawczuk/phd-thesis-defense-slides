@@ -1,6 +1,32 @@
-% !TeX root = ../../presentation.tex
-\documentclass[../../presentation.tex]{subfiles}
-\begin{document}
+% might want to add tex root if using subfiles again
+\documentclass[border={0pt 0pt 0pt 2pt}]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+% --- Fonts ---
+\usepackage[french,german,english]{babel}
+\usepackage{lmodern} % use this to fix blurry typewriter text font
+%\usepackage[scaled=1.24]{nimbusmononarrow}% typewriter font
+\usepackage{nimbusmononarrow}% typewriter font
+\usepackage{notomath}
+\usepackage[T1]{fontenc}
+% tikz definitions
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{
+  arrows.meta,                        % for arrow tips
+  backgrounds,                        % for background layer
+  bending,
+  ext.paths.ortho,                    % for ortho paths
+  positioning,
+  ext.positioning-plus,               % for 
+  ext.node-families.shapes.geometric, % loads ext.node-families and
+% shapes.geometric,                   % for ellipse
+  calc,                               % for ($$)
+  backgrounds, %https://tex.stackexchange.com/questions/230224/how-to-change-the-background-color-in-tikz
+  overlay-beamer-styles,
+}
+\newcommand{\visible}[1]{#1}
+\newcommand{\only}[1]{#1}
 % node styles
 \tikzstyle{flowstep} = [rectangle, draw, text centered, rounded corners, minimum height=2em]
 \tikzstyle{question} = [ellipse, draw, text centered, rounded corners]
@@ -19,6 +45,32 @@
 \tikzstyle{unhappypathna}=[rounded corners,thick,BrickRed!75!white]
 \tikzstyle{unhappypath}=[->,unhappypathna]
 \tikzstyle{veryunhappypath}=[rounded corners,thick,Red,->]
+
+%source: andreas burg https://ee222-winter19-01.courses.soe.ucsc.edu/system/files/attachments/EE222W19_Lect1_Part2-Introduction.pdf
+
+% TODO add an image to each level, unveil in 2nd step all at once
+% thanks https://tex.stackexchange.com/a/62032
+\usepackage{xparse}
+
+\ExplSyntaxOn
+
+\NewDocumentCommand{\getenv}{om}
+ {
+  \sys_get_shell:nnN { kpsewhich ~ --var-value ~ #2 } { } \l_tmpa_tl
+  \tl_trim_spaces:N \l_tmpa_tl
+  \IfNoValueTF { #1 }
+   {
+    \tl_use:N \l_tmpa_tl
+   }
+   {
+    \tl_set_eq:NN #1 \l_tmpa_tl
+   }
+ }
+
+\ExplSyntaxOff
+
+\begin{document}
+\begin{tikzpicture}
 \tikzset{
   fill fraction/.style n args={3}{path picture={
  \fill[#1] (path picture bounding box.south west) rectangle
@@ -28,17 +80,12 @@
  ($(path picture bounding box.north west)!#3!(path picture bounding box.north
  east)$);}}
 }
-
-%source: andreas burg https://ee222-winter19-01.courses.soe.ucsc.edu/system/files/attachments/EE222W19_Lect1_Part2-Introduction.pdf
-
-% TODO add an image to each level, unveil in 2nd step all at once
-\begin{tikzpicture}
   % first flow nodes
-  \visible<14->{
+  %\visible<14->{
 \node[concept](conceptidea) at (3,0) {Behavioural specification};
 \node[flowstep,fill fraction={green!20}{blue!20}{0.5}](layout)[below=of conceptidea]{Layout Creation}; % can either be full custom or semi custom, will involve netlist,floor plan place and route
 \draw[arr] (conceptidea) -- (layout);
-}
+%}
 % semi custom
   \visible<15->{
 \node[semistep](semicustom) [below left=of layout,fill=green!20] {Semi-Custom-Design};
@@ -95,16 +142,16 @@
 \visible<19->{
 % draw a dot around the shared sections
 % this is the same, and what we can optimize
-\node (bothsynth) at ($(semiopt.north west)!0.5!(fullopt.north east) + (0.0,0.25)$) {Circuit Topology Synthesis};
-\draw[dashed] ($(semiopt.north west)+(-1.1,0.1)$) -|($(fullopt.north east)+(0.1,0.1)$)  |- ($(fullmap.south east)+(0.1,-0.25)$) -| ($(semimap.south west)+(-0.50,-0.25)$) -- ($(semiopt.north west)+(-1.1,0.1)$);
+%\node (bothsynth) at ($(semiopt.north west)!0.5!(fullopt.north east) + (0.0,0.25)$) {Circuit Topology Synthesis};
+%\draw[dashed] ($(semiopt.north west)+(-1.1,0.1)$) -|($(fullopt.north east)+(0.1,0.1)$)  |- ($(fullmap.south east)+(0.1,-0.25)$) -| ($(semimap.south west)+(-0.50,-0.25)$) -- ($(semiopt.north west)+(-1.1,0.1)$);
+%\fi
+%\if0
+%\node (bothsynth) at ($(semiopt.north west)!0.5!(fullopt.north east) + (0.0,0.25)$) {Graph Generation!};
+%\draw[dashed] ($(semiopt.north west)+(-1.1,0.1)$) -|($(fullopt.north east)+(0.1,0.1)$)  |- ($(fullmap.south east)+(0.1,-0.25)$) -| ($(semimap.south west)+(-0.50,-0.25)$) -- ($(semiopt.north west)+(-1.1,0.1)$);
+%%\fi
+
 }
 % draw arrows
-
-
-
-
-
-
 %% in semicustom: synthesizeable behavioural sim, synthesis (opt + map), place + route
 % in full custom: decide on topology,size, manual place + route
 % => same steps, just 
