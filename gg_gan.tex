@@ -18,7 +18,7 @@
 }
 \only<3->{
   \raggedright
-  Require models that can...
+  Data is sparse \emph{and} even with data, we require models that can...
 \begin{itemize}
     \visible<4->{\item model relations and compositions naturally with...} %GNNs/set networks give this
     \visible<5->{\item high fidelity ...} %digress, hgd gives this
@@ -99,26 +99,44 @@
   %need to explain this
   %https://en.wikipedia.org/wiki/Spatial_network
   %threshold graph
-  
+  \includegraphics[width=\textwidth,height=0.30\textheight,keepaspectratio]{./images/graphics_xxgan_1.pdf}
+  \vspace{-0.5cm}
+  \begin{align}
+    \min_{\theta}\max_{\phi}&\quad\mathbb{E}_{\mathcal{G}\sim \mathcal{D}}\left[d\left(\mathcal{G};\phi\right)\right]-\mathbb{E}_{\mathbf{Z}\sim \mathcal{N}}\left[d\left(g(\mathbf{Z};\theta);\phi\right)\right]\nonumber\\
+    \text{s.t.}&\quadK\left(d\left(\cdot,\phi\right)\right)\leq 1\nonumber
+  \end{align}
+  \vspace{-0.25cm}
+  Generator $g$: MHA-transformer, with final readout based on attention weights$\implies$PE, very expressive\\
+  Discriminator $d$: GIN, with spectral, orbit and other graph theoretic features$\implies$PE, very expressive
 \end{frame}
 
 %PROBLEM: no big graphs=> why?
 
 \begin{frame}[label=working,t]
-  \frametitle{Collision problem}
-  
-\end{frame}
-\begin{frame}[label=working,t]
-  \frametitle{Resolution: Latent identifiers}
-  
+  \frametitle{Collision problem \only<2->{resolved}}
+  \only<1>{
+  \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/rsg.pdf}
+  \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/graphics_xxgan_2.pdf}
+}
+\only<2>{
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./images/gg.pdf}
+}
+\only<3>{
+  \includegraphics[height=0.8\textheight,keepaspectratio]{./images/CollisionDecentiles-Att.pdf}\\
+  Green: Learning a single $\mathcal{G}$ with a PE $g$ without $\Phi$, orange: with $\Phi$
+}
 \end{frame}
 \begin{frame}[label=working,t]
   \frametitle{Results}
-  
+  \centering
+    \includegraphics[width=\textwidth]{./images/ggg_results_2024-02-25_00-52.png}
+  \visible<2>{
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./images/drawing.pdf}
+  }
 \end{frame}
 \begin{frame}[label=working,t]
   \frametitle{Results (latency)}
-  
+  \includegraphics[width=\textwidth]{./images/scale_jointFalse.pdf}
 \end{frame}
 
 %backup slide: asymmetrical embeddings are important
