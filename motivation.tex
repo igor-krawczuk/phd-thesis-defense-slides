@@ -9,13 +9,9 @@
 %step/reset myframerevealcnt
 \newcommand{\stepmfrc}{\stepcounter{myframerevealcnt}}
 \newcommand{\resetmfrc}{\setcounter{myframerevealcnt}{1}}
-\begin{frame}[label=workingonly,t]
-  %TODO
-  %ADD slide motivating circuit design (AI chips etc
-  %%ADD cietation for the "dark art" thing
-  % add image of a circuit
+\begin{frame}[label=done,t]
   %NOTE
-  %WHAT does this thesis do
+  %WHY do we care about this problem
   \frametitle{Motivation: Circuit Design Matters}
   \centering
   \resetmfrc{}
@@ -27,18 +23,17 @@ Source: \href{}{Statista}\\
 \vspace{1cm}
 }
 \end{frame}
-\begin{frame}[label=workingonly,t]
-  %TODO
-  %ADD slide motivating circuit design (AI chips etc
-  %%ADD cietation for the "dark art" thing
-  % add image of a circuit
+\begin{frame}[label=done,t]
+  %TODO (nice to have) slide motivating circuit design (AI chips etc
+  %%TODO (nice to have) cietation for the "dark art" thing
+  %%TODO (nice to have) add image of a circuit, planning etc
   %NOTE
   %WHAT does this thesis do
   \frametitle{Motivation: Circuit Design to Graph Generation}
   \centering
   \resetmfrc{}
-  \only<\mfrc{}>{Circuit Design =}
-\stepmfrc{}
+%  \only<\mfrc{}>{Circuit Design =}
+%\stepmfrc{}
 \only<\mfrc{}>{
 \begin{columns}
   \begin{column}{0.5\textwidth}
@@ -51,52 +46,91 @@ Source: \href{}{Statista}\\
 }
 %%
 \stepmfrc{}
+\only<\mfrc{}-7>{
 \only<\mfrc{}->{
   {\large 
-  \only<\mfrco{3}->{\emph{Automated }}\visible<\mfrc{}->{Circuit Design =}\\
+    \uncover<1-7>{\only<\mfrco{3}->{\emph{Automated }}\visible<\mfrc{}->{Circuit Design =}}\\
     \stepmfrc{}
 %
-    \only<\mfrc{}>{Specification +\\ Circuit Topology Design +\\ Layout Creation}
+    \only<\mfrc{}>{Specification +\\ Circuit Topology Design +\\ Layout Creation}% we assume specification is a given and we implicitly condition on it
       \stepmfrc{}
       \only<\mfrc{}->{\uncover<0>{Specification +}\\}
       \only<\mfrc{}>{Circuit Topology Design +\\ Layout Creation}% human level, out of scope
       \stepmfrc{}
       \only<\mfrc{}>{Circuit Topology \emph{Generation} +\\ Layout \emph{Generation}}% not technical
       \stepmfrc{}
+  \only<\mfrc{}->{
   \only<\mfrc{}>{\emph{Graph} Generation}
   \only<\mfrco{1}>{$\underbrace{\text{\emph{Graph} Generation}}_{\text{this thesis}}$} +\\ \uncover<\mfrc{}>{
  \emph{Physics Constrained Graph Drawing} \ffootnote{\cite{aggarwalMultilayerGridEmbeddings1985,chungEmbeddingGraphsBooks1987,gebotysOptimalVLSIArchitectural2012,shaulyDesignRulesSemiconductor2022}}
 }
-%    % abstract
-%}
+}
   }%\large
 }%\only
+}
+\only<8->{
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+    \only<8-10>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow.pdf}}
+    % these last 2 *briefly*, don't overfocus, since we need to rush through them
+    \only<11>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_proj.pdf}}
+      \only<12>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_both.pdf}}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \only<8>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen.pdf}}
+    \only<9>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_topsyn.pdf}}
+    \only<10->{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_graphgen.pdf}}
+  \end{column}
+  \end{columns}
+}
 
 %TODO: maybe add images as interludes in the automation for constraints
 \end{frame}
-\begin{frame}[label=working]
+
+\begin{frame}[label=working,c]
   %WHAT is our approach and why is it novel
-\frametitle{Topology Synthesis: From Macros to Graphs}
+\frametitle{Topology Synthesis: From Rules to Graphs}
 % motivate why the netlist is the right abstraction level *and* why prior art didn't deal with them directly
+\small
 \begin{columns}
   \begin{column}{0.5\textwidth}
-  {\tiny
+  {
       \begin{itemize}
-        \item industry has various subtly different variations: physical synthesis, high level synthesis,logic synthesis, topology synthesis\\\visible<2->{$\Rightarrow$ for our purposes, all the same }
-        \item prior work going back to 1957 generally approaches synthesis as a special instance of Church's problem \cite{churchApplicationRecursiveArithmetic1963}, i.e. special case of program synthesis.
-       \item Circuit topology is modeled as a string of symbols representing circuit functionality, from which a topology is then inferred. Some work explores other representations \citep{rojecAnalogCircuitTopology2018} but majority of work \citep{fanSpecificationTopologyAutomatic2021f,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023} does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of hierarchical symbols} with a clear ordering
+        %\item industry has various subtly different variations: physical synthesis, high level synthesis,logic synthesis, topology synthesis\\\visible<2->{$\Rightarrow$ for our purposes, all the same }
+        \visible<1->{
+          \item strongly influenced by Church's problem \cite{churchApplicationRecursiveArithmetic1963}, hence solved with symbolic approaches (MILP,DP) or via evolutionary strategies\only<1->{\footnote[frame]{\small\cite{zhaoAutomatedTopologySynthesis2022a} }}
+        }
+        %\item prior work going back to 1957 generally approaches topology generation as a special instance of Church's problem \cite{churchApplicationRecursiveArithmetic1963}, i.e. special case of program generation, solved with rule based approaches and MILP solvers or via evolutionary strategies\footnote{For a detailed overview, see e.g. \cite[section 2.2.2]{zhaoAutomatedTopologySynthesis2022a} }
+          \visible<2->{
+          \item Even majority of latest work\footnotemark[1], including DL \only<2->{\footnote[frame]{\small\cite{hakhamaneshiBagNetBerkeleyAnalog2019d,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023}}} does not conceive of a circuit as a \emph{graph} but instead as a \emph{hierarchy of symbols} with a clear ordering
+       %\item Circuit topology is modeled as a string of symbols representing circuit functionality, from which a topology is then inferred. Some work explores other representations \citep{rojecAnalogCircuitTopology2018} but majority of work \citep{fanSpecificationTopologyAutomatic2021f,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023} does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of hierarchical symbols} with a clear ordering
+        }
+          \visible<3->{
+          \item Single Exception: \cite{fanSpecificationTopologyAutomatic2021d}
+          }
      \end{itemize}
    }
   \end{column}%
   \begin{column}{0.5\textwidth}
   \centering
-  \includegraphics[width=\columnwidth,height=0.40\textheight]{example-image-a}\\%netlist code,textual vis}
-  \includegraphics[width=\columnwidth,height=0.40\textheight]{example-image-b}%netlist graph}
+  \only<1>{
+  \includegraphics[width=\columnwidth,height=0.80\textheight,keepaspectratio]{./images/oasys_2024-02-24_21-59.png}\\%netlist code,textual vis
+  From: \cite{harjaniOASYSFrameworkAnalog1989a}
+}
+  \only<2>{
+  \includegraphics[width=\columnwidth,height=0.80\textheight,keepaspectratio]{./images/graph_grammar_2024-02-24_21-39.png}
+  From: \cite{zhaoGraphGrammarBasedAnalogCircuit2019}
+}
+  \only<3>{
+  \includegraphics[width=\columnwidth,height=0.80\textheight,keepaspectratio]{./images/single_graph_related_2024-02-24_22-09.png}
+  From: \cite{fanSpecificationTopologyAutomatic2021d}
+}
   \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}[label=todo]
+\if0
+\begin{frame}[label=working]
 \frametitle{Why Represent Topologies as Graphs}
 %WHY is it beneficial (also add abstraction as a virtue)
 \begin{itemize}
@@ -106,7 +140,9 @@ Source: \href{}{Statista}\\
   \item naturally abstracts the level in the hierachy away and subsumes prior modeling - building blocks, devices, subcircuits all become nodes
 \end{itemize}
 \end{frame}
+\fi
 
+\if0
 \begin{frame}[label=working]
   \frametitle{Topologies are Netlists are Graphs}
   \begin{itemize}
@@ -126,6 +162,7 @@ Source: \href{}{Statista}\\
   \item ML based methods taxonomy
 \end{itemize}
 \end{frame}
+\fi
 
   
 \end{document}

@@ -188,4 +188,7 @@
 \newcommand{\citet}[1]{\cite{{#1}}}
 \usepackage{dsfont}
 \newcommand{\ffootnote}[1]{\footnote[frame]{#1}}
+%\usepackage{hyperref}
+%\counterwithout{footnote}{frame}
+\AtBeginEnvironment{frame}{\setcounter{footnote}{0}}
 

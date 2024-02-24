@@ -1,41 +1,105 @@
 % !TeX root = presentation.tex
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
-\begin{frame}[label=working]
-  \frametitle{Why does nobody use graphs directly yet? \visible<2->{Desiderata}
+\begin{frame}[label=working,t]
+  \frametitle{Why does nobody generate graphs directly yet? \visible<3->{Desiderata}
   }
+  \centering
   %WHY now and how will we deal with it?=> prepare for benefits of equivaraince
-Need a method able to 
+\only<1-2>{
+  GNNs are very effective for EDA tasks \ffootnote{\cite{renWhyAreGraph2022b}}\\
+  \only<1>{
+    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/effective2024-02-24_22-24.png}
+  }
+  \only<2>{
+    So why no topology generation yet\ffootnote{\cite{loperaSurveyGraphNeural2021d}}?\\
+    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/eda_tools_2024-02-24_22-21.png}
+  }
+}
+\only<3->{
+  \raggedright
+  Require models that can...
 \begin{itemize}
-    \visible<3->{\item model relations and compositions naturally with...} %GNNs/set networks give this
-    \visible<3->{\item compact parametrization...} % GG-GAN gives this, digress *kinda* gives this, hgd does again
-    \visible<4->{\item fast sampling...} % and this, digress kinda gives this, hgd gives this
+    \visible<4->{\item model relations and compositions naturally with...} %GNNs/set networks give this
     \visible<5->{\item high fidelity ...} %digress, hgd gives this
-    \visible<6->{\item while scaling to netlist sized graphs } % ggg kinda gives this, digress kinda , hgd does
+    \visible<6->{\item compact parametrization...} % GG-GAN gives this, digress *kinda* gives this, hgd does again
+    \visible<7->{\item fast sampling...} % and this, digress kinda gives this, hgd gives this
+    \visible<8->{\item while scaling to circuit sized graphs } % ggg kinda gives this, digress kinda , hgd does
 \end{itemize}
+}
 \end{frame}
-\begin{frame}[label=working]
+\begin{frame}[label=working,t]
 %% WP1
-  \frametitle{Equivariance \& Geometric DL}
-  Group action $G$, e.g. Permutation Group.
-  Invariant $f(G(x;\theta))=f(x;\theta)$
-  Equivariant $f(G(x);\theta)=G(f(x;\theta))$
-  Both if we parametrize and learn $f(x;\theta)$, both remove the dependency of $\nabla_\theta f(x)$ from the effect of a group action on $x$$\implies$ the network does not need to learn $G$ as a factor of variation,improving sample complexity for generalizeable learning\citep{elesedyProvablyStrictGeneralisation2021b}, benefit of equivariant parametrization
+  \frametitle{Machine Learning for Relations: GNNs \& Geometric DL}
+  \only<1>{
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/rise_of_gnns_2024-02-24_23-01.png}\\
+  }
+  \only<2-6>{
+        \begin{itemize}
+          \item Graph Neural Networks: learn features representing structure of graphs\ffootnote{\cite{scarselliGraphNeuralNetwork2009}}\ffootnote{\cite{duvenaudConvolutionalNetworksGraphs2015,kipfSemiSupervisedClassificationGraph2017b,gilmerNeuralMessagePassing2017a,battagliaRelationalInductiveBiases2018k}}
+          \only<3-4>{
+        \item general MPNN form\ffootnote{\cite{xuHowPowerfulAre2019e}}}
+          \only<5->{
+          \item important for modern GNNs\footnotemark[4]: permutation equivariant/invariant parametrization of learnable functions on graphs!
+          }
+          \only<6->{
+          \item $\mathcal{O}\left(n\right)$ but expressivity constraints\footnotemark[5], $\mathcal{O}\left(n^3\right)$ for more expressive models \ffootnote{\cite{maronProvablyPowerfulGraph2019b,vignacBuildingPowerfulEquivariant2020,balcilarBreakingLimitsMessage2021b}}% either in model for for pre-computation
+          }
+        \end{itemize}
+        \only<3>{
+          \begin{align}
+            h_{x_i}^{(l+1)}=&\combine^{(l)}\left(h_{x_i}^{(l)},\aggregate^{(l)}\left(\lbrace h_{x_{j}}^{(l)} \forall x_j \in \mathcal{N}\left(x_i\right)\rbrace\right)\right)\\
+          z_\mathcal{G}=&\readout\left(\lbrace h_{v_i}^{(l)} \forall v_i \in \mathcal{G} \rbrace\right)
+        \end{align}
+      }
+        \only<4>{
+          \begin{align}
+            h_{v_i}^{0}=&x_i&\text{\texttt{//initial node features}}\nonumber\\
+            h_{v_i}^{(l+1)}=&MLP^{(l)}\left(\left(1+\epsilon^{(l)}\right)h_{v_i}^{(l)}+\sum_{x_j \in \mathcal{N}\left(x_i\right)}h_{v_{j}^{(l)}}\right)&\text{\texttt{//per layer update}}\nonumber\\
+            z_\mathcal{G}=&\concat_{\forall l}\left(\sum_{v_i\in \mathcal{G}}h_{v_i}^{(l)} \right)&\text{\texttt{//final readout}}\nonumber
+        \end{align}
+      }
+  }
+  \only<7->{
+    \textbf{Invariance,Equivariance,Symmetry}: A function $f:\mathcal{X}\to\mathcal{Y}$ is $G$-\emph{invariant} if 
+
+    \begin{equation}
+  f(\phi(g)x)=f(x)\forall x \in \mathcal{X},g\in G\nonumber
+    \end{equation}
+
+  and G-\emph{equivariant} if
+  \begin{equation}
+  f(\phi(g)x)=\rho(g)f(x) \forall x \in\mathcal{X},g\in G\nonumber
+  \end{equation}
+
+  If $f(x;\theta)$ is G-(in-/equi)-variant, $\nabla_\theta f(\phi(g)x;\theta)=\nabla_\theta f(x;\theta)$\\
+
+  $\implies$ the network does not need to learn variation capture by $G$ improving sample complexity for generalizeable learning
+  \footnote[frame]{\cite{elesedyProvablyStrictGeneralisation2021b}}, although caveats apply\ffootnote{\cite{abbeNonuniversalityDeepLearning2022c,kianiHardnessLearningSymmetries2024b}}
+}
 \end{frame}
+
+\begin{frame}[label=working]
+  \frametitle{SotA Deep Graph Generative Models at outset (2019)}
+  \small
+  4 main variants
+  \begin{itemize}
+    \item Autoregressive likelihood(AR)\ffootnote{ GraphRNN, GRAN, BiGG} $\centernot\implies$ order dependent,high latency%TODO cite the paper that shows that order matters
+    \item GAN \ffootnote{\cite{decaoMolGANImplicitGenerative2022b}}% GAN, non PE generator, fixed size matrix  
+      $\centernot\implies$ non-PE generator, no size extrapolation,mode collapse
+    \item VAE/VAE-GAN hybrid\ffootnote{\cite{yangConditionalStructureGeneration2019e,kipfVariationalGraphAutoEncoders2016b}}% V FNN generator
+      $\centernot\implies$ non-PE generator, no size extrapolation,VAE limitations \ffootnote{\cite{bousquetOptimalTransportGenerative2017a, genevayGANVAEOptimal2017e}}%we want to be blind to permutation *once done*; during *training* we can impose orderings/identities as long as it happens in the latent state and agnostic to the data?
+    \item Normalizing Flows\ffootnote{\cite{liuGraphNormalizingFlows2019a,madhawaGraphNVPInvertibleFlow2019a}}$\centernot\implies$ PE, slow training, limited expressivity
+    \item Score-Matching + Langevin Dynamics\ffootnote{\cite{niuPermutationInvariantGraph2020b}}  $\centernot\implies$ PE,but very slow sampling
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[label=working,t]
   \frametitle{Geometric Graph Generation}
   %need to explain this
   %https://en.wikipedia.org/wiki/Spatial_network
   %threshold graph
   
-\end{frame}
-\begin{frame}[label=working]
-  \frametitle{SotA (Geometric) Graph Generative Models at outset (2019)}
-  \begin{itemize}
-    \item GraphRNN, GRAN, BiGG: autoregressive likelihood $\implies$ order dependent,high latency%TODO cite the paper that shows that order matters
-    \item MolGAN: GAN, non PE generator, fixed size matrix  $\implies$ no size extrapolation,mode collapse
-    \item CondGEN: VAE-GAN hybrid, FNN generator $\implies$ VAE limitations \citep{bousquetOptimalTransportGenerative2017a, genevayGANVAEOptimal2017e}%we want to be blind to permutation *once done*; during *training* we can impose orderings/identities as long as it happens in the latent state and agnostic to the data?
-  \end{itemize}
 \end{frame}
 
 %PROBLEM: no big graphs=> why?
