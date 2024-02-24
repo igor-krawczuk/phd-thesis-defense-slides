@@ -50,29 +50,27 @@ Source: \href{}{Statista}\\
 \end{columns}
 }
 %%
-%\stepmfrc{}
-%\only<\mfrc{}->{
-%  {\large 
-%    %\def \mynextframerevealcnt {\value{mynextframerevealcnt}+1}
-%  \only<\mfrco{2}->{\emph{Automated }}\visible<\mfrc{}->{Circuit Design =}\\
-%    \stepmrfc{}
-%    \themyframerevealcnt-r
-%    \visible<\mfrc{}->{
-%      \themyframerevealcnt\only<\mfrc{}>{\themyframerevealcnt-0}\only<\mfrco{1}>{\themyframerevealcnt-1}
+\stepmfrc{}
+\only<\mfrc{}->{
+  {\large 
+  \only<\mfrco{3}->{\emph{Automated }}\visible<\mfrc{}->{Circuit Design =}\\
+    \stepmfrc{}
 %
-%      \only<\mfrc{}>{\uncover<\mfrc{}>{Specification +}\\ Circuit Topology Design +\\ Layout Creation}
-%      \stepmfrc{}
-%      \only<\mfrc{}>{\uncover<1>{Specification +}\\Circuit Topology \emph{Generation} +\\ Layout \emph{Generation}}% not technical
-%%    \only<\mfrc{}->{
-%%    \only<\mfrc{}>{\emph{Graph} Generation}
-%%    \only<\mfrco{1}>{$\underbrace{\text{\emph{Graph} Generation}}_{\text{this thesis}}$} +\\ \uncover<\mfrc{}>{
-%%  \emph{Physics Constrained Graph Embedding} \ffootnote{\cite{aggarwalMultilayerGridEmbeddings1985,chungEmbeddingGraphsBooks1987,gebotysOptimalVLSIArchitectural2012,shaulyDesignRulesSemiconductor2022}}
-%%  }
-%%}
+    \only<\mfrc{}>{Specification +\\ Circuit Topology Design +\\ Layout Creation}
+      \stepmfrc{}
+      \only<\mfrc{}->{\uncover<0>{Specification +}\\}
+      \only<\mfrc{}>{Circuit Topology Design +\\ Layout Creation}% human level, out of scope
+      \stepmfrc{}
+      \only<\mfrc{}>{Circuit Topology \emph{Generation} +\\ Layout \emph{Generation}}% not technical
+      \stepmfrc{}
+  \only<\mfrc{}>{\emph{Graph} Generation}
+  \only<\mfrco{1}>{$\underbrace{\text{\emph{Graph} Generation}}_{\text{this thesis}}$} +\\ \uncover<\mfrc{}>{
+ \emph{Physics Constrained Graph Drawing} \ffootnote{\cite{aggarwalMultilayerGridEmbeddings1985,chungEmbeddingGraphsBooks1987,gebotysOptimalVLSIArchitectural2012,shaulyDesignRulesSemiconductor2022}}
+}
 %    % abstract
 %}
-%}
-%}
+  }%\large
+}%\only
 
 %TODO: maybe add images as interludes in the automation for constraints
 \end{frame}
