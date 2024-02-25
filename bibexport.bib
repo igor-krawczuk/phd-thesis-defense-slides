@@ -238,6 +238,21 @@
   file = {/home/krawczuk/Zotero/storage/229PSJ6U/Apt and Van Rooij - 2008 - New perspectives on games and interaction.pdf}
 }
 
+@inproceedings{austinStructuredDenoisingDiffusion2021e,
+  title = {Structured {{Denoising Diffusion Models}} in {{Discrete State-Spaces}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Austin, Jacob and Johnson, Daniel D. and Ho, Jonathan and Tarlow, Daniel and family=Berg, given=Rianne, prefix=van den, useprefix=true},
+  date = {2021},
+  volume = {34},
+  pages = {17981--17993},
+  publisher = {{Curran Associates, Inc.}},
+  url = {https://proceedings.neurips.cc/paper/2021/hash/958c530554f78bcd8e97125b70e6973d-Abstract.html},
+  urldate = {2024-02-25},
+  abstract = {Denoising diffusion probabilistic models (DDPMs) [Ho et al. 2021] have shown impressive results on image and waveform generation in continuous state spaces. Here, we introduce Discrete Denoising Diffusion Probabilistic Models (D3PMs), diffusion-like generative models for discrete data that generalize the multinomial diffusion model of Hoogeboom et al. [2021], by going beyond corruption processes with uniform transition probabilities. This includes corruption with transition matrices that mimic Gaussian kernels in continuous space, matrices based on nearest neighbors in embedding space, and matrices that introduce absorbing states. The third allows us to draw a connection between diffusion models and autoregressive and mask-based generative models. We show that the choice of transition matrix is an important design decision that leads to improved results in image and text domains. We also introduce a new loss function that combines the variational lower bound with an auxiliary cross entropy loss.  For text, this model class achieves strong results on character-level text generation while scaling to large vocabularies on LM1B. On the image dataset CIFAR-10, our models approach the sample quality and exceed the log-likelihood of the continuous-space DDPM model.},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/VPZZMZW9/Austin et al. - 2021 - Structured Denoising Diffusion Models in Discrete .pdf}
+}
+
 @online{AutomatedDesignAnalog,
   title = {Automated {{Design}} of {{Analog Circuits Using Reinforcement Learning}} | {{IEEE Journals}} \& {{Magazine}} | {{IEEE Xplore}}},
   url = {https://ieeexplore.ieee.org/abstract/document/9576505?casa_token=3fLtOocO4noAAAAA:bNHmff4veiE13woBo4vZGsl3Pfs4OifW9zp7ecaMGJWq9vM3FRjCEGBbsLL2FrFuNhcD2mRH2gCc},
@@ -872,6 +887,22 @@
   file = {/home/krawczuk/Zotero/storage/FC2QISNY/di Bartolomeo et al. - 2022 - STRATISFIMAL LAYOUT A modular optimization model .pdf;/home/krawczuk/Zotero/storage/F6HYYYSY/9556579.html}
 }
 
+@online{dielemanContinuousDiffusionCategorical2022,
+  title = {Continuous Diffusion for Categorical Data},
+  author = {Dieleman, Sander and Sartran, Laurent and Roshannai, Arman and Savinov, Nikolay and Ganin, Yaroslav and Richemond, Pierre H. and Doucet, Arnaud and Strudel, Robin and Dyer, Chris and Durkan, Conor and Hawthorne, Curtis and Leblond, Rémi and Grathwohl, Will and Adler, Jonas},
+  date = {2022-12-15},
+  eprint = {2211.15089},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2211.15089},
+  url = {http://arxiv.org/abs/2211.15089},
+  urldate = {2024-02-25},
+  abstract = {Diffusion models have quickly become the go-to paradigm for generative modelling of perceptual signals (such as images and sound) through iterative refinement. Their success hinges on the fact that the underlying physical phenomena are continuous. For inherently discrete and categorical data such as language, various diffusion-inspired alternatives have been proposed. However, the continuous nature of diffusion models conveys many benefits, and in this work we endeavour to preserve it. We propose CDCD, a framework for modelling categorical data with diffusion models that are continuous both in time and input space. We demonstrate its efficacy on several language modelling tasks.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computation and Language,Computer Science - Machine Learning},
+  file = {/home/krawczuk/Zotero/storage/6SVC9A4E/Dieleman et al. - 2022 - Continuous diffusion for categorical data.pdf;/home/krawczuk/Zotero/storage/CVLUB4T3/2211.html}
+}
+
 @online{DiffusionCNFLearningDenoising,
   title = {{{DiffusionCNF}}: {{Learning Denoising Diffusion Models}} via {{Conditional Normalizing Flows}} - {{University}} of {{Georgia}}},
   url = {https://esploro.libs.uga.edu/esploro/outputs/9949575129702959?institution=01GALI_UGA&skipUsageReporting=true&recordUsage=false},
@@ -1362,6 +1393,20 @@
   urldate = {2024-02-22}
 }
 
+@inproceedings{gulrajaniImprovedTrainingWasserstein2017d,
+  title = {Improved {{Training}} of {{Wasserstein GANs}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Gulrajani, Ishaan and Ahmed, Faruk and Arjovsky, Martin and Dumoulin, Vincent and Courville, Aaron C},
+  date = {2017},
+  volume = {30},
+  publisher = {{Curran Associates, Inc.}},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2017/hash/892c3b1c6dccd52936e27cbd0ff683d6-Abstract.html},
+  urldate = {2024-02-25},
+  abstract = {Generative Adversarial Networks (GANs) are powerful generative models, but suffer from training instability. The recently proposed Wasserstein GAN (WGAN) makes progress toward stable training of GANs, but sometimes can still generate only poor samples or fail to converge. We find that these problems are often due to the use of weight clipping in WGAN to enforce a Lipschitz constraint on the critic, which can lead to undesired behavior. We propose an alternative to clipping weights: penalize the norm of gradient of the critic with respect to its input. Our proposed method performs better than standard WGAN and enables stable training of a wide variety of GAN architectures with almost no hyperparameter tuning, including 101-layer ResNets and language models with continuous generators. We also achieve high quality generations on CIFAR-10 and LSUN bedrooms.},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/HHKIRMR4/Gulrajani et al. - 2017 - Improved Training of Wasserstein GANs.pdf}
+}
+
 @online{gulrajaniLikelihoodBasedDiffusionLanguage2023,
   title = {Likelihood-{{Based Diffusion Language Models}}},
   author = {Gulrajani, Ishaan and Hashimoto, Tatsunori B.},
@@ -1461,6 +1506,22 @@
   isbn = {978-1-66543-274-0},
   langid = {english},
   file = {/home/krawczuk/Zotero/storage/WIZ4XQXT/Gusmao et al. - 2021 - Late Breaking Results Attention in Graph2Seq Neur.pdf}
+}
+
+@online{haefeliDiffusionModelsGraphs2023a,
+  title = {Diffusion {{Models}} for {{Graphs Benefit From Discrete State Spaces}}},
+  author = {Haefeli, Kilian Konstantin and Martinkus, Karolis and Perraudin, Nathanaël and Wattenhofer, Roger},
+  date = {2023-08-15},
+  eprint = {2210.01549},
+  eprinttype = {arxiv},
+  eprintclass = {cs, stat},
+  doi = {10.48550/arXiv.2210.01549},
+  url = {http://arxiv.org/abs/2210.01549},
+  urldate = {2024-02-25},
+  abstract = {Denoising diffusion probabilistic models and score-matching models have proven to be very powerful for generative tasks. While these approaches have also been applied to the generation of discrete graphs, they have, so far, relied on continuous Gaussian perturbations. Instead, in this work, we suggest using discrete noise for the forward Markov process. This ensures that in every intermediate step the graph remains discrete. Compared to the previous approach, our experimental results on four datasets and multiple architectures show that using a discrete noising process results in higher quality generated samples indicated with an average MMDs reduced by a factor of 1.5. Furthermore, the number of denoising steps is reduced from 1000 to 32 steps, leading to a 30 times faster sampling procedure.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Computer Science - Social and Information Networks,Statistics - Machine Learning},
+  file = {/home/krawczuk/Zotero/storage/3BI6QX46/Haefeli et al. - 2023 - Diffusion Models for Graphs Benefit From Discrete .pdf;/home/krawczuk/Zotero/storage/KWZIZH4I/2210.html}
 }
 
 @inproceedings{hakhamaneshiBagNetBerkeleyAnalog2019d,
@@ -1634,6 +1695,21 @@
   isbn = {978-1-877640-21-6},
   keywords = {branchwidth,combinatorial optimization,graph algorithms,treewidth},
   file = {/home/krawczuk/Zotero/storage/8YXIPCY7/Hicks et al. - 2005 - Branch and Tree Decomposition Techniques for Discr.pdf}
+}
+
+@inproceedings{hoDenoisingDiffusionProbabilistic2020f,
+  title = {Denoising {{Diffusion Probabilistic Models}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Ho, Jonathan and Jain, Ajay and Abbeel, Pieter},
+  date = {2020},
+  volume = {33},
+  pages = {6840--6851},
+  publisher = {{Curran Associates, Inc.}},
+  url = {https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html},
+  urldate = {2024-02-25},
+  abstract = {We present high quality image synthesis results using diffusion probabilistic models, a class of latent variable models inspired by considerations from nonequilibrium thermodynamics. Our best results are obtained by training on a weighted variational bound designed according to a novel connection between diffusion probabilistic models and denoising score matching with Langevin dynamics, and our models naturally admit a progressive lossy decompression scheme that can be interpreted as a generalization of autoregressive decoding. On the unconditional CIFAR10 dataset, we obtain an Inception score of 9.46 and a state-of-the-art FID score of 3.17. On 256x256 LSUN, we obtain sample quality similar to ProgressiveGAN.},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/4VZV9L5I/Ho et al. - 2020 - Denoising Diffusion Probabilistic Models.pdf}
 }
 
 @inproceedings{hodgkinsonStochasticContinuousNormalizing2021,
@@ -1861,6 +1937,22 @@
   file = {/home/krawczuk/Zotero/storage/N624ARPD/Jing et al. - 2021 - HDMI High-order Deep Multiplex Infomax.pdf}
 }
 
+@inproceedings{joScorebasedGenerativeModeling2022g,
+  title = {Score-Based {{Generative Modeling}} of {{Graphs}} via the {{System}} of {{Stochastic Differential Equations}}},
+  booktitle = {Proceedings of the 39th {{International Conference}} on {{Machine Learning}}},
+  author = {Jo, Jaehyeong and Lee, Seul and Hwang, Sung Ju},
+  date = {2022-06-28},
+  pages = {10362--10383},
+  publisher = {{PMLR}},
+  issn = {2640-3498},
+  url = {https://proceedings.mlr.press/v162/jo22a.html},
+  urldate = {2024-02-25},
+  abstract = {Generating graph-structured data requires learning the underlying distribution of graphs. Yet, this is a challenging problem, and the previous graph generative methods either fail to capture the permutation-invariance property of graphs or cannot sufficiently model the complex dependency between nodes and edges, which is crucial for generating real-world graphs such as molecules. To overcome such limitations, we propose a novel score-based generative model for graphs with a continuous-time framework. Specifically, we propose a new graph diffusion process that models the joint distribution of the nodes and edges through a system of stochastic differential equations (SDEs). Then, we derive novel score matching objectives tailored for the proposed diffusion process to estimate the gradient of the joint log-density with respect to each component, and introduce a new solver for the system of SDEs to efficiently sample from the reverse diffusion process. We validate our graph generation method on diverse datasets, on which it either achieves significantly superior or competitive performance to the baselines. Further analysis shows that our method is able to generate molecules that lie close to the training distribution yet do not violate the chemical valency rule, demonstrating the effectiveness of the system of SDEs in modeling the node-edge relationships.},
+  eventtitle = {International {{Conference}} on {{Machine Learning}}},
+  langid = {english},
+  file = {/home/krawczuk/Zotero/storage/I2RVC8UK/Jo et al. - 2022 - Score-based Generative Modeling of Graphs via the .pdf}
+}
+
 @inproceedings{kabaEquivarianceLearnedCanonicalization2023b,
   title = {Equivariance with {{Learned Canonicalization Functions}}},
   booktitle = {Proceedings of the 40th {{International Conference}} on {{Machine Learning}}},
@@ -2035,6 +2127,15 @@
   abstract = {We give an algorithm that for an input \$n\$-vertex graph \$G\$ and integer \$k{$>$}0\$, in time \$2\^{}\{O(k)\} n\$, either outputs that the treewidth of \$G\$ is larger than \$k\$, or gives a tree decomposition of \$G\$ of width at most \$5k+4\$.  This is the first algorithm providing a constant factor approximation for treewidth which runs in time single exponential in \$k\$ and linear in \$n\$. Treewidth-based computations are subroutines of numerous algorithms.  Our algorithm can be used to speed up many such algorithms to work in time which is single exponential in the treewidth and linear in the input size.},
   pagetotal = {FOCS21-194},
   file = {/home/krawczuk/Zotero/storage/ZUNNL6SA/Korhonen - 2023 - A Single-Exponential Time 2-Approximation Algorith.pdf}
+}
+
+@inproceedings{krawczukGGGANGeometricGraph2020,
+  title = {{{GG-GAN}}: {{A}} Geometric Graph Generative Adversarial Network, 2021},
+  shorttitle = {{{GG-GAN}}},
+  booktitle = {{{URL}} {{https://openreview.}} Net/Forum},
+  author = {Krawczuk, Igor and Abranches, Pedro and Loukas, Andreas and Cevher, Volkan},
+  date = {2020},
+  keywords = {⛔ No DOI found}
 }
 
 @inproceedings{krinkeConstraintsTapeOutContinuous2019,
@@ -3641,6 +3742,36 @@
   file = {/home/krawczuk/Zotero/storage/CPI9QRW6/Sohl-Dickstein et al. - 2015 - Deep Unsupervised Learning using Nonequilibrium Th.pdf}
 }
 
+@online{songDenoisingDiffusionImplicit2022d,
+  title = {Denoising {{Diffusion Implicit Models}}},
+  author = {Song, Jiaming and Meng, Chenlin and Ermon, Stefano},
+  date = {2022-10-05},
+  eprint = {2010.02502},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2010.02502},
+  url = {http://arxiv.org/abs/2010.02502},
+  urldate = {2024-02-25},
+  abstract = {Denoising diffusion probabilistic models (DDPMs) have achieved high quality image generation without adversarial training, yet they require simulating a Markov chain for many steps to produce a sample. To accelerate sampling, we present denoising diffusion implicit models (DDIMs), a more efficient class of iterative implicit probabilistic models with the same training procedure as DDPMs. In DDPMs, the generative process is defined as the reverse of a Markovian diffusion process. We construct a class of non-Markovian diffusion processes that lead to the same training objective, but whose reverse process can be much faster to sample from. We empirically demonstrate that DDIMs can produce high quality samples \$10 \textbackslash times\$ to \$50 \textbackslash times\$ faster in terms of wall-clock time compared to DDPMs, allow us to trade off computation for sample quality, and can perform semantically meaningful image interpolation directly in the latent space.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning},
+  file = {/home/krawczuk/Zotero/storage/X69BMS36/Song et al. - 2022 - Denoising Diffusion Implicit Models.pdf;/home/krawczuk/Zotero/storage/LNZJ9BMA/2010.html}
+}
+
+@inproceedings{songGenerativeModelingEstimating2019b,
+  title = {Generative {{Modeling}} by {{Estimating Gradients}} of the {{Data Distribution}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Song, Yang and Ermon, Stefano},
+  date = {2019},
+  volume = {32},
+  publisher = {{Curran Associates, Inc.}},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2019/hash/3001ef257407d5a371a96dcd947c7d93-Abstract.html},
+  urldate = {2024-02-25},
+  abstract = {We introduce a new generative model where samples are produced via Langevin dynamics using gradients of the data distribution estimated with score matching. Because gradients can be ill-defined and hard to estimate when the data resides on low-dimensional manifolds, we perturb the data with different levels of Gaussian noise, and jointly estimate the corresponding scores, i.e., the vector fields of gradients of the perturbed data distribution for all noise levels. For sampling, we propose an annealed Langevin dynamics where we use gradients corresponding to gradually decreasing noise levels as the sampling process gets closer to the data manifold. Our framework allows flexible model architectures, requires no sampling during training or the use of adversarial methods, and provides a learning objective that can be used for principled model comparisons. Our models produce samples  comparable to GANs on MNIST, CelebA and CIFAR-10 datasets, achieving a new state-of-the-art inception score of 8.87 on CIFAR-10. Additionally, we demonstrate that our models learn effective representations via image inpainting experiments.},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/C4HJKZEV/Song and Ermon - 2019 - Generative Modeling by Estimating Gradients of the.pdf}
+}
+
 @online{songMaximumLikelihoodTraining2021a,
   title = {Maximum {{Likelihood Training}} of {{Score-Based Diffusion Models}}},
   author = {Song, Yang and Durkan, Conor and Murray, Iain and Ermon, Stefano},
@@ -3895,6 +4026,20 @@
   urldate = {2024-02-20}
 }
 
+@inproceedings{vaswaniAttentionAllYou2017c,
+  title = {Attention Is {{All}} You {{Need}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, Łukasz and Polosukhin, Illia},
+  date = {2017},
+  volume = {30},
+  publisher = {{Curran Associates, Inc.}},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html},
+  urldate = {2024-02-25},
+  abstract = {The dominant sequence transduction models are based on complex recurrent orconvolutional neural networks in an encoder and decoder configuration. The best performing such models also connect the encoder and decoder through an attentionm echanisms.  We propose a novel, simple network architecture based solely onan attention mechanism, dispensing with recurrence and convolutions entirely.Experiments on two machine translation tasks show these models to be superiorin quality while being more parallelizable and requiring significantly less timeto train. Our single model with 165 million parameters, achieves 27.5 BLEU onEnglish-to-German translation, improving over the existing best ensemble result by over 1 BLEU. On English-to-French translation, we outperform the previoussingle state-of-the-art with model by 0.7 BLEU, achieving a BLEU score of 41.1.},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/KINQC94K/Vaswani et al. - 2017 - Attention is All you Need.pdf}
+}
+
 @inproceedings{vignacBuildingPowerfulEquivariant2020,
   title = {Building Powerful and Equivariant Graph Neural Networks with Structural Message-Passing},
   booktitle = {Advances in {{Neural Information Processing Systems}}},
@@ -3908,6 +4053,23 @@
   abstract = {Message-passing has proved to be an effective way to design graph neural networks, as it is able to leverage both permutation equivariance and an inductive bias towards learning local structures in order to achieve good generalization. However, current message-passing architectures have a limited representation power and fail to learn basic topological properties of graphs. We address this problem and propose a powerful and equivariant message-passing framework based on two ideas: first, we propagate a one-hot encoding of the nodes, in addition to the features, in order to learn a local context matrix around each node. This matrix contains rich local information about both features and topology and can eventually be pooled to build node representations. Second, we propose methods for the parametrization of the message and update functions that ensure permutation equivariance. Having a representation that is independent of the specific choice of the one-hot encoding permits inductive reasoning and leads to better generalization properties. Experimentally, our model can predict various graph topological properties on synthetic data more accurately than previous methods and achieves state-of-the-art results on molecular graph regression on the ZINC dataset.},
   keywords = {⛔ No DOI found},
   file = {/home/krawczuk/Zotero/storage/34L3ZT5K/Vignac et al. - 2020 - Building powerful and equivariant graph neural net.pdf}
+}
+
+@online{vignacDiGressDiscreteDenoising2023b,
+  title = {{{DiGress}}: {{Discrete Denoising}} Diffusion for Graph Generation},
+  shorttitle = {{{DiGress}}},
+  author = {Vignac, Clement and Krawczuk, Igor and Siraudin, Antoine and Wang, Bohan and Cevher, Volkan and Frossard, Pascal},
+  date = {2023-05-23},
+  eprint = {2209.14734},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2209.14734},
+  url = {http://arxiv.org/abs/2209.14734},
+  urldate = {2024-02-25},
+  abstract = {This work introduces DiGress, a discrete denoising diffusion model for generating graphs with categorical node and edge attributes. Our model utilizes a discrete diffusion process that progressively edits graphs with noise, through the process of adding or removing edges and changing the categories. A graph transformer network is trained to revert this process, simplifying the problem of distribution learning over graphs into a sequence of node and edge classification tasks. We further improve sample quality by introducing a Markovian noise model that preserves the marginal distribution of node and edge types during diffusion, and by incorporating auxiliary graph-theoretic features. A procedure for conditioning the generation on graph-level features is also proposed. DiGress achieves state-of-the-art performance on molecular and non-molecular datasets, with up to 3x validity improvement on a planar graph dataset. It is also the first model to scale to the large GuacaMol dataset containing 1.3M drug-like molecules without the use of molecule-specific representations.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning},
+  file = {/home/krawczuk/Zotero/storage/KLZEE85X/Vignac et al. - 2023 - DiGress Discrete Denoising diffusion for graph ge.pdf;/home/krawczuk/Zotero/storage/ATJG5E24/2209.html}
 }
 
 @online{vignacMiDiMixedGraph2023c,
@@ -4194,6 +4356,19 @@
   file = {/home/krawczuk/Zotero/storage/5YLDJ7MT/Xu and Leskovec - Geometric Graph Learning From Representation to Ge.pdf}
 }
 
+@inproceedings{xuGlobalConvergenceLangevin2018,
+  title = {Global {{Convergence}} of {{Langevin Dynamics Based Algorithms}} for {{Nonconvex Optimization}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Xu, Pan and Chen, Jinghui and Zou, Difan and Gu, Quanquan},
+  date = {2018},
+  volume = {31},
+  publisher = {{Curran Associates, Inc.}},
+  url = {https://proceedings.neurips.cc/paper/2018/hash/9c19a2aa1d84e04b0bd4bc888792bd1e-Abstract.html},
+  urldate = {2024-02-25},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/J8ATAQLQ/Xu et al. - 2018 - Global Convergence of Langevin Dynamics Based Algo.pdf}
+}
+
 @online{xuHowPowerfulAre2019e,
   title = {How {{Powerful}} Are {{Graph Neural Networks}}?},
   author = {Xu, Keyulu and Hu, Weihua and Leskovec, Jure and Jegelka, Stefanie},
@@ -4299,6 +4474,19 @@
   langid = {english},
   keywords = {⛔ No DOI found},
   file = {/home/krawczuk/Zotero/storage/5EKY6TSP/Yi et al. - 2024 - Graph Denoising Diffusion for Inverse Protein Fold.pdf}
+}
+
+@article{yuLearningEnergyBasedPrior2023a,
+  title = {Learning {{Energy-Based Prior Model}} with {{Diffusion-Amortized MCMC}}},
+  author = {Yu, Peiyu and Zhu, Yaxuan and Xie, Sirui and Ma, Xiaojian (Shawn) and Gao, Ruiqi and Zhu, Song-Chun and Wu, Ying Nian},
+  date = {2023-12-15},
+  journaltitle = {Advances in Neural Information Processing Systems},
+  volume = {36},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/85381f4549b5ddf1d48e2e287d7d3d15-Abstract-Conference.html},
+  urldate = {2024-02-25},
+  langid = {english},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/P9UM6DWN/Yu et al. - 2023 - Learning Energy-Based Prior Model with Diffusion-A.pdf}
 }
 
 @article{yusterTreeDecompositionGraphs1998,

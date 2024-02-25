@@ -78,6 +78,17 @@
   \footnote[frame]{\cite{elesedyProvablyStrictGeneralisation2021b}}, although caveats apply\ffootnote{\cite{abbeNonuniversalityDeepLearning2022c,kianiHardnessLearningSymmetries2024b}}
 }
 \end{frame}
+\begin{frame}[t]
+  \frametitle{Geometric Graph GAN (\cite{krawczukGGGANGeometricGraph2020})}
+  \vspace{-1cm}
+  \begin{priorart}
+   Prior SotA:\cite{yangConditionalStructureGeneration2019e,decaoMolGANImplicitGenerative2022b}.\\
+   Foundations: GIN\cite{xuHowPowerfulAre2019e}, Transformers \cite{vaswaniAttentionAllYou2017c}, improved WGAN \cite{gulrajaniImprovedTrainingWasserstein2017d}
+  \end{priorart}
+  \begin{contributions}
+    Geometric Graph Generation,Powerful Equivariant Generator, Graph Theoretic Features, Identification\&Resolution of Collision Problem
+  \end{contributions}
+\end{frame}
 
 \begin{frame}[label=working]
   \frametitle{SotA Deep Graph Generative Models at outset (2019)}
@@ -103,7 +114,7 @@
   \vspace{-0.5cm}
   \begin{align}
     \min_{\theta}\max_{\phi}&\quad\mathbb{E}_{\mathcal{G}\sim \mathcal{D}}\left[d\left(\mathcal{G};\phi\right)\right]-\mathbb{E}_{\mathbf{Z}\sim \mathcal{N}}\left[d\left(g(\mathbf{Z};\theta);\phi\right)\right]\nonumber\\
-    \text{s.t.}&\quadK\left(d\left(\cdot,\phi\right)\right)\leq 1\nonumber
+    \text{s.t.}&\quad K\left(d\left(\cdot,\phi\right)\right)\leq 1\nonumber
   \end{align}
   \vspace{-0.25cm}
   Generator $g$: MHA-transformer, with final readout based on attention weights$\implies$PE, very expressive\\
@@ -141,13 +152,44 @@
 
 %backup slide: asymmetrical embeddings are important
 
-\begin{frame}[label=working,t]
-  \frametitle{Impact}
-  \begin{itemize}
-    \item strengths: low latency\checkmark, compact\checkmark,scaling to medium graphs\checkmark, weaknesses: training stability,expressiveness, scaling to \emph{very}large graphs
-    \item \citep{vignacTopNEquivariantSet2021d} further analyzed the empirical observations, the impact of $\Phi$ and proposed an alternative latent parametrization
-    \item \citep{martinkusSPECTRESpectralConditioning2022b} further improve the model with more powerful models and spectral conditioning, setting a new SotA in structure generation
-  \end{itemize}
+%\begin{frame}[label=working,t]
+%  \frametitle{Impact}
+%  \begin{itemize}
+%    \item strengths: low latency\checkmark, compact\checkmark,scaling to medium graphs\checkmark, weaknesses: training stability,expressiveness, scaling to \emph{very}large graphs
+%    \item \citep{vignacTopNEquivariantSet2021d} further analyzed the empirical observations, the impact of $\Phi$ and proposed an alternative latent parametrization
+%    \item \citep{martinkusSPECTRESpectralConditioning2022b} further improve the model with more powerful models and spectral conditioning, setting a new SotA in structure generation
+%  \end{itemize}
+%\end{frame}
+\begin{frame}[t]
+  \frametitle{Geometric Graph GAN (\cite{krawczukGGGANGeometricGraph2020})}
+  \vspace{-1cm}
+  \begin{priorart}
+   Prior SotA:\cite{yangConditionalStructureGeneration2019e,decaoMolGANImplicitGenerative2022b}.\\
+   Foundations: GIN\cite{xuHowPowerfulAre2019e}, Transformers \cite{vaswaniAttentionAllYou2017c}, improved WGAN \cite{gulrajaniImprovedTrainingWasserstein2017d}
+  \end{priorart}
+  \begin{contributions}
+    Geometric Graph Generation,Powerful Equivariant Generator, Graph Theoretic Features, Identification\&Resolution of Collision Problem
+  \end{contributions}
+  \begin{columns}
+  \visible<2->{
+    \begin{column}{0.5\textwidth}
+      \begin{outcomes}
+        First fully PE implicit GraphGenerator,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,training stability \textdownarrow\vspace{6mm}
+      \end{outcomes} 
+    \end{column}
+}
+  \visible<3>{
+    \begin{column}{0.5\textwidth}
+      \begin{impact} 
+        \begin{itemize}
+          \item top-$n$ sampling \cite{vignacTopNEquivariantSet2021d} refined the latent identifier concept
+          \item SPECTRE\cite{martinkusSPECTRESpectralConditioning2022b} improved stability with spectral conditioning 
+        \end{itemize}
+      \end{impact} 
+    \end{column}
+  }
+  \end{columns}
+  
 \end{frame}
 
 \end{document}

@@ -1,9 +1,50 @@
-% !TeX root = presentation.tex
+% !TeX root = presentation.texös
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
 \begin{frame}[label=working]
-  \frametitle{Diffusion Models arrive on the scene}
+  \frametitle{Also in 2019: Diffusion Models arrive on the scene}
+  first introduced in \cite{sohl-dicksteinDeepUnsupervisedLearning2015b}
+  \textcolor{red}{TODO: add formula here}
+  explicit likelihood model without need to estimate NC \emph{or} restrictions on $J_f$
+  \cite{hoDenoisingDiffusionProbabilistic2020f}and \cite{songMaximumLikelihoodTraining2021a} widely popularize the method
+  connection to \cite{niuPermutationInvariantGraph2020b} via \cite{songGenerativeModelingEstimating2019b}: DDPM \citep{hoDenoisingDiffusionProbabilistic2020f} "unrolls" and tunes a Langevin dynamics sampler towards the data
+  \textcolor{red}{TODO: add the images here}
 \end{frame}
+\begin{frame}[t]
+  \frametitle{DiGress (\cite{vignacDiGressDiscreteDenoising2023b})}
+  \vspace{-1cm}
+  \begin{priorart}
+    Prior SotA:Diffusion\&Score Based Models\cite{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE\cite{martinkusSPECTRESpectralConditioning2022b}\\
+   Foundations: Discrete Diffusion\cite{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \cite{vaswaniAttentionAllYou2017c},FilM, GG-GAN features \cite{krawczukGGGANGeometricGraph2020}
+  \end{priorart}
+  \begin{contributions}
+    Powerful GraphTransformer, enable use of features with Discrete Graph Diffusion \& Limit Distribution Decomposition 
+  \end{contributions}
+  \begin{columns}
+        \tiny
+    \begin{column}{0.5\textwidth}
+  \visible<2->{
+      \begin{outcomes}
+        First PE singleshot model for Guacamol/MOSES,new SotA\\
+
+         scaling to $n\approx  200$\textuparrow,training stability \textuparrow,fidelity\textuparrow,\textdownarrow sampling latency\textdownarrow$\mathcal{O}\left(n^2\right)$ representation
+      \end{outcomes} 
+}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+  \visible<3>{
+      \begin{impact} 
+          134 citations as of 2024-02-25\\
+          usage across domains from molecules \cite{vignacMiDiMixedGraph2023c} to combinatorial optimization\\
+          influenced investigations into discrete modeling \cite{haefeliDiffusionModelsGraphs2023a}and priors for the limit distribution \cite{martinkusAbDiffuserFullatomGeneration2024} 
+      \end{impact} 
+  }
+    \end{column}
+  \end{columns}
+    \vspace{1cm}
+  
+\end{frame}
+
 
 \begin{frame}[label=working]
   \frametitle{SotA Graph Generative Models (2022)}
@@ -14,29 +55,32 @@
 \end{frame}
 \begin{frame}[label=working]
   \frametitle{Structured state spaces}
-  TODO: cite austin et al, cite martinkus in their study
+  \textcolor{red}{TODO: add images straight from paper,fig1}
 \end{frame}
 
 \begin{frame}[label=working]
   \frametitle{Using empirical noise distributions}
+  \textcolor{red}{TODO: add images straight from paper,fig2}
+  %\textcolor{red}{TODO: add product distribution theorem + proof mini}%=> the practice
   %TODO: mini proof
 \end{frame}
 \begin{frame}[label=working]
   \frametitle{Avoiding representational bottleneck with edge-diffusion}
+  \textcolor{red}{TODO: add images straight from paper,architecture}
   %TODO: mini proof
 \end{frame}
 \begin{frame}[label=working]
   \frametitle{Results}
-  
+  \textcolor{red}{TODO: some images, tables}
 \end{frame}
-\begin{frame}[label=working]
-  \frametitle{Impact}
-  \begin{itemize}
-    \item strengths: high quality\checkmark, scaling to medium to large graphs\checkmark,likelihood\checkmark,training stability\checkmark weaknesses:  scaling to \emph{very}large graphs, latency, compactness
-    \item clement followups, other scalability followups
-    \item usage in lots of molecule papers
-    \item martinkus fllowup
-  \end{itemize}
+\begin{frame}[t]
+  \frametitle{DiGress \cite{vignacDiGressDiscreteDenoising2023b}}
+  \textcolor{red}{add the bookend slide }
+\end{frame}
+\begin{frame}[t]
+  \frametitle{HCGD (WIP, under review at XXX)}
+
+  \textcolor{red}{add the bookend slide once done}
 \end{frame}
 \begin{frame}[label=working]
   \frametitle{SotA Graph Generative Models (end of 2023)}
@@ -62,28 +106,43 @@
     \item discuss some of the anaylses (generalized modularity density,fiedler connection etc)
   \end{itemize}
 \end{frame}
+\begin{frame}[label=working]
+  \frametitle{HigenDiff: Global Edge Dependent Diffusion}
+  \begin{itemize}
+    \item \textcolor{red}{TODO: banded matrix visualization, metropolis hastings kernel}
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}[label=working]
   \frametitle{HigenDiff: Ordinal diffusion towards arbitrary distributions}
   \begin{itemize}
-    \item foo
+    \item \textcolor{red}{TODO: banded matrix visualization, metropolis hastings kernel}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[label=working]
   \frametitle{Results}
   \begin{itemize}
-    \item
+    \item \textcolor{red}{TODO: work in progress}
   \end{itemize}
 \end{frame}
 
-\begin{frame}[label=working]
-  \frametitle{Impact}
-  \begin{itemize}
-    \item under review ICLR workshop
-    \item being prepared for presentation
-  \end{itemize}
+\begin{frame}[t]
+  \frametitle{HCGD (WIP, under review at XXX)}
+  \vspace{-1cm}
+  \begin{priorart}
+    Prior SotA:Diffusion\&Score Based Models\cite{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE\cite{martinkusSPECTRESpectralConditioning2022b}\\
+   Foundations: DiGress\cite{krawczukGGGANGeometricGraph2020}, HiGen \cite{karami},GrapGPS, MH-MCMC,Louvain
+  \end{priorart}
+  \begin{contributions}
+    Scalable Feature Computation,Scalable Global Edge Dependent Prediction, Arbitrary Ordinal Limit Distribution
+  \end{contributions}
+  \visible<2->{
+      \begin{outcomes}
+        Improved wall-clock time scaling to $\mathcal{O}\left(n+m\right)$,\textuparrow retained most of digress performance when tuned,\textuparrow improved sampling latency,\textdownarrow WIP, requires more tuning
+      \end{outcomes} 
+}
 \end{frame}
-
 
 \end{document}

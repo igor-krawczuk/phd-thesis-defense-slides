@@ -192,3 +192,43 @@
 %\counterwithout{footnote}{frame}
 \AtBeginEnvironment{frame}{\setcounter{footnote}{0}}
 
+\makeatletter
+\def\th@mystyle{%
+    \normalfont % body font
+    \setbeamercolor{block title example}{bg=orange,fg=white}
+    \setbeamercolor{block body example}{bg=orange!20,fg=black}
+    \def\inserttheoremblockenv{exampleblock}
+  }
+\makeatother
+\theoremstyle{mystyle}
+\newtheorem*{priorart}{Prior SotA \& Foundations}
+\makeatletter
+\def\th@mycontribstyle{%
+    \normalfont % body font
+    \setbeamercolor{block title example}{bg=MidnightBlue,fg=white}
+    \setbeamercolor{block body example}{bg=MidnightBlue!20,fg=black}
+    \def\inserttheoremblockenv{exampleblock}
+  }
+\makeatother
+\theoremstyle{mycontribstyle}
+\newtheorem*{contributions}{Contributions}
+\makeatletter
+\def\th@myoutcomestyle{%
+    \normalfont % body font
+    \setbeamercolor{block title example}{bg=ForestGreen,fg=white}
+    \setbeamercolor{block body example}{bg=ForestGreen!20,fg=black}
+    \def\inserttheoremblockenv{exampleblock}
+  }
+\makeatother
+\theoremstyle{myoutcomestyle}
+\newtheorem*{outcomes}{Outcomes, Strengths\textuparrow \& Limitations\textdownarrow}
+\makeatletter
+\def\th@myimpactstylestyle{%
+    \normalfont % body font
+    \setbeamercolor{block title example}{bg=Maroon,fg=white}
+    \setbeamercolor{block body example}{bg=Maroon!20,fg=black}
+    \def\inserttheoremblockenv{exampleblock}
+  }
+\makeatother
+\theoremstyle{myimpactstylestyle}
+\newtheorem*{impact}{Impact}
