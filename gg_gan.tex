@@ -18,7 +18,7 @@
 }
 \only<3->{
   \raggedright
-  Data is sparse \emph{and} even with data, we require models that can...
+  Data is sparse\ffootnote{\cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}} \emph{and} even with data, we require models that can...
 \begin{itemize}
     \visible<4->{\item model relations and compositions naturally with...} %GNNs/set networks give this
     \visible<5->{\item high fidelity ...} %digress, hgd gives this
@@ -125,14 +125,14 @@
 
 \begin{frame}[label=working,t]
   \frametitle{Collision problem \only<2->{resolved}}
-  \only<1>{
+  \only<1-2>{
   \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/rsg.pdf}
-  \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/graphics_xxgan_2.pdf}
-}
-\only<2>{
-  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./images/gg.pdf}
+  \visible<2>{\includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/graphics_xxgan_2.pdf}}
 }
 \only<3>{
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./images/gg.pdf}
+}
+\only<4>{
   \includegraphics[height=0.8\textheight,keepaspectratio]{./images/CollisionDecentiles-Att.pdf}\\
   Green: Learning a single $\mathcal{G}$ with a PE $g$ without $\Phi$, orange: with $\Phi$
 }
@@ -174,17 +174,20 @@
   \visible<2->{
     \begin{column}{0.5\textwidth}
       \begin{outcomes}
-        First fully PE implicit GraphGenerator,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,training stability \textdownarrow\vspace{6mm}
+      \strut
+        First fully PE implicit GGM,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,training stability \textdownarrow\vspace{6mm}
+      \strut
       \end{outcomes} 
     \end{column}
 }
   \visible<3>{
     \begin{column}{0.5\textwidth}
       \begin{impact} 
-        \begin{itemize}
-          \item top-$n$ sampling \cite{vignacTopNEquivariantSet2021d} refined the latent identifier concept
-          \item SPECTRE\cite{martinkusSPECTRESpectralConditioning2022b} improved stability with spectral conditioning 
-        \end{itemize}
+        \vspace{6.5mm}
+        \small
+          top-$n$ sampling \citep{vignacTopNEquivariantSet2021d} refined the latent identifier concept, 
+          SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b} improved stability with spectral conditioning 
+      \strut
       \end{impact} 
     \end{column}
   }

@@ -449,6 +449,23 @@
   file = {/home/krawczuk/Zotero/storage/GY5KXWMI/Biedl and Vatshelle - 2012 - The point-set embeddability problem for plane grap.pdf}
 }
 
+@online{blattmannStableVideoDiffusion2023,
+  title = {Stable {{Video Diffusion}}: {{Scaling Latent Video Diffusion Models}} to {{Large Datasets}}},
+  shorttitle = {Stable {{Video Diffusion}}},
+  author = {Blattmann, Andreas and Dockhorn, Tim and Kulal, Sumith and Mendelevitch, Daniel and Kilian, Maciej and Lorenz, Dominik and Levi, Yam and English, Zion and Voleti, Vikram and Letts, Adam and Jampani, Varun and Rombach, Robin},
+  date = {2023-11-25},
+  eprint = {2311.15127},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2311.15127},
+  url = {http://arxiv.org/abs/2311.15127},
+  urldate = {2024-02-25},
+  abstract = {We present Stable Video Diffusion - a latent video diffusion model for high-resolution, state-of-the-art text-to-video and image-to-video generation. Recently, latent diffusion models trained for 2D image synthesis have been turned into generative video models by inserting temporal layers and finetuning them on small, high-quality video datasets. However, training methods in the literature vary widely, and the field has yet to agree on a unified strategy for curating video data. In this paper, we identify and evaluate three different stages for successful training of video LDMs: text-to-image pretraining, video pretraining, and high-quality video finetuning. Furthermore, we demonstrate the necessity of a well-curated pretraining dataset for generating high-quality videos and present a systematic curation process to train a strong base model, including captioning and filtering strategies. We then explore the impact of finetuning our base model on high-quality data and train a text-to-video model that is competitive with closed-source video generation. We also show that our base model provides a powerful motion representation for downstream tasks such as image-to-video generation and adaptability to camera motion-specific LoRA modules. Finally, we demonstrate that our model provides a strong multi-view 3D-prior and can serve as a base to finetune a multi-view diffusion model that jointly generates multiple views of objects in a feedforward fashion, outperforming image-based methods at a fraction of their compute budget. We release code and model weights at https://github.com/Stability-AI/generative-models .},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {/home/krawczuk/Zotero/storage/KSN8SULL/Blattmann et al. - 2023 - Stable Video Diffusion Scaling Latent Video Diffu.pdf;/home/krawczuk/Zotero/storage/5CW8EDKX/2311.html}
+}
+
 @article{bokerFinegrainedExpressivityGraph2023,
   title = {Fine-Grained {{Expressivity}} of {{Graph Neural Networks}}},
   author = {Böker, Jan and Levie, Ron and Huang, Ningyuan and Villar, Soledad and Morris, Christopher},
@@ -579,6 +596,25 @@
   langid = {english},
   keywords = {Amplifier,Analog circuit,Automatic topology generation,Digital circuit,Genetic algorithm,Ngspice,Variable Length Chromosome},
   file = {/home/krawczuk/Zotero/storage/ED65I72T/Campilho-Gomes et al. - 2020 - Automatic Flat-Level Circuit Generation with Genet.pdf}
+}
+
+@article{chaiCircuitNetOpenSourceDataset2023b,
+  title = {{{CircuitNet}}: {{An Open-Source Dataset}} for {{Machine Learning}} in {{VLSI CAD Applications With Improved Domain-Specific Evaluation Metric}} and {{Learning Strategies}}},
+  shorttitle = {{{CircuitNet}}},
+  author = {Chai, Zhuomin and Zhao, Yuxiang and Liu, Wei and Lin, Yibo and Wang, Runsheng and Huang, Ru},
+  date = {2023-12},
+  journaltitle = {IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems},
+  volume = {42},
+  number = {12},
+  pages = {5034--5047},
+  issn = {1937-4151},
+  doi = {10.1109/TCAD.2023.3287970},
+  url = {https://ieeexplore.ieee.org/abstract/document/10158384?casa_token=5qpmtJtoYJIAAAAA:aDCl7xJR457l-Mw8opQAYhCed-lywODhgas0xX4ylhB1eY68GUD4QWzSWu5jZUkmrfVyEnbBzLSf},
+  urldate = {2024-02-25},
+  abstract = {The design automation community has been actively exploring machine learning (ML) for very-large-scale-integrated (VLSI) computer-aided design (CAD). Many studies have explored learning-based techniques for cross-stage prediction tasks in the design flow. Although building ML models usually requires a large amount of data, most studies can only generate small internal datasets for validation due to the lack of large public datasets. Such a situation challenges the research in this field and raises potential issues like difficulty in benchmarking and reproducing results, limited research scope on small internal datasets, and high bar for new researchers. Therefore, in this article, we present an open-source dataset called “CircuitNet” for ML tasks in VLSI CAD. The dataset consists of more than 10K samples extracted from versatile runs of commercial design tools based on six open-source RISC-V designs which support typical cross-stage prediction tasks, such as routability and IR drop prediction, with extensive benchmarking on recent models. With the dataset prepared, we identify two practical challenges, data imbalance and model transferability, for ML application in CAD. To overcome data imbalance, we propose a loss function, biased loss, to give more weight to the minority, leading to 2\% congestion reduction in routability-driven placement. We test the model transferability from RISC-V designs to ISPD 2015 contest designs in congestion prediction with several transfer learning methods and further proposed a knowledge distillation-based transfer learning framework with up to 20\% accuracy improvement. We believe this dataset can open up new opportunities for ML in CAD research and beyond.},
+  eventtitle = {{{IEEE Transactions}} on {{Computer-Aided Design}} of {{Integrated Circuits}} and {{Systems}}},
+  keywords = {Benchmark testing,integrated circuit modeling,Integrated circuit modeling,Machine learning,physical design,predictive models,Predictive models,Routing,Solid modeling,Task analysis,training,Very large scale integration},
+  file = {/home/krawczuk/Zotero/storage/4GTHF8WV/Chai et al. - 2023 - CircuitNet An Open-Source Dataset for Machine Lea.pdf;/home/krawczuk/Zotero/storage/HMEVJTZ2/10158384.html}
 }
 
 @inproceedings{chenAutoCRAFTLayoutAutomation2022,
@@ -734,6 +770,23 @@
   keywords = {❓ Multiple DOI}
 }
 
+@online{chowdhuryOpenABCDLargeScaleDataset2021e,
+  title = {{{OpenABC-D}}: {{A Large-Scale Dataset For Machine Learning Guided Integrated Circuit Synthesis}}},
+  shorttitle = {{{OpenABC-D}}},
+  author = {Chowdhury, Animesh Basak and Tan, Benjamin and Karri, Ramesh and Garg, Siddharth},
+  date = {2021-10-21},
+  eprint = {2110.11292},
+  eprinttype = {arxiv},
+  eprintclass = {cs, eess},
+  doi = {10.48550/arXiv.2110.11292},
+  url = {http://arxiv.org/abs/2110.11292},
+  urldate = {2024-02-25},
+  abstract = {Logic synthesis is a challenging and widely-researched combinatorial optimization problem during integrated circuit (IC) design. It transforms a high-level description of hardware in a programming language like Verilog into an optimized digital circuit netlist, a network of interconnected Boolean logic gates, that implements the function. Spurred by the success of ML in solving combinatorial and graph problems in other domains, there is growing interest in the design of ML-guided logic synthesis tools. Yet, there are no standard datasets or prototypical learning tasks defined for this problem domain. Here, we describe OpenABC-D,a large-scale, labeled dataset produced by synthesizing open source designs with a leading open-source logic synthesis tool and illustrate its use in developing, evaluating and benchmarking ML-guided logic synthesis. OpenABC-D has intermediate and final outputs in the form of 870,000 And-Inverter-Graphs (AIGs) produced from 1500 synthesis runs plus labels such as the optimized node counts, and de-lay. We define a generic learning problem on this dataset and benchmark existing solutions for it. The codes related to dataset creation and benchmark models are available athttps://github.com/NYU-MLDA/OpenABC.git. The dataset generated is available athttps://archive.nyu.edu/handle/2451/63311},
+  pubstate = {preprint},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Electrical Engineering and Systems Science - Systems and Control},
+  file = {/home/krawczuk/Zotero/storage/NBQF7P7S/Chowdhury et al. - 2021 - OpenABC-D A Large-Scale Dataset For Machine Learn.pdf;/home/krawczuk/Zotero/storage/8FJI3PEE/2110.html}
+}
+
 @article{chungEmbeddingGraphsBooks1987,
   title = {Embedding {{Graphs}} in {{Books}}: {{A Layout Problem}} with {{Applications}} to {{VLSI Design}}},
   shorttitle = {Embedding {{Graphs}} in {{Books}}},
@@ -764,6 +817,13 @@
   publisher = {{Association for Symbolic Logic}},
   doi = {10.2307/2271310},
   file = {/home/krawczuk/Zotero/storage/BXU6AFEL/Church - 1963 - Application of Recursive Arithmetic to the Problem.pdf}
+}
+
+@online{CircuitNetOpenSourceDataseta,
+  title = {{{CircuitNet}}: {{An Open-Source Dataset}} for {{Machine Learning}} in {{VLSI CAD Applications With Improved Domain-Specific Evaluation Metric}} and {{Learning Strategies}} | {{IEEE Journals}} \& {{Magazine}} | {{IEEE Xplore}}},
+  url = {https://ieeexplore.ieee.org/abstract/document/10158384?casa_token=5qpmtJtoYJIAAAAA:aDCl7xJR457l-Mw8opQAYhCed-lywODhgas0xX4ylhB1eY68GUD4QWzSWu5jZUkmrfVyEnbBzLSf},
+  urldate = {2024-02-25},
+  file = {/home/krawczuk/Zotero/storage/RAF83SM2/10158384.html}
 }
 
 @inproceedings{daiMarginalDistributionAdaptation2022b,
@@ -1745,6 +1805,38 @@
   file = {/home/krawczuk/Zotero/storage/2SQHKHFX/Hodgkinson et al. - 2020 - Stochastic Normalizing Flows.pdf;/home/krawczuk/Zotero/storage/CWJGEQ4G/2002.html}
 }
 
+@inproceedings{hoogeboomArgmaxFlowsMultinomial2021d,
+  title = {Argmax {{Flows}} and {{Multinomial Diffusion}}: {{Learning Categorical Distributions}}},
+  shorttitle = {Argmax {{Flows}} and {{Multinomial Diffusion}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Hoogeboom, Emiel and Nielsen, Didrik and Jaini, Priyank and Forré, Patrick and Welling, Max},
+  date = {2021},
+  volume = {34},
+  pages = {12454--12465},
+  publisher = {{Curran Associates, Inc.}},
+  url = {https://proceedings.neurips.cc/paper/2021/hash/67d96d458abdef21792e6d8e590244e7-Abstract.html},
+  urldate = {2024-02-25},
+  abstract = {Generative flows and diffusion models have been predominantly trained on ordinal data, for example natural images. This paper introduces two extensions of flows and diffusion for categorical data such as language or image segmentation: Argmax Flows and Multinomial Diffusion. Argmax Flows are defined by a composition of a continuous distribution (such as a normalizing flow), and an argmax function. To optimize this model, we learn a probabilistic inverse for the argmax that lifts the categorical data to a continuous space. Multinomial Diffusion gradually adds categorical noise in a diffusion process, for which the generative denoising process is learned. We demonstrate that our method outperforms existing dequantization approaches on text modelling and modelling on image segmentation maps in log-likelihood.},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/I4N2DREE/Hoogeboom et al. - 2021 - Argmax Flows and Multinomial Diffusion Learning C.pdf}
+}
+
+@online{hoogeboomAutoregressiveDiffusionModels2022,
+  title = {Autoregressive {{Diffusion Models}}},
+  author = {Hoogeboom, Emiel and Gritsenko, Alexey A. and Bastings, Jasmijn and Poole, Ben and family=Berg, given=Rianne, prefix=van den, useprefix=false and Salimans, Tim},
+  date = {2022-02-01},
+  eprint = {2110.02037},
+  eprinttype = {arxiv},
+  eprintclass = {cs, stat},
+  doi = {10.48550/arXiv.2110.02037},
+  url = {http://arxiv.org/abs/2110.02037},
+  urldate = {2024-02-25},
+  abstract = {We introduce Autoregressive Diffusion Models (ARDMs), a model class encompassing and generalizing order-agnostic autoregressive models (Uria et al., 2014) and absorbing discrete diffusion (Austin et al., 2021), which we show are special cases of ARDMs under mild assumptions. ARDMs are simple to implement and easy to train. Unlike standard ARMs, they do not require causal masking of model representations, and can be trained using an efficient objective similar to modern probabilistic diffusion models that scales favourably to highly-dimensional data. At test time, ARDMs support parallel generation which can be adapted to fit any given generation budget. We find that ARDMs require significantly fewer steps than discrete diffusion models to attain the same performance. Finally, we apply ARDMs to lossless compression, and show that they are uniquely suited to this task. Contrary to existing approaches based on bits-back coding, ARDMs obtain compelling results not only on complete datasets, but also on compressing single data points. Moreover, this can be done using a modest number of network calls for (de)compression due to the model's adaptable parallel generation.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/home/krawczuk/Zotero/storage/NUH2GQQU/Hoogeboom et al. - 2022 - Autoregressive Diffusion Models.pdf;/home/krawczuk/Zotero/storage/9Y33ZZMV/2110.html}
+}
+
 @inproceedings{hoogeboomEquivariantDiffusionMolecule2022d,
   title = {Equivariant {{Diffusion}} for {{Molecule Generation}} in {{3D}}},
   booktitle = {Proceedings of the 39th {{International Conference}} on {{Machine Learning}}},
@@ -2153,6 +2245,40 @@
   eventtitle = {2019 {{IEEE}} 22nd {{International Symposium}} on {{Design}} and {{Diagnostics}} of {{Electronic Circuits}} \& {{Systems}} ({{DDECS}})},
   keywords = {Automation,Computer architecture,Hardware design languages,Layout,Libraries,Phase locked loops,Tools},
   file = {/home/krawczuk/Zotero/storage/GJJCN9GP/Krinke et al. - 2019 - From Constraints to Tape-Out Towards a Continuous.pdf;/home/krawczuk/Zotero/storage/2UTNK387/8724669.html}
+}
+
+@online{kuImagenHubStandardizingEvaluation2023,
+  title = {{{ImagenHub}}: {{Standardizing}} the Evaluation of Conditional Image Generation Models},
+  shorttitle = {{{ImagenHub}}},
+  author = {Ku, Max and Li, Tianle and Zhang, Kai and Lu, Yujie and Fu, Xingyu and Zhuang, Wenwen and Chen, Wenhu},
+  date = {2023-12-03},
+  eprint = {2310.01596},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2310.01596},
+  url = {http://arxiv.org/abs/2310.01596},
+  urldate = {2024-02-25},
+  abstract = {Recently, a myriad of conditional image generation and editing models have been developed to serve different downstream tasks, including text-to-image generation, text-guided image editing, subject-driven image generation, control-guided image generation, etc. However, we observe huge inconsistencies in experimental conditions: datasets, inference, and evaluation metrics - render fair comparisons difficult. This paper proposes ImagenHub, which is a one-stop library to standardize the inference and evaluation of all the conditional image generation models. Firstly, we define seven prominent tasks and curate high-quality evaluation datasets for them. Secondly, we built a unified inference pipeline to ensure fair comparison. Thirdly, we design two human evaluation scores, i.e. Semantic Consistency and Perceptual Quality, along with comprehensive guidelines to evaluate generated images. We train expert raters to evaluate the model outputs based on the proposed metrics. Our human evaluation achieves a high inter-worker agreement of Krippendorff's alpha on 76\% models with a value higher than 0.4. We comprehensively evaluated a total of around 30 models and observed three key takeaways: (1) the existing models' performance is generally unsatisfying except for Text-guided Image Generation and Subject-driven Image Generation, with 74\% models achieving an overall score lower than 0.5. (2) we examined the claims from published papers and found 83\% of them hold with a few exceptions. (3) None of the existing automatic metrics has a Spearman's correlation higher than 0.2 except subject-driven image generation. Moving forward, we will continue our efforts to evaluate newly published models and update our leaderboard to keep track of the progress in conditional image generation.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition,Computer Science - Graphics,Computer Science - Multimedia},
+  file = {/home/krawczuk/Zotero/storage/FW48IV25/Ku et al. - 2023 - ImagenHub Standardizing the evaluation of conditi.pdf;/home/krawczuk/Zotero/storage/TAZX8NDB/2310.html}
+}
+
+@online{kuImagenHubStandardizingEvaluation2023a,
+  title = {{{ImagenHub}}: {{Standardizing}} the Evaluation of Conditional Image Generation Models},
+  shorttitle = {{{ImagenHub}}},
+  author = {Ku, Max and Li, Tianle and Zhang, Kai and Lu, Yujie and Fu, Xingyu and Zhuang, Wenwen and Chen, Wenhu},
+  date = {2023-12-03},
+  eprint = {2310.01596},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2310.01596},
+  url = {http://arxiv.org/abs/2310.01596},
+  urldate = {2024-02-25},
+  abstract = {Recently, a myriad of conditional image generation and editing models have been developed to serve different downstream tasks, including text-to-image generation, text-guided image editing, subject-driven image generation, control-guided image generation, etc. However, we observe huge inconsistencies in experimental conditions: datasets, inference, and evaluation metrics - render fair comparisons difficult. This paper proposes ImagenHub, which is a one-stop library to standardize the inference and evaluation of all the conditional image generation models. Firstly, we define seven prominent tasks and curate high-quality evaluation datasets for them. Secondly, we built a unified inference pipeline to ensure fair comparison. Thirdly, we design two human evaluation scores, i.e. Semantic Consistency and Perceptual Quality, along with comprehensive guidelines to evaluate generated images. We train expert raters to evaluate the model outputs based on the proposed metrics. Our human evaluation achieves a high inter-worker agreement of Krippendorff's alpha on 76\% models with a value higher than 0.4. We comprehensively evaluated a total of around 30 models and observed three key takeaways: (1) the existing models' performance is generally unsatisfying except for Text-guided Image Generation and Subject-driven Image Generation, with 74\% models achieving an overall score lower than 0.5. (2) we examined the claims from published papers and found 83\% of them hold with a few exceptions. (3) None of the existing automatic metrics has a Spearman's correlation higher than 0.2 except subject-driven image generation. Moving forward, we will continue our efforts to evaluate newly published models and update our leaderboard to keep track of the progress in conditional image generation.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition,Computer Science - Graphics,Computer Science - Multimedia},
+  file = {/home/krawczuk/Zotero/storage/XRJCYCMQ/Ku et al. - 2023 - ImagenHub Standardizing the evaluation of conditi.pdf;/home/krawczuk/Zotero/storage/82WELBKW/2310.html}
 }
 
 @inproceedings{kunalGANAGraphConvolutional2020e,
@@ -3138,6 +3264,23 @@
   urldate = {2024-02-20}
 }
 
+@online{panEDALearnComprehensiveRTLtoSignoff2023,
+  title = {{{EDALearn}}: {{A Comprehensive RTL-to-Signoff EDA Benchmark}} for {{Democratized}} and {{Reproducible ML}} for {{EDA Research}}},
+  shorttitle = {{{EDALearn}}},
+  author = {Pan, Jingyu and Chang, Chen-Chia and Xie, Zhiyao and Chen, Yiran},
+  date = {2023-12-04},
+  eprint = {2312.01674},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2312.01674},
+  url = {http://arxiv.org/abs/2312.01674},
+  urldate = {2024-02-25},
+  abstract = {The application of Machine Learning (ML) in Electronic Design Automation (EDA) for Very Large-Scale Integration (VLSI) design has garnered significant research attention. Despite the requirement for extensive datasets to build effective ML models, most studies are limited to smaller, internally generated datasets due to the lack of comprehensive public resources. In response, we introduce EDALearn, the first holistic, open-source benchmark suite specifically for ML tasks in EDA. This benchmark suite presents an end-to-end flow from synthesis to physical implementation, enriching data collection across various stages. It fosters reproducibility and promotes research into ML transferability across different technology nodes. Accommodating a wide range of VLSI design instances and sizes, our benchmark aptly represents the complexity of contemporary VLSI designs. Additionally, we provide an in-depth data analysis, enabling users to fully comprehend the attributes and distribution of our data, which is essential for creating efficient ML models. Our contributions aim to encourage further advances in the ML-EDA domain.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning},
+  file = {/home/krawczuk/Zotero/storage/NUZ3PA33/Pan et al. - 2023 - EDALearn A Comprehensive RTL-to-Signoff EDA Bench.pdf;/home/krawczuk/Zotero/storage/4DBHCPK7/2312.html}
+}
+
 @inproceedings{papezSumProductSetNetworks2023,
   title = {Sum-{{Product-Set Networks}}},
   author = {Papez, Milan and Rektoris, Martin and Pevný, Tomáš and Smidl, Vaclav},
@@ -3168,6 +3311,25 @@
   langid = {english},
   keywords = {geoeconomics,global value chain (GVC),globalization,semiconductor industry,technonationalism},
   file = {/home/krawczuk/Zotero/storage/X4HWCMHE/Park - 2023 - Semiconductors at the Intersection of Geoeconomics.pdf}
+}
+
+@article{perezFiLMVisualReasoning2018b,
+  title = {{{FiLM}}: {{Visual Reasoning}} with a {{General Conditioning Layer}}},
+  shorttitle = {{{FiLM}}},
+  author = {Perez, Ethan and Strub, Florian and family=Vries, given=Harm, prefix=de, useprefix=false and Dumoulin, Vincent and Courville, Aaron},
+  date = {2018-04-29},
+  journaltitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume = {32},
+  number = {1},
+  issn = {2374-3468},
+  doi = {10.1609/aaai.v32i1.11671},
+  url = {https://ojs.aaai.org/index.php/AAAI/article/view/11671},
+  urldate = {2024-02-25},
+  abstract = {We introduce a general-purpose conditioning method for neural networks called FiLM: Feature-wise Linear Modulation. FiLM layers influence neural network computation via a simple, feature-wise affine transformation based on conditioning information. We show that FiLM layers are highly effective for visual reasoning - answering image-related questions which require a multi-step, high-level process - a task which has proven difficult for standard deep learning methods that do not explicitly model reasoning. Specifically, we show on visual reasoning tasks that FiLM layers 1) halve state-of-the-art error for the CLEVR benchmark, 2) modulate features in a coherent manner, 3) are robust to ablations and architectural modifications, and 4) generalize well to challenging, new data from few examples or even zero-shot.},
+  issue = {1},
+  langid = {english},
+  keywords = {Language and Vision},
+  file = {/home/krawczuk/Zotero/storage/FP4YYKYA/Perez et al. - 2018 - FiLM Visual Reasoning with a General Conditioning.pdf}
 }
 
 @inproceedings{piechDeepKnowledgeTracing2015,
@@ -3201,6 +3363,22 @@
   isbn = {978-3-030-42071-0},
   langid = {english},
   file = {/home/krawczuk/Zotero/storage/4I9E6FXP/Pilipczuk - 2020 - Computing Tree Decompositions.pdf}
+}
+
+@online{podellSDXLImprovingLatent2023a,
+  title = {{{SDXL}}: {{Improving Latent Diffusion Models}} for {{High-Resolution Image Synthesis}}},
+  shorttitle = {{{SDXL}}},
+  author = {Podell, Dustin and English, Zion and Lacey, Kyle and Blattmann, Andreas and Dockhorn, Tim and Müller, Jonas and Penna, Joe and Rombach, Robin},
+  date = {2023-07-04},
+  eprint = {2307.01952},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  url = {http://arxiv.org/abs/2307.01952},
+  urldate = {2024-02-25},
+  abstract = {We present SDXL, a latent diffusion model for text-to-image synthesis. Compared to previous versions of Stable Diffusion, SDXL leverages a three times larger UNet backbone: The increase of model parameters is mainly due to more attention blocks and a larger cross-attention context as SDXL uses a second text encoder. We design multiple novel conditioning schemes and train SDXL on multiple aspect ratios. We also introduce a refinement model which is used to improve the visual fidelity of samples generated by SDXL using a post-hoc image-to-image technique. We demonstrate that SDXL shows drastically improved performance compared the previous versions of Stable Diffusion and achieves results competitive with those of black-box state-of-the-art image generators. In the spirit of promoting open research and fostering transparency in large model training and evaluation, we provide access to code and model weights at https://github.com/Stability-AI/generative-models},
+  pubstate = {preprint},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition},
+  file = {/home/krawczuk/Zotero/storage/TXA5ARXF/Podell et al. - 2023 - SDXL Improving Latent Diffusion Models for High-R.pdf;/home/krawczuk/Zotero/storage/CQIZPC26/2307.html}
 }
 
 @article{pratherTreeCircuits1965,
@@ -3298,6 +3476,26 @@
   pubstate = {preprint},
   keywords = {Computer Science - Artificial Intelligence,Computer Science - Machine Learning},
   file = {/home/krawczuk/Zotero/storage/DZTTPU7D/Qin et al. - 2023 - Sparse Training of Discrete Diffusion Models for G.pdf;/home/krawczuk/Zotero/storage/CF5ZF7XN/2311.html}
+}
+
+@article{qiuProgressPlacementOptimization2023,
+  title = {Progress of {{Placement Optimization}} for {{Accelerating VLSI Physical Design}}},
+  author = {Qiu, Yihang and Xing, Yan and Zheng, Xin and Gao, Peng and Cai, Shuting and Xiong, Xiaoming},
+  date = {2023-01},
+  journaltitle = {Electronics},
+  volume = {12},
+  number = {2},
+  pages = {337},
+  publisher = {{Multidisciplinary Digital Publishing Institute}},
+  issn = {2079-9292},
+  doi = {10.3390/electronics12020337},
+  url = {https://www.mdpi.com/2079-9292/12/2/337},
+  urldate = {2024-02-25},
+  abstract = {Placement is essential in very large-scale integration (VLSI) physical design, as it directly affects the design cycle. Despite extensive prior research on placement, achieving fast and efficient placement remains challenging because of the increasing design complexity. In this paper, we comprehensively review the progress of placement optimization from the perspective of accelerating VLSI physical design. It can help researchers systematically understand the VLSI placement problem and the corresponding optimization means, thereby advancing modern placement optimization research. We highlight emerging trends in modern placement-centric VLSI physical design flows, including placement optimizers and learning-based predictors. We first define the placement problem and review the classical placement algorithms, then discuss the application bottleneck of the classical placement algorithms in advanced technology nodes and give corresponding solutions. After that, we introduce the development of placement optimizers, including algorithm improvements and computational acceleration, pointing out that these two aspects will jointly promote accelerating VLSI physical design. We also present research working on learning-based predictors from various angles. Finally, we discuss the common and individual challenges encountered by placement optimizers and learning-based predictors.},
+  issue = {2},
+  langid = {english},
+  keywords = {large-scale optimization,machine learning,physical design,placement challenges,prediction,VLSI placement},
+  file = {/home/krawczuk/Zotero/storage/GCSA7U4W/Qiu et al. - 2023 - Progress of Placement Optimization for Acceleratin.pdf}
 }
 
 @article{rabinovichChurchSynthesisProblem2007,
@@ -3724,6 +3922,24 @@
   eventtitle = {Proceedings of the {{IEEE}}/{{CVF International Conference}} on {{Computer Vision}}},
   langid = {english},
   file = {/home/krawczuk/Zotero/storage/A5A6R52I/Singhal et al. - 2023 - Learning to Transform for Generalizable Instance-w.pdf}
+}
+
+@online{singhLEGOBenchScientificLeaderboard2024,
+  title = {{{LEGOBench}}: {{Scientific Leaderboard Generation Benchmark}}},
+  shorttitle = {{{LEGOBench}}},
+  author = {Singh, Shruti and Alam, Shoaib and Malwat, Husain and Singh, Mayank},
+  date = {2024-02-21},
+  eprint = {2401.06233},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2401.06233},
+  url = {http://arxiv.org/abs/2401.06233},
+  urldate = {2024-02-25},
+  abstract = {The ever-increasing volume of paper submissions makes it difficult to stay informed about the latest state-of-the-art research. To address this challenge, we introduce LEGOBench, a benchmark for evaluating systems that generate scientific leaderboards. LEGOBench is curated from 22 years of preprint submission data on arXiv and more than 11k machine learning leaderboards on the PapersWithCode portal. We present four graph-based and two language model-based leaderboard generation task configurations. We evaluate popular encoder-only scientific language models as well as decoder-only large language models across these task configurations. State-of-the-art models showcase significant performance gaps in automatic leaderboard generation on LEGOBench. The code is available on GitHub ( https://github.com/lingo-iitgn/LEGOBench ) and the dataset is hosted on OSF ( https://osf.io/9v2py/?view\_only=6f91b0b510df498ba01595f8f278f94c ).},
+  pubstate = {preprint},
+  version = {2},
+  keywords = {Computer Science - Computation and Language},
+  file = {/home/krawczuk/Zotero/storage/XINCPUV7/Singh et al. - 2024 - LEGOBench Scientific Leaderboard Generation Bench.pdf;/home/krawczuk/Zotero/storage/CU8XATWQ/2401.html}
 }
 
 @inproceedings{sohl-dicksteinDeepUnsupervisedLearning2015b,
@@ -4206,6 +4422,23 @@
   file = {/home/krawczuk/Zotero/storage/MWQ8CFGA/Wang et al. - 2022 - Functionality matters in netlist representation le.pdf}
 }
 
+@inproceedings{weiHLSDatasetOpenSourceDataset2023,
+  title = {{{HLSDataset}}: {{Open-Source Dataset}} for {{ML-Assisted FPGA Design}} Using {{High Level Synthesis}}},
+  shorttitle = {{{HLSDataset}}},
+  booktitle = {2023 {{IEEE}} 34th {{International Conference}} on {{Application-specific Systems}}, {{Architectures}} and {{Processors}} ({{ASAP}})},
+  author = {Wei, Zhigang and Arora, Aman and Li, Ruihao and John, Lizy},
+  date = {2023-07},
+  pages = {197--204},
+  issn = {2160-052X},
+  doi = {10.1109/ASAP57973.2023.00040},
+  url = {https://ieeexplore.ieee.org/abstract/document/10265706?casa_token=O3gTcKNewmgAAAAA:T5Ckipmxa05eMFZFX43Zq90Wv20UG7NiiNccUFDo-SmNPmo5C2767eMzp3-8K8NcuR-PB8rR6k1w},
+  urldate = {2024-02-25},
+  abstract = {Machine Learning (ML) has been widely adopted in design exploration using high level synthesis (HLS) for faster resource, timing and power estimation at very early stages for FPGA-based design. To perform prediction accurately, high-quality and large-volume datasets are required for training ML models. However, the current datasets used in this domain are proprietary or limited in use, and practitioners have to generate their own dataset to train HLS-related ML models. This paper presents a dataset for ML-assisted FPGA design using HLS, called HLSDataset. The dataset is generated from widely used HLS C benchmarks including Polybench, Machsuite, CHStone and Rossetta. The Verilog samples are generated with a variety of directives including loop unroll, loop pipeline, and array partition to make sure optimized and realistic designs are covered. The total number of generated Verilog samples is nearly 9,000 per FPGA type. The dataset repository includes CSV (comma separated values) files containing both HLS and implementation metrics which can be easily consumed by ML model. We also include original C source code with directives, Verilog designs, post-HLS reports, post-implementation reports for each sample in the dataset, so that any metrics not present in the CSV can be easily extracted. In order to extend the dataset for future benchmarks, generation and extraction scripts are also provided. To demonstrate the effectiveness of our dataset, we undertake case studies to perform power estimation and resource usage estimation with ML models trained with our dataset. All the code and dataset are public at our github page11https://github.com/UT-LCAIML4Accel-Dataset/tree/main/fpga\_ml\_dataset. We believe that HLSDataset can save valuable time for researchers by avoiding the tedious process of running tools, scripting and parsing files to generate the dataset, and enable them to spend more time where it counts, that is, in training ML models.},
+  eventtitle = {2023 {{IEEE}} 34th {{International Conference}} on {{Application-specific Systems}}, {{Architectures}} and {{Processors}} ({{ASAP}})},
+  keywords = {Benchmark testing,High level synthesis,Maximum likelihood estimation,Measurement,Predictive models,Systems architecture,Training},
+  file = {/home/krawczuk/Zotero/storage/SJJ3HWKX/Wei et al. - 2023 - HLSDataset Open-Source Dataset for ML-Assisted FP.pdf;/home/krawczuk/Zotero/storage/WT435H4X/10265706.html}
+}
+
 @article{weiNetlistManufacturableLayout2023,
   title = {From {{Netlist}} to {{Manufacturable Layout}}: {{An Auto-Layout Algorithm Optimized}} for {{Radio Frequency Integrated Circuits}}},
   shorttitle = {From {{Netlist}} to {{Manufacturable Layout}}},
@@ -4487,6 +4720,20 @@
   langid = {english},
   keywords = {⛔ No DOI found},
   file = {/home/krawczuk/Zotero/storage/P9UM6DWN/Yu et al. - 2023 - Learning Energy-Based Prior Model with Diffusion-A.pdf}
+}
+
+@inproceedings{yunGraphTransformerNetworks2019b,
+  title = {Graph {{Transformer Networks}}},
+  booktitle = {Advances in {{Neural Information Processing Systems}}},
+  author = {Yun, Seongjun and Jeong, Minbyul and Kim, Raehyun and Kang, Jaewoo and Kim, Hyunwoo J},
+  date = {2019},
+  volume = {32},
+  publisher = {{Curran Associates, Inc.}},
+  url = {https://proceedings.neurips.cc/paper/2019/hash/9d63484abb477c97640154d40595a3bb-Abstract.html},
+  urldate = {2024-02-25},
+  abstract = {Graph neural networks (GNNs) have been widely used in representation learning on graphs and achieved state-of-the-art performance in tasks such as node classification and link prediction. However, most existing GNNs are designed to learn node representations on the fixed and homogeneous graphs. The limitations especially become problematic when learning representations on a misspecified graph or a heterogeneous graph that consists of various types of nodes and edges. In this paper, we propose Graph Transformer Networks (GTNs) that are capable of generating new graph structures, which involve identifying useful connections between unconnected nodes on the original graph, while learning effective node representation on the new graphs in an end-to-end fashion. Graph Transformer layer, a core layer of GTNs, learns a soft selection of edge types and composite relations for generating useful multi-hop connections so-call meta-paths. Our experiments show that GTNs learn new graph structures, based on data and tasks without domain knowledge, and yield powerful node representation via convolution on the new graphs. Without domain-specific graph preprocessing, GTNs achieved the best performance in all three benchmark node classification tasks against the state-of-the-art methods that require pre-defined meta-paths from domain knowledge.},
+  keywords = {⛔ No DOI found},
+  file = {/home/krawczuk/Zotero/storage/4QVF66WV/Yun et al. - 2019 - Graph Transformer Networks.pdf}
 }
 
 @article{yusterTreeDecompositionGraphs1998,

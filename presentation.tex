@@ -9,12 +9,17 @@
 \input{math.tex}
 % load subfiles last
 \usepackage{subfiles}
+%\includeonlyframes{title,digress}
 %\includeonlyframes{title,workingonly}
 %\includeonlyframes{title,working}
 %\includeonlyframes{title,working}
 %\includeonlyframes{title,working,maybedone}
 %later on do
-%\includeonlyframes{title,working,done,rest,maybedone}
+%\includeonlyframes{ttle,working,done,rest,maybedone}
+\DeclarePairedDelimiter{\lpr}{(}{)}
+\newcommand{\func}[2]{{#1}\lpr*{#2}}
+\newcommand{\fKL}[2]{\func{\KL}{#1\Vert {#2}}}
+\newcommand{\mcomm}[2][s]{\ifx s#1\ \else\ifx q\quad\fi\fi\text{\small\texttt{//#2}}}
 \begin{document}
 % Enter presentation title:
 \title{\justifying Graph generative deep learning models with an application\\ to circuit topologies}
