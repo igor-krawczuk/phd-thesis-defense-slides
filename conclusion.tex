@@ -4,11 +4,29 @@
 
 \begin{frame}[label=working]
   \frametitle{Evaluation on circuits}
-  TODO: place experiments
+  \textcolor{red}{TODO: place experiments}
 \end{frame}
 
-\begin{frame}[label=working]
-  \frametitle{Conclusion}
-  Before/after desiderata
+\newcommand{\donecheck}[1]{{\huge\textcolor{ForestGreen}{\checkmark}}\emph{#1}\xspace}}
+\newcommand{\missing}{{\huge\textcolor{red}{X}\xspace}}
+\begin{frame}[label=working,t]
+  \frametitle{Why does nobody generate graphs directly yet? Revisting our {Desiderata}}
+  \raggedright
+  %WHY now and how will we deal with it?=> prepare for benefits of equivaraince
+  Data is sparse\ffootnote{\cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}}\visible<2->{\missing{}} \emph{and} even with data, we require models that can...
+\begin{itemize}
+  \item model relations and compositions naturally with...\visible<2->{\donecheck{GNNs}} %GNNs/set networks give this
+  \item high fidelity ...\visible<3->{\donecheck{DiGress,HCGD}} %digress, hgd gives this
+  \item compact parametrization...\visible<4->{\donecheck{GG-GAN,HCGD}} % GG-GAN gives this, digress *kinda* gives this, hgd does again
+  \item fast sampling...\visible<5->{\donecheck{GG-GAN,HCGD}} % and this, digress kinda gives this, hgd gives this
+  \item while scaling to circuit sized graphs \visible<6->{\donecheck{HCGD}} % ggg kinda gives this, digress kinda , hgd does
+\end{itemize}
+\end{frame}
+\begin{frame}[c]
+  \frametitle{}
+  \centering
+  \Huge
+  \strut
+ Thank you for your attention!
 \end{frame}
 \end{document}

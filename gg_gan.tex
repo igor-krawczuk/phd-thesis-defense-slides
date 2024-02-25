@@ -95,7 +95,7 @@
   \small
   4 main variants
   \begin{itemize}
-    \item Autoregressive likelihood(AR)\ffootnote{ GraphRNN, GRAN, BiGG} $\centernot\implies$ order dependent,high latency%TODO cite the paper that shows that order matters
+    \item Autoregressive likelihood(AR)\ffootnote{ \cite{youGraphRNNGeneratingRealistic2018a,liaoEfficientGraphGeneration2019e,daiScalableDeepGenerative2020e}} $\centernot\implies$ order dependent\ffootnote{\cite{chenOrderMattersProbabilistic2021c}},high latency
     \item GAN \ffootnote{\cite{decaoMolGANImplicitGenerative2022b}}% GAN, non PE generator, fixed size matrix  
       $\centernot\implies$ non-PE generator, no size extrapolation,mode collapse
     \item VAE/VAE-GAN hybrid\ffootnote{\cite{yangConditionalStructureGeneration2019e,kipfVariationalGraphAutoEncoders2016b}}% V FNN generator

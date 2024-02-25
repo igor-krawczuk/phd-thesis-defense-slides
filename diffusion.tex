@@ -93,7 +93,7 @@ Trained via
 {\footnotesize
     Prior SotA:Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b},Motif generators \citep{maziarzLearningExtendMolecular2021},GraphDF\citep{luoGraphDFDiscreteFlow2021d}
 \\
-Foundations: Discrete Diffusion\citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b},FilM\citep{perezFiLMVisualReasoning2018b}, GG-GAN features \citep{krawczukGGGANGeometricGraph2020}
+Foundations: D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b},FilM\citep{perezFiLMVisualReasoning2018b}, GG-GAN features \citep{krawczukGGGANGeometricGraph2020}
  }
   \end{priorart}
   \begin{contributions}
@@ -126,7 +126,7 @@ Foundations: Discrete Diffusion\citep{austinStructuredDenoisingDiffusion2021e}, 
 
 
 \begin{frame}[t,label=digress]
-  \frametitle{Structured state spaces \citep{austinStructuredDenoisingDiffusion2021e}}
+  \frametitle{Structured state spaces with D3PM \citep{austinStructuredDenoisingDiffusion2021e}}
   \centering
   \vspace{-2cm}
 \begin{align}
@@ -202,7 +202,7 @@ Let $P$ be an arbitrary distribution over graphs (seen as a tensor of order $n +
 {\footnotesize
     Prior SotA:Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b},Motif generators \citep{maziarzLearningExtendMolecular2021},GraphDF\citep{luoGraphDFDiscreteFlow2021d}
 \\
-Foundations: Discrete Diffusion\citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b},FilM\citep{perezFiLMVisualReasoning2018b}, GG-GAN features \citep{krawczukGGGANGeometricGraph2020}
+Foundations: D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b},FilM\citep{perezFiLMVisualReasoning2018b}, GG-GAN features \citep{krawczukGGGANGeometricGraph2020}
  }
   \end{priorart}
   \begin{contributions}
@@ -230,73 +230,6 @@ Foundations: Discrete Diffusion\citep{austinStructuredDenoisingDiffusion2021e}, 
   \end{columns}
     \vspace{1cm}
   
-\end{frame}
-\begin{frame}[t]
-  \frametitle{HCGD (WIP, under review at XXX)}
-
-  \textcolor{red}{add the bookend slide once done}
-\end{frame}
-\begin{frame}[label=working]
-  \frametitle{SotA Graph Generative Models (end of 2023)}
-  \begin{itemize}
-    \item diffusion model: edge, iterative expansion, swin-GNN
-    \item some explorations into scaling digress into hierarchical graphs
-    \item some autoregressive work: higen, order independent Generation etc.
-  \end{itemize}
-\end{frame}
-\begin{frame}[label=working]
-  \frametitle{Recap: Finding Hierarchies via Modularity maximisation Louvain/Leiden}
-  \begin{itemize}
-    \item define modularity
-    \item explain the hierarchy that results
-    \item discuss some of the anaylses (generalized modularity density,fiedler connection etc)
-  \end{itemize}
-\end{frame}
-\begin{frame}[label=working]
-  \frametitle{HigenDiff: Horizontally scalable hierarchical generation}
-  \begin{itemize}
-    \item define modularity
-    \item explain the hierarchy that results
-    \item discuss some of the anaylses (generalized modularity density,fiedler connection etc)
-  \end{itemize}
-\end{frame}
-\begin{frame}[label=working]
-  \frametitle{HigenDiff: Global Edge Dependent Diffusion}
-  \begin{itemize}
-    \item \textcolor{red}{TODO: banded matrix visualization, metropolis hastings kernel}
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}[label=working]
-  \frametitle{HigenDiff: Ordinal diffusion towards arbitrary distributions}
-  \begin{itemize}
-    \item \textcolor{red}{TODO: banded matrix visualization, metropolis hastings kernel}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[label=working]
-  \frametitle{Results}
-  \begin{itemize}
-    \item \textcolor{red}{TODO: work in progress}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[t]
-  \frametitle{HCGD (WIP, under review at XXX)}
-  \vspace{-1cm}
-  \begin{priorart}
-    Prior SotA:Diffusion\&Score Based Models\cite{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE\cite{martinkusSPECTRESpectralConditioning2022b}\\
-   Foundations: DiGress\cite{krawczukGGGANGeometricGraph2020}, HiGen \cite{karami},GrapGPS, MH-MCMC,Louvain
-  \end{priorart}
-  \begin{contributions}
-    Scalable Feature Computation,Scalable Global Edge Dependent Prediction, Arbitrary Ordinal Limit Distribution
-  \end{contributions}
-  \visible<2->{
-      \begin{outcomes}
-        Improved wall-clock time scaling to $\mathcal{O}\left(n+m\right)$,\textuparrow retained most of digress performance when tuned,\textuparrow improved sampling latency,\textdownarrow WIP, requires more tuning
-      \end{outcomes} 
-}
 \end{frame}
 
 \end{document}
