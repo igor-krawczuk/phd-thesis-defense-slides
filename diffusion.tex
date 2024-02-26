@@ -1,7 +1,7 @@
 % !TeX root = presentation.tex
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
-\begin{frame}[t,label=digress]
+\begin{frame}[t,label=digressintro]
   \frametitle{DiGress (\cite{vignacDiGressDiscreteDenoising2023b})}
   \vspace{-1cm}
 \footnotesize
@@ -13,8 +13,9 @@
 Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b}, \textit{F}eaturew\textit{i}se \textit{L}inear \textit{M}odulation (FilM) \citep{perezFiLMVisualReasoning2018b}, GG-GAN features
  }
   \end{priorart}
+  \vspace{-0.25cm}
   \begin{contributions}
-    Powerful $\SnE$ GraphTransformer, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
+    \hyperlink{digressbackuparch}{Powerful $\SnE$ GraphTransformer}, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
   \end{contributions}
 %  \begin{columns}
 %        \tiny
@@ -42,6 +43,7 @@ Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, Graph
 \end{frame}
 \begin{frame}[label=diffusion]
   \frametitle{Denoising Diffusion Models}
+  \vspace{-1cm}
   \only<1-2>{
   First introduced in \cite{sohl-dicksteinDeepUnsupervisedLearning2015b}, popularized by \citep{hoDenoisingDiffusionProbabilistic2020f,songMaximumLikelihoodTraining2021a}
   \only<1>{
@@ -89,13 +91,13 @@ Trained via
 \only<3->{
   \only<3>{
     Explicit likelihood model without need to estimate NC \emph{or} restrictions on $J_f$ as in Normalizing Flows!\\
-
-  Connection to \cite{niuPermutationInvariantGraph2020b} via \cite{songGenerativeModelingEstimating2019b}:\\ Reparametrization of DDPM \citep{hoDenoisingDiffusionProbabilistic2020f} "unrolls" and tunes a Langevin dynamics sampler towards the data
+  Reparametrization of DDPM \citep{hoDenoisingDiffusionProbabilistic2020f} "unrolls" and tunes a Langevin dynamics sampler towards the data
   \begin{align}
     \rvx_{t}\coloneqq&\func{\rvx_t}{\rvx_0,\mathbf{\epsilon}}=\sqrt{\bar{\alpha}_t}\rvx_0+\sqrt{1-\bar{\alpha}_t}\mathbf{\epsilon};\ \mathbf{\epsilon}\sim\func{\mathcal{N}}{\mathbf{0},\rvI}\nonumber\\
     \rvx_{t-1}=&\frac{1}{\sqrt{\alpha_t}}\left(\rvx_t-\frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\func{\mathbf{\epsilon}_\theta}{\rvx_t,t}\right)+\sigma_t\rvz;\ \rvz\sim\mathcal{N}\left(\mathbf{0},\rvI \right)\nonumber\\
     L_{simple}\coloneqq&\mathbb{E}_{t,\rvx_0,\mathbf{\epsilon}}\bigl[ \Vert \mathbf{\epsilon}-\func{\mathbf{\epsilon}_\theta}{\sqrt{\bar{\alpha}_t}\rvx_0+\sqrt{1-\bar{\alpha}_t}\mathbf{\epsilon},t} \Vert^2 \bigr]\nonumber
   \end{align}
+  Connection to \cite{niuPermutationInvariantGraph2020b} via \cite{songGenerativeModelingEstimating2019b}
 }
   \only<4>{
     \begin{columns}
@@ -125,23 +127,29 @@ Trained via
 \end{frame}
 
 
+\begin{frame}[label=digress,c]
+  \frametitle{Diffusing Graphs Instead of Lifted Graphs}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/overview_v2.png}
+  For $k$ edge types, diffuse $e_{ij}^{(t)} \sim p_{ij}^{(t)}\in\Delta^k$, not via $\mathcal{N}\left(\mu_{ij}^{(t)},\Sigma_{ij}^{(t)}\right)$+discretization as in \cite{hoDenoisingDiffusionProbabilistic2020f}
+\end{frame}
 
 \begin{frame}[t,label=digress]
   \frametitle{Structured state spaces with D3PM \citep{austinStructuredDenoisingDiffusion2021e}}
   \centering
   \vspace{-2cm}
+  \only<1-4>{
 \begin{align}
   \rvx_{t+1}\vert\rvx_t&\coloneqq\rvx_{t}+\mathbf{\epsilon}_t;\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
   \mathbf{\epsilon}_t&\sim\func{\mathcal{N}}{\func{\mu_t}{\alpha_t,\beta_t,t},\func{\Sigma_t}{\alpha_t,\beta_t,t}}\nonumber\\
-  \visible<1->{\rvx_{t-1}\vert\rvx_t&\coloneqq\rvx_{t}-\func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t};\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
+  \visible<2->{\rvx_{t-1}\vert\rvx_t&\coloneqq\rvx_{t}-\func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t};\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
   \func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t}&\sim\func{\mathcal{N}}{\func{\mu_\theta}{\rvx_t,\alpha_t,\beta_t,t},\func{\Sigma_\theta}{\rvx_t,\alpha_t,\beta_t,t}}}\nonumber
 \end{align}
 \vspace{-0.5mm}
-\visible<2->{$\Downarrow$}
+\visible<3->{$\Downarrow$}
 \vspace{-0.5mm}
 \begin{align}
   \visible<3->{\rvz_{t+1}\vert \rvz_t&\sim Q_t\rvz_{t};\quad Q_t\in\mathbf{P}^n,\rvz_t\in\bm{1}_n}\nonumber\\
-\visible<3->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_tQ_t^T\odot \rvz_0\prod_{\tau=0}^{t-1}Q_\tau}{\rvz_0\left(\prod_{\tau=0}^{t}Q_\tau\right)\rvz_t}}\nonumber
+\visible<4->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_tQ_t^T\odot \rvz_0\prod_{\tau=0}^{t-1}Q_\tau}{\rvz_0\left(\prod_{\tau=0}^{t}Q_\tau\right)\rvz_t}}\nonumber
 \end{align}
 \vspace{-0.5mm}
 \visible<3->{
@@ -151,17 +159,17 @@ $\mathbf{P}^n$ are n-dimensional doubly stochastic transition matrices\\
   $\bm{1}_n$ are one-hot encoded states\\
 }
 }
+}
 \end{frame}
-\begin{frame}[t,label=digress]
-  \frametitle{Avoiding representational bottleneck with edge-diffusion}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \includegraphics[height=0.8\textheight,keepaspectratio]{./images/architecture_full.png}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \includegraphics[width=\columnwidth,height=0.8\textheight,keepaspectratio]{./images/graph_transformer.png} 
-    \end{column}
-  \end{columns}
+
+\begin{frame}[label=digress]
+  \frametitle{Results: Discrete vs. Continuous Relaxation}
+  \centering
+\only<1>{
+  \centering
+  \vspace{1mm}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/digress_abstract_2024-02-25_18-49.png}
+}
 \end{frame}
 
 \begin{frame}[t,label=digress]
@@ -177,25 +185,20 @@ Let $P$ be an arbitrary distribution over graphs (seen as a tensor of order $n +
 \end{frame}
 
 \begin{frame}[label=digress]
-  \frametitle{Results}
-  \centering
-\only<1>{
-  \framesubtitle{Discrete vs. Continous Relaxation}
-  \centering
-  \vspace{1mm}
-  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/digress_abstract_2024-02-25_18-49.png}
-}
-  \only<2>{
-  \framesubtitle{Impact of Empirical Noise Distribution}
+  \frametitle{Results: Impact of Empirical Noise Distribution}
+  \only<1>{
   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/transition.png}
 }
-  \only<3>{
-  \framesubtitle{Large Molecules}
+\end{frame}
+
+\begin{frame}[label=digress]
+  \only<1>{
+  \frametitle{Results: Large Molecules}
   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/digress-large-mol-2024-02-25_18-52.png}
 }
 \end{frame}
 
-\begin{frame}[t,label=digress]
+\begin{frame}[t,label=digressfin]
   \frametitle{DiGress (\cite{vignacDiGressDiscreteDenoising2023b})}
   \vspace{-1cm}
 \footnotesize
@@ -207,10 +210,11 @@ Let $P$ be an arbitrary distribution over graphs (seen as a tensor of order $n +
 Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b}, \textit{F}eaturew\textit{i}se \textit{L}inear \textit{M}odulation (FilM) \citep{perezFiLMVisualReasoning2018b}, GG-GAN features
  }
   \end{priorart}
+  \vspace{-0.25cm}
   \begin{contributions}
     Powerful $\SnE$ GraphTransformer, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
   \end{contributions}
-  \vspace{-0.5cm}
+  \vspace{-0.25cm}
   \begin{columns}
         \footnotesize
     \begin{column}{0.5\textwidth}
@@ -218,6 +222,7 @@ Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, Graph
       \begin{outcomes}
         First PE singleshot model for Guacamol/MOSES,new SotA\\
         scaling to $n\approx  200$\textuparrow,training stability \textuparrow,fidelity\textuparrow,\textdownarrow sampling latency\textdownarrow$\mathcal{O}\left(n^2\right)$ representation
+        \vspace{9mm}
       \end{outcomes} 
 }
     \end{column}
@@ -230,5 +235,6 @@ Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, Graph
     \end{column}
   \end{columns}
 \end{frame}
+
 
 \end{document}

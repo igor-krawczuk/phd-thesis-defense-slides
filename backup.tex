@@ -1,0 +1,44 @@
+% !TeX root = presentation.tex
+\documentclass[./presentation.tex]{subfiles}
+\begin{document}
+
+\begin{frame}[t,label=digressbackuparch]
+  \frametitle{Avoiding representational bottleneck with edge-diffusion}
+  \vspace{-0.8cm}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[height=0.8\textheight,keepaspectratio]{./images/architecture_full.png}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\columnwidth,height=0.8\textheight,keepaspectratio]{./images/graph_transformer.png} 
+    \end{column}
+  \end{columns}
+\vspace{0.2cm}
+\hyperlink{digressintro}{\beamergotobutton{Return to main slide \ref{digressintro}}}
+\end{frame}
+
+\begin{frame}[label=hcgdbackuplouvain]
+  \frametitle{Recap: Louvain Community Detection}
+  %\begin{itemize}
+  %  \item define modularity
+  %  \item explain the hierarchy that results
+  %  \item discuss some of the anaylses (generalized modularity density,fiedler connection etc)
+  %\end{itemize}
+  \only<1>{
+    Newman-Girvan Modularity\citep{blondelFastUnfoldingCommunities2008d,newmanFindingEvaluatingCommunity2004}
+    \begin{align}
+      \max_{c}Q(\mathcal{G})\coloneqq&\frac{1}{2m}\sum_{i,j}\left(\left[A_{ij}-\frac{d(v_i)d(v_j)}{2m}\right]\bm{1}_{{c_i}={c_j}}\right)\nonumber\\
+      A\in\mathbb{R}^{n\times n}&\ \mcomm{weight matrix of }\mathcal{G}\nonumber\\
+      c\in[1,\dots,n]^n&\ \mcomm{community assignment vector }\mathcal{G}\nonumber\\
+      d(v)&\ \mcomm{degree of node $v$}\nonumber\\
+      m=&\frac{1}{2}\sum_{ij}A_{ij}\nonumber
+    \end{align}
+  }
+  \only<2>{
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/louvain2024-02-25_22-54.png}
+    From \cite{blondelFastUnfoldingCommunities2008d}
+  }
+\hyperlink{hcgdintro}{\beamergotobutton{Return to main slide \ref{hcgdintro}}}
+\end{frame}
+
+\end{document}

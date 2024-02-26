@@ -1,6 +1,25 @@
 % !TeX root = presentation.tex
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
+
+\begin{frame}[t,label=hcgdintro]
+  \frametitle{HCGD (WIP, under review at MLGenX@ICLR)}
+  \vspace{-1cm}
+  \begin{priorart}
+    Prior Closest SotA: see slide \ref{frame:sota2023}\\%Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b,krawczukGGGANGeometricGraph2020,qinSparseTrainingDiscrete2023e,bergmeisterEfficientScalableGraph2024, chenEfficientDegreeGuidedGraph2023g, yanSwinGNNRethinkingPermutation2023b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b}\\
+    Foundations: DiGress+D3PM \citep{krawczukGGGANGeometricGraph2020,austinStructuredDenoisingDiffusion2021e}, HiGen \citep{karamiHiGenHierarchicalGraph2023a}, GrapGPS \citep{rampasekRecipeGeneralPowerful2022b}, MH-MC \citep{metropolisEquationStateCalculations1953a}, 
+    \hyperlink{hcgdbackuplouvain}{Louvain Community Detection} \citep{newmanFindingEvaluatingCommunity2004,blondelFastUnfoldingCommunities2008d}
+  \end{priorart}
+  \begin{contributions}
+    $\SnE$ Structure Aware Generative Model;Horizontally Scalable Global Edge Dependent Prediction; Arbitrary Ordinal Limit Distribution
+  \end{contributions}
+%  \visible<2->{
+%      \begin{outcomes}
+%        Improved wall-clock time scaling to $\mathcal{O}\left(n+m\right)$,\textuparrow retained most of digress performance when tuned,\textuparrow improved sampling latency,\textdownarrow WIP, requires more tuning
+%      \end{outcomes} 
+%}
+\end{frame}
+
 \begin{frame}[t,label=hcgd]
   \frametitle{SotA Graph Generative Models (early 2024)}
   \label{frame:sota2023}
@@ -9,44 +28,6 @@
     \item Autoregressive models: HiGen\citep{karamiHiGenHierarchicalGraph2023a}, AR using partial orders \citep{zhaoPardPermutationInvariantAutoregressive2024a}
     \item Some explorations into scaling via hierarchical \citep{daviesSizeMattersLarge2023c,lemaireSANGEAScalableAttributed2023} or tree based graph decompositions\citep{shirzadTDGENGraphGeneration2022a}
   \end{itemize}
-\end{frame}
-\begin{frame}[t,label=hcgd]
-  \frametitle{HCGD (WIP, under review at MLGenX@ICLR)}
-  \vspace{-1cm}
-  \begin{priorart}
-    Prior SotA: see slide \ref{frame:sota2023}\\%Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b,krawczukGGGANGeometricGraph2020,qinSparseTrainingDiscrete2023e,bergmeisterEfficientScalableGraph2024, chenEfficientDegreeGuidedGraph2023g, yanSwinGNNRethinkingPermutation2023b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b}\\
-    Foundations: DiGress+D3PM \citep{krawczukGGGANGeometricGraph2020,austinStructuredDenoisingDiffusion2021e}, HiGen \citep{karamiHiGenHierarchicalGraph2023a},GrapGPS \citep{rampasekRecipeGeneralPowerful2022b}, MH-MC\citep{metropolisEquationStateCalculations1953a},Louvain Cummunity Detection\citep{newmanFindingEvaluatingCommunity2004,blondelFastUnfoldingCommunities2008d}
-  \end{priorart}
-  \begin{contributions}
-    Horizontally Scalable, Global Edge Dependent Prediction; Arbitrary Ordinal Limit Distribution
-  \end{contributions}
-%  \visible<2->{
-%      \begin{outcomes}
-%        Improved wall-clock time scaling to $\mathcal{O}\left(n+m\right)$,\textuparrow retained most of digress performance when tuned,\textuparrow improved sampling latency,\textdownarrow WIP, requires more tuning
-%      \end{outcomes} 
-%}
-\end{frame}
-\begin{frame}[label=hcgd]
-  \frametitle{Recap: Louvain Community Detection}
-  %\begin{itemize}
-  %  \item define modularity
-  %  \item explain the hierarchy that results
-  %  \item discuss some of the anaylses (generalized modularity density,fiedler connection etc)
-  %\end{itemize}
-  \only<1>{
-    Newman-Girvan Modularity\citep{blondelFastUnfoldingCommunities2008d,newmanFindingEvaluatingCommunity2004}
-    \begin{align}
-      \max_{c}Q(\mathcal{G})\coloneqq&\frac{1}{2m}\sum_{i,j}\left(\left[A_{ij}-\frac{d(v_i)d(v_j)}{2m}\right]\bm{1}_{{c_i}={c_j}}\right)\nonumber\\
-      A\in\mathbb{R}^{n\times n}&\ \mcomm{weight matrix of }\mathcal{G}\nonumber\\
-      c\in[1,\dots,n]^n&\ \mcomm{community assignment vector }\mathcal{G}\nonumber\\
-      d(v)&\ \mcomm{degree of node $v$}\nonumber\\
-      m=&\frac{1}{2}\sum_{ij}A_{ij}\nonumber
-    \end{align}
-  }
-  \only<2>{
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/louvain2024-02-25_22-54.png}
-    From \cite{blondelFastUnfoldingCommunities2008d}
-  }
 \end{frame}
 \begin{frame}[label=hcgd]
   \frametitle{HigenDiff: Global Edge Dependent Diffusion}
@@ -84,19 +65,19 @@
   \only<5>{\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/chgd_latency_avg2024-02-25_23-51.png}}
 \end{frame}
 
-\begin{frame}[t,label=hcgd]
+\begin{frame}[t,label=hcgdfin]
   \frametitle{HCGD (WIP, under review at MLGenX@ICLR)}
   \vspace{-1cm}
   \begin{priorart}
-    Prior SotA: see slide \ref{frame:sota2023}\\%Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b,krawczukGGGANGeometricGraph2020,qinSparseTrainingDiscrete2023e,bergmeisterEfficientScalableGraph2024, chenEfficientDegreeGuidedGraph2023g, yanSwinGNNRethinkingPermutation2023b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b}\\
-    Foundations: DiGress+D3PM \citep{krawczukGGGANGeometricGraph2020,austinStructuredDenoisingDiffusion2021e}, HiGen \citep{karamiHiGenHierarchicalGraph2023a},GrapGPS \citep{rampasekRecipeGeneralPowerful2022b}, MH-MC\citep{metropolisEquationStateCalculations1953a},Louvain Cummunity Detection\citep{newmanFindingEvaluatingCommunity2004,blondelFastUnfoldingCommunities2008d}
+    Prior Closest SotA: see slide \ref{frame:sota2023}\\%Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b,krawczukGGGANGeometricGraph2020,qinSparseTrainingDiscrete2023e,bergmeisterEfficientScalableGraph2024, chenEfficientDegreeGuidedGraph2023g, yanSwinGNNRethinkingPermutation2023b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b}\\
+    Foundations: DiGress+D3PM \citep{krawczukGGGANGeometricGraph2020,austinStructuredDenoisingDiffusion2021e}, HiGen \citep{karamiHiGenHierarchicalGraph2023a}, GrapGPS \citep{rampasekRecipeGeneralPowerful2022b}, MH-MC \citep{metropolisEquationStateCalculations1953a}, Louvain Community Detection \citep{newmanFindingEvaluatingCommunity2004,blondelFastUnfoldingCommunities2008d}
   \end{priorart}
   \begin{contributions}
-    Horizontally Scalable, Global Edge Dependent Prediction; Arbitrary Ordinal Limit Distribution
+    $\SnE$ Structure Aware Generative Model;Horizontally Scalable Global Edge Dependent Prediction; Arbitrary Ordinal Limit Distribution
   \end{contributions}
-  \visible<2->{
+  \visible<1->{
       \begin{outcomes}
-        Improved wall-clock time scaling to $\mathcal{O}\left(n+m\right)$,\textuparrow retained most of digress performance when tuned,\textuparrow improved sampling latency,\textdownarrow WIP, requires more tuning
+        Improved wall-clock time scaling to $\mathcal{O}\left(n+m\right)$,\textuparrow retained most of digress performance when tuned,\textuparrow improved sampling latency,\newline\textdownarrow WIP, requires more tuning
       \end{outcomes} 
 }
 \end{frame}

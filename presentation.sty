@@ -202,7 +202,7 @@
   }
 \makeatother
 \theoremstyle{mystyle}
-\newtheorem*{priorart}{Prior SotA \& Foundations}
+\newtheorem*{priorart}{\small Prior SotA \& Foundations}
 \makeatletter
 \def\th@mycontribstyle{%
     \normalfont % body font
@@ -212,7 +212,7 @@
   }
 \makeatother
 \theoremstyle{mycontribstyle}
-\newtheorem*{contributions}{Contributions}
+\newtheorem*{contributions}{\small Contributions}
 \makeatletter
 \def\th@myoutcomestyle{%
     \normalfont % body font
@@ -222,7 +222,7 @@
   }
 \makeatother
 \theoremstyle{myoutcomestyle}
-\newtheorem*{outcomes}{Outcomes, Strengths\textuparrow \& Limitations\textdownarrow}
+\newtheorem*{outcomes}{\small Outcomes, Strengths\textuparrow \& Limitations\textdownarrow}
 \makeatletter
 \def\th@myimpactstylestyle{%
     \normalfont % body font
@@ -232,7 +232,18 @@
   }
 \makeatother
 \theoremstyle{myimpactstylestyle}
-\newtheorem*{impact}{Impact}
+\newtheorem*{impact}{\small Impact}
+
+\makeatletter
+\def\th@mydesideratum{%
+    \normalfont % body font
+    \setbeamercolor{block title}{bg=NavyBlue,fg=white}
+    \setbeamercolor{block body}{bg=NavyBlue!20,fg=black}
+    %\def\inserttheoremblockenv{theorem}
+  }
+\makeatother
+\theoremstyle{mydesideratum}
+\newtheorem{desideratum}{}[frame]
 
 \usepackage{cleveref}
 \usepackage{todonotes}

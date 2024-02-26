@@ -48,13 +48,12 @@ Source: \href{}{Statista}\\
 \stepmfrc{}
 \only<\mfrc{}-6>{
 \only<\mfrc{}->{
-  \todo[inline]{add images here}
   {\large 
     \uncover<1-6>{\visible<\mfrco{2}->{\emph{Automated }}\visible<\mfrc{}->{Circuit Design =\visible<0>{hackhackha}}}\\
-    \only<\mfrc{}>{Specification +\\ Circuit Topology Design +\visible<0>{hackhackh}\\ Layout Creation}% we assume specification is a given and we implicitly condition on it
+    \only<\mfrc{}>{\only<2>{\textrightarrow}Specification +\\ Circuit Topology Design +\visible<0>{hackhackh}\\ Layout Creation}% we assume specification is a given and we implicitly condition on it
       \stepmfrc{}
       \only<\mfrc{}->{\uncover<0>{Specification +}\\}
-      \only<\mfrc{}>{Circuit Topology Design +\visible<0>{hackhacck}\\ Layout Creation}% human level, out of scope
+      \only<\mfrc{}>{\only<3>{}Circuit Topology Design +\visible<0>{hackhacck}\\ Layout Creation}% human level, out of scope
       \stepmfrc{}
       \only<\mfrc{}>{Circuit Topology \emph{Generation} +\visible<0>{hackhacckckc}\\ Layout \emph{Generation}}% not technical
       \stepmfrc{}
@@ -67,28 +66,29 @@ Source: \href{}{Statista}\\
   }%\large
 }%\only
 }
-\only<7->{
+\only<2>{
+  \\
+  \includegraphics[height=0.3\textheight,width=\textwidth,keepaspectratio]{./images/spec.png}\\
+  Adapted from \cite{katakkarWhatIntegratedCircuit}
+}
+\only<3>{
   \begin{columns}
-  \begin{column}{0.5\textwidth}
-    \only<7>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow.pdf}}
-    % these last 2 *briefly*, don't overfocus, since we need to rush through them
-    %\only<8>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_proj.pdf}}
-      \only<8>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_both.pdf}}
-  \end{column}
-  \begin{column}{0.5\textwidth}
-    %\only<5>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen.pdf}}
-    %\only<6>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_topsyn.pdf}}
-    \only<6->{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_graphgen.pdf}}
-  \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[height=0.5\textheight,width=\columnwidth,keepaspectratio]{./images/netlist2024-02-26_20-41.png}
+      From \cite{kupriyanovHighSpeedEventDrivenRTL2004}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[height=0.5\textheight,width=\columnwidth,keepaspectratio]{./images/magiclayout.png}
+      From \cite{edwardsMagicVLSI2024}
+    \end{column}
   \end{columns}
 }
-
-%TODO: maybe add images as interludes in the automation for constraints
 \end{frame}
 
 \begin{frame}[label=ruletograph,c]
   %WHAT is our approach and why is it novel
 \frametitle{Topology Synthesis: From Rules to Graphs}
+\vspace{-0.8cm}
 % motivate why the netlist is the right abstraction level *and* why prior art didn't deal with them directly
 \small
 \begin{columns}
@@ -101,7 +101,7 @@ Source: \href{}{Statista}\\
         }
         %\item prior work going back to 1957 generally approaches topology generation as a special instance of Church's problem \cite{churchApplicationRecursiveArithmetic1963}, i.e. special case of program generation, solved with rule based approaches and MILP solvers or via evolutionary strategies\footnote{For a detailed overview, see e.g. \cite[section 2.2.2]{zhaoAutomatedTopologySynthesis2022a} }
           \visible<2->{
-          \item Even majority of latest work\footnotemark[1] \only<2->{\footnote[frame]{\small\cite{hakhamaneshiBagNetBerkeleyAnalog2019d,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023}}} does not conceive of a circuit as a \emph{graph} but instead as a \emph{hierarchy of symbols} with a clear ordering
+          \item Even majority of latest work\footnotemark[1] \only<2->{\ffootnote{\small\cite{hakhamaneshiBagNetBerkeleyAnalog2019d,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023}}} does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of symbols} representing a hierarchy with a clear ordering
        %\item Circuit topology is modeled as a string of symbols representing circuit functionality, from which a topology is then inferred. Some work explores other representations \citep{rojecAnalogCircuitTopology2018} but majority of work \citep{fanSpecificationTopologyAutomatic2021f,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023} does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of hierarchical symbols} with a clear ordering
         }
           \visible<3->{
@@ -113,7 +113,7 @@ Source: \href{}{Statista}\\
   \begin{column}{0.5\textwidth}
   \centering
   \only<1>{
-  \includegraphics[width=\columnwidth,height=0.80\textheight,keepaspectratio]{./images/oasys_2024-02-24_21-59.png}\\%netlist code,textual vis
+  \includegraphics[width=\columnwidth,height=0.80\textheight,keepaspectratio]{./images/oasys_2024-02-24_21-59.png}%netlist code,textual vis
   From: \cite{harjaniOASYSFrameworkAnalog1989a}
 }
   \only<2>{
@@ -121,39 +121,83 @@ Source: \href{}{Statista}\\
   From: \cite{zhaoGraphGrammarBasedAnalogCircuit2019}
 }
   \only<3>{
-  \includegraphics[width=\columnwidth,height=0.80\textheight,keepaspectratio]{./images/single_graph_related_2024-02-24_22-09.png}
+  \includegraphics[width=\columnwidth,height=0.70\textheight,keepaspectratio]{./images/single_graph_related_2024-02-24_22-09.png}
   From: \cite{fanSpecificationTopologyAutomatic2021d}
 }
   \end{column}
 \end{columns}
 \end{frame}
 \begin{frame}[label=ruletograph,t]
-  \frametitle{Why does nobody generate graphs directly yet?}
+  \frametitle{Why no learned graph generation for topology synthesis?}
   \centering
   %WHY now and how will we deal with it?=> prepare for benefits of equivaraince
   \only<1>{
     \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/eda_tools_2024-02-24_22-21.png}
-    Why no topology generation yet\ffootnote{\cite{loperaSurveyGraphNeural2021d}}?
-  }
-\only<2>{
-  \raggedright
+    \cite{loperaSurveyGraphNeural2021d}}
+\end{frame}
+\begin{frame}[label=flows2,t]
+  %Why use graphs? does this thesis do
+  \frametitle{Circuit Design to Graph Generation}
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+    \only<1>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow.pdf}}
+    % these last 2 *briefly*, don't overfocus, since we need to rush through them
+    %\only<8>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_proj.pdf}}
+      \only<2>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_both.pdf}}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    %\only<5>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen.pdf}}
+    %\only<6>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_topsyn.pdf}}
+    \only<1->{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_graphgen.pdf}}
+  \end{column}
+  \end{columns}
+%TODO: maybe add images as interludes in the automation for constraints
+\end{frame}
+\begin{frame}[label=predesiderata,t]
+  \frametitle{Why no learned graph generation for topology synthesis?}
   \begin{itemize}
-    \item Data is scarce\ffootnote{\cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}}...
-    \item ...and we need \emph{a lot} of data for pretraining\todo[inline]{add some images about sample complexity of RL, parametrizing things=> take from theis}
+    \item Topology Data is scarce\ffootnote{\cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}}...
+    \item ...and even if we want to use RL,we probably need data for pretraining\ffootnote{\cite{gulcehreKnowledgeMattersImportance2016,paineMakingEfficientUse2019a,schwarzerPretrainingRepresentationsDataEfficient2021,agarwalReincarnatingReinforcementLearning2022a}}\ffootnote{\cite{vlassisBayesianReinforcementLearning2012a,buesingLearningQueryingFast2018,sarmadRLGANNetReinforcementLearning2019b}}
     \item but even with data, we require suitable generative models to parametrize!
   \end{itemize}
-}
 \end{frame}
-\begin{frame}[label=ruletograph,t]
-  \frametitle{Desiderata}
-  \todo[inline]{make this an environment and do the bookend thing with it}
-\begin{itemize}
-    \visible<1->{\item Suitable inductive biases to efficiently learn generative model with...} %GNNs/set networks give this
-    \visible<2->{\item high fidelity ...} %digress, hgd gives this
-    \visible<3->{\item compact parametrization...} % GG-GAN gives this, digress *kinda* gives this, hgd does again
-    \visible<4->{\item fast sampling...} % and this, digress kinda gives this, hgd gives this
-    \visible<5->{\item while scaling to circuit sized graphs } % ggg kinda gives this, digress kinda , hgd does
-\end{itemize}
+
+\begin{frame}[label=desiderata,t]
+  \frametitle{Desiderata for graph generators applied to circuit topologies}
+  {
+  \small
+    \vspace{-0.9cm}
+  \begin{desideratum}
+    \vspace{-0.5cm}
+  \only<1->{
+\begin{block}{Sample efficiency}
+  Suitable inductive biases to efficiently learn generative model
+\end{block}
+}
+  \only<2->{
+  \begin{block}{Generator quality}
+  Produces high fidelity samples
+  \end{block}
+}
+  \only<3->{
+  \begin{block}{Compact parametrization}
+  Has a representation which will fit large graphs into memory
+  \end{block}
+}
+  \only<4->{
+  \begin{block}{Latency}
+  Produces sample fast enough to be used inside of optimization loops
+  \end{block}
+}
+  \only<5->{
+  \begin{block}{Scalability}
+  Can theoretically be extended to thousands or more nodes to approach circuit sized graphs
+  \end{block}
+}
+\vspace{2mm}
+  \end{desideratum}
+
+}
 \end{frame}
 
 \end{document}

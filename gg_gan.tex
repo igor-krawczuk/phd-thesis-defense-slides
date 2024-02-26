@@ -3,7 +3,8 @@
 \begin{document}
 \begin{frame}[label=gggback,t]
   \frametitle{Suitable Inductive Biases: Exploiting symmetries}
-    \textbf{Invariance,Equivariance,Symmetry}: A function $f:\mathcal{X}\to\mathcal{Y}$ is $G$-\emph{invariant} ($\GI$) if 
+    %\textbf{Invariance,Equivariance,Symmetry}:
+  A function $f:\mathcal{X}\to\mathcal{Y}$ is $G$-\emph{invariant} ($\GI$) if 
 
     \begin{equation}
   f(\phi(g)x)=f(x)\forall x \in \mathcal{X},g\in \G\nonumber
@@ -31,7 +32,7 @@
         \item common form: Message Passing Neural Network (MPNN)\ffootnote{\cite{xuHowPowerfulAre2019e}}
         }
         \only<4-5>{
-          \item MPPN has $\mathcal{O}\left(n\right)$ but expressivity constraints\footnotemark[5], $\mathcal{O}\left(n^3\right)$ for more expressive models \ffootnote{\cite{maronProvablyPowerfulGraph2019b,vignacBuildingPowerfulEquivariant2020,balcilarBreakingLimitsMessage2021b}}% either in model for for pre-computation
+          \item MPPN has $\mathcal{O}\left(n\right)$ but expressivity constraints\footnotemark[3], $\mathcal{O}\left(n^3\right)$ for more expressive models \ffootnote{\cite{maronProvablyPowerfulGraph2019b,vignacBuildingPowerfulEquivariant2020,balcilarBreakingLimitsMessage2021b}}% either in model for for pre-computation
   }
   \only<5>{
   \item $\mathcal{O}\left(n^3\right)$ complexity might still be worth it since $\vert S_n \vert \sim n!$ and sample complexity benefits are proportional to group size\ffootnote{\cite{qinBenefitsPermutationEquivarianceAuction2022,tahmasebiExactSampleComplexity2023a,petracheApproximationGeneralizationTradeoffsApproximate2023,domingosEveryModelLearned2020b,chenEquivalenceNeuralNetwork2021}} 
@@ -81,6 +82,7 @@
 
 \begin{frame}[label=ggg]
   \frametitle{SotA Deep Graph Generative Models at outset (2019)}
+  \vspace{-1cm}
   \small
   4 main variants+newcomer
   \begin{itemize}
@@ -168,7 +170,7 @@
     \begin{column}{0.5\textwidth}
       \begin{outcomes}
       \strut
-        First fully $\SnE$ implicit model,scaling to $n\approx  100$\textuparrow,low latency \textuparrow\\training stability \textdownarrow\vspace{6mm}
+        First fully $\SnE$ implicit model,scaling to $n\approx  100$\textuparrow,low latency \textuparrow\\training stability \textdownarrow\vspace{19mm}
       \strut
       \end{outcomes} 
     \end{column}
@@ -178,8 +180,8 @@
       \begin{impact} 
         \small
           top-$n$ sampling \citep{vignacTopNEquivariantSet2021d} refined the latent identifier concept, 
-          SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b} improved stability with spectral conditioning 
-        \vspace{3.5mm}
+          SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b} improved stability with spectral conditioning,\newline
+          (personal): kickstarted string of collaborations
       \strut
       \end{impact} 
     \end{column}
