@@ -156,14 +156,21 @@ Source: \href{}{Statista}\\
 \begin{frame}[label=predesiderata,t]
   \frametitle{Why no learned graph generation for topology synthesis?}
   \begin{itemize}
-    \item Topology Data is scarce\ffootnote{\cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}}...
-    \item ...and even if we want to use RL,we probably need data for pretraining\ffootnote{\cite{gulcehreKnowledgeMattersImportance2016,paineMakingEfficientUse2019a,schwarzerPretrainingRepresentationsDataEfficient2021,agarwalReincarnatingReinforcementLearning2022a}}\ffootnote{\cite{vlassisBayesianReinforcementLearning2012a,buesingLearningQueryingFast2018,sarmadRLGANNetReinforcementLearning2019b}}
-    \item but even with data, we require suitable generative models to parametrize!
+    \item Simple RL isn't tractable due to combinatorial complexity 
+      \only<2->{
+      \item To improve this we need data for pretraining\ffootnote{\cite{gulcehreKnowledgeMattersImportance2016,paineMakingEfficientUse2019a,schwarzerPretrainingRepresentationsDataEfficient2021,agarwalReincarnatingReinforcementLearning2022a}} and parametrizing agents with generative models\ffootnote{\cite{vlassisBayesianReinforcementLearning2012a,buesingLearningQueryingFast2018,sarmadRLGANNetReinforcementLearning2019b}}
+      }
+      \only<3->{
+    \item Topology data is extremely scarce\ffootnote{\cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}} and not readily accessible for researchers
+    }
+    \only<4->{
+    \item Even with data, we require suitable generative models to parametrize!
+    }
   \end{itemize}
 \end{frame}
 
 \begin{frame}[label=desiderata,t]
-  \frametitle{Desiderata for graph generators applied to circuit topologies}
+  \frametitle{Requirements to apply Deep graph generators to circuit topologies}
   {
   \small
     \vspace{-0.9cm}
@@ -181,7 +188,7 @@ Source: \href{}{Statista}\\
 }
   \only<3->{
   \begin{block}{Compact parametrization}
-  Has a representation which will fit large graphs into memory
+    Latent space is $\mathcal{O}\left(n\right)$ or at least subquadratic in graph size
   \end{block}
 }
   \only<4->{

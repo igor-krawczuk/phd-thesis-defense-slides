@@ -44,7 +44,7 @@ Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, Graph
 \begin{frame}[label=diffusion]
   \frametitle{Denoising Diffusion Models}
   \vspace{-1cm}
-  \only<1-2>{
+  \only<1>{
   First introduced in \cite{sohl-dicksteinDeepUnsupervisedLearning2015b}, popularized by \citep{hoDenoisingDiffusionProbabilistic2020f,songMaximumLikelihoodTraining2021a}
   \only<1>{
   \begin{align}
@@ -56,7 +56,7 @@ Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, Graph
     &\func{p_\theta}{\rvx_{t-1}\vert\rvx_t}\coloneqq\func{\mathcal{N}}{\rvx_{t-1};\func{\rvmu_\theta}{\rvx_t,t},\func{\rvSig_\theta}{\rvx_t,t}}\mcomm[n]{reverse/denoising process}\nonumber
   \end{align}
 }
-\only<2>{
+\only<0>{
 \\
 Trained via
 \begin{align}
@@ -88,8 +88,8 @@ Trained via
 \end{align}
 }
 }
-\only<3->{
-  \only<3>{
+\only<2->{
+  \only<2>{
     Explicit likelihood model without need to estimate NC \emph{or} restrictions on $J_f$ as in Normalizing Flows!\\
   Reparametrization of DDPM \citep{hoDenoisingDiffusionProbabilistic2020f} "unrolls" and tunes a Langevin dynamics sampler towards the data
   \begin{align}
@@ -99,7 +99,7 @@ Trained via
   \end{align}
   Connection to \cite{niuPermutationInvariantGraph2020b} via \cite{songGenerativeModelingEstimating2019b}
 }
-  \only<4>{
+  \only<3>{
     \begin{columns}
       \begin{column}{0.5\textwidth}
   \includegraphics[width=\columnwidth]{./images/sdxl2024-02-25_16-45.png}
@@ -141,7 +141,7 @@ Trained via
 \begin{align}
   \rvx_{t+1}\vert\rvx_t&\coloneqq\rvx_{t}+\mathbf{\epsilon}_t;\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
   \mathbf{\epsilon}_t&\sim\func{\mathcal{N}}{\func{\mu_t}{\alpha_t,\beta_t,t},\func{\Sigma_t}{\alpha_t,\beta_t,t}}\nonumber\\
-  \visible<2->{\rvx_{t-1}\vert\rvx_t&\coloneqq\rvx_{t}-\func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t};\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
+  \visible<1->{\rvx_{t-1}\vert\rvx_t&\coloneqq\rvx_{t}-\func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t};\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
   \func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t}&\sim\func{\mathcal{N}}{\func{\mu_\theta}{\rvx_t,\alpha_t,\beta_t,t},\func{\Sigma_\theta}{\rvx_t,\alpha_t,\beta_t,t}}}\nonumber
 \end{align}
 \vspace{-0.5mm}
@@ -149,7 +149,7 @@ Trained via
 \vspace{-0.5mm}
 \begin{align}
   \visible<3->{\rvz_{t+1}\vert \rvz_t&\sim Q_t\rvz_{t};\quad Q_t\in\mathbf{P}^n,\rvz_t\in\bm{1}_n}\nonumber\\
-\visible<4->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_tQ_t^T\odot \rvz_0\prod_{\tau=0}^{t-1}Q_\tau}{\rvz_0\left(\prod_{\tau=0}^{t}Q_\tau\right)\rvz_t}}\nonumber
+  \visible<4->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_tQ_t^T\odot \func{z_\theta}{\rvz_t,t}\prod_{\tau=0}^{t-1}Q_\tau}{\func{z_\theta}{\rvz_t,t}\left(\prod_{\tau=0}^{t}Q_\tau\right)\rvz_t}}\nonumber
 \end{align}
 \vspace{-0.5mm}
 \visible<3->{
@@ -157,6 +157,10 @@ Trained via
 $\mathbf{P}^n$ are n-dimensional doubly stochastic transition matrices\\
   \raggedright
   $\bm{1}_n$ are one-hot encoded states\\
+  \visible<4->{
+\raggedright
+    $\func{z_{\theta}}{\rvz_t,t}$ predicts $\rvz_0$\\
+  }
 }
 }
 }
@@ -174,14 +178,12 @@ $\mathbf{P}^n$ are n-dimensional doubly stochastic transition matrices\\
 
 \begin{frame}[t,label=digress]
   \frametitle{Using empirical noise distributions}
-  \begin{theorem}[\cite{vignacDiGressDiscreteDenoising2023b} 4.1] (Optimal prior distribution) \label{thm:optimal-limit} \\
 Consider the class $\mathcal C = \{\prod_i u \times \prod_{i, j} v,~ (u, v) \in \mathcal P(\mathcal{X}) \times P(\mathcal E)\}$ of distributions over graphs that factorize as the product of a single distribution $u$ over $\mathcal X$ for the nodes and a single distribution $v$ over $\mathcal{E}$ for the edges.
 Let $P$ be an arbitrary distribution over graphs (seen as a tensor of order $n + n^2$) and $m_X, m_E$ its marginal distributions of node and edge types. Then $\pi^G = \prod_i m_X \times \prod_{i, j} m_E$ is the orthogonal projection of $P$ on $\mathcal{C}$: \vspace{-0.1cm}
 \[
 \pi^G  \in \argmin_{(u, v) \in \mathcal C}~ ||~P~ -  \prod_{1 \leq i \leq n} u \times \prod_{1 \leq i, j \leq n} v||^2_{2}
 \]
-\end{theorem}
-\textcolor{red}{TODO: add backupslides with proof}
+(\cite{vignacDiGressDiscreteDenoising2023b} Theorem 4.1)
 \end{frame}
 
 \begin{frame}[label=digress]
@@ -227,7 +229,7 @@ Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, Graph
 }
     \end{column}
     \begin{column}{0.5\textwidth}
-  \visible<2>{
+  \visible<1>{
       \begin{impact} 
           134 citations as of 2024-02-25,usage across domains from molecules \citep{vignacMiDiMixedGraph2023c} to combinatorial optimization,influenced investigations into discrete modeling and priors for the limit distribution \citep{haefeliDiffusionModelsGraphs2023a,martinkusAbDiffuserFullatomGeneration2024}
       \end{impact} 

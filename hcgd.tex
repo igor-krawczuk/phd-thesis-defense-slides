@@ -3,7 +3,7 @@
 \begin{document}
 
 \begin{frame}[t,label=hcgdintro]
-  \frametitle{HCGD (WIP, under review at MLGenX@ICLR)}
+  \frametitle{\textbf{H}ierarchical \textbf{C}ommunity Structured \textbf{G}raph \textbf{D}iffusion (HCGD) (under review at MLGenX@ICLR)}
   \vspace{-1cm}
   \begin{priorart}
     Prior Closest SotA: see slide \ref{frame:sota2023}\\%Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b,krawczukGGGANGeometricGraph2020,qinSparseTrainingDiscrete2023e,bergmeisterEfficientScalableGraph2024, chenEfficientDegreeGuidedGraph2023g, yanSwinGNNRethinkingPermutation2023b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b}\\
@@ -30,7 +30,7 @@
   \end{itemize}
 \end{frame}
 \begin{frame}[label=hcgd]
-  \frametitle{HigenDiff: Global Edge Dependent Diffusion}
+  \frametitle{HCGD: Global Edge Dependent Diffusion}
   \begin{columns}
     \begin{column}{0.5\textwidth}
   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./hgd/hierarchy_graph.pdf}
@@ -42,13 +42,6 @@
 \end{frame}
 
 
-%\begin{frame}[label=hcgd]
-%  \frametitle{HigenDiff: Ordinal diffusion towards arbitrary distributions}
-%  \begin{itemize}
-%    \item \textcolor{red}{TODO: banded matrix visualization, metropolis hastings kernel}
-%      $A_{t}[i,j]=\min\left(1,\frac{p_{\infty}[j]Q_t[j,i]}{p_{\infty}[i]Q_t[ij]}\right)$
-%  \end{itemize}
-%\end{frame}
 
 \begin{frame}[c,label=hcgd]
   \frametitle{Results}
@@ -58,15 +51,15 @@
   \only<2>{
   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./images/hcgd_discrete_enz.png}
   }
-  \only<3>{
+  \only<0>{
   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/HCGD_all_WIP_2024-02-25_23-36.png}
   }%
-  \only<4>{\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/chgd_latency_sum2024-02-25_23-50.png}}
-  \only<5>{\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/chgd_latency_avg2024-02-25_23-51.png}}
+  \only<3>{\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/chgd_latency_sum2024-02-25_23-50.png}}
+  \only<4>{\includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/chgd_latency_avg2024-02-25_23-51.png}}
 \end{frame}
 
 \begin{frame}[t,label=hcgdfin]
-  \frametitle{HCGD (WIP, under review at MLGenX@ICLR)}
+  \frametitle{\textbf{H}ierarchical \textbf{C}ommunity Structured \textbf{G}raph \textbf{D}iffusion (HCGD) (under review at MLGenX@ICLR)}
   \vspace{-1cm}
   \begin{priorart}
     Prior Closest SotA: see slide \ref{frame:sota2023}\\%Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b,krawczukGGGANGeometricGraph2020,qinSparseTrainingDiscrete2023e,bergmeisterEfficientScalableGraph2024, chenEfficientDegreeGuidedGraph2023g, yanSwinGNNRethinkingPermutation2023b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b}\\

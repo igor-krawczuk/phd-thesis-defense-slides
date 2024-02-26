@@ -10,36 +10,36 @@
 \end{frame}
 \fi
 \begin{frame}[label=concdesiderata,t]
-  \frametitle{Revisiting our desiderata}
+  \frametitle{Revisiting our Requirements}
   {
   \small
     \vspace{-0.9cm}
   \begin{desideratum}
     \vspace{-0.5cm}
     \only<1->{
-\begin{block}{Sample efficiency\visible<2->{\donecheck{$\SnE$ generators}}}
+\begin{block}{Sample efficiency\visible<1->{\donecheck{$\SnE$ generators}}}
   Suitable inductive biases to efficiently learn generative model
 \end{block}
 }
-    \only<3->{
-  \begin{block}{Generator quality\visible<4->{\donecheck{Digress,HCGD}}}
+    \only<2->{
+  \begin{block}{Generator quality\visible<2->{\donecheck{DiGress,HCGD}}}
   Produces high fidelity samples
   \end{block}
 }
-    \only<5->{
-  \begin{block}{Compact parametrization\visible<6->{\donecheck{GG-GAN,HCGD}} % GG-GAN gives this, digress *kinda* gives this, hgd does again
+    \only<3->{
+  \begin{block}{Compact parametrization\visible<3->{\donecheck{GG-GAN,$\approx$HCGD}} % GG-GAN gives this, digress *kinda* gives this, hgd does again
     }
-  Has a representation which will fit large graphs into memory
+    Latent space is $\mathcal{O}\left(n\right)$ or at least subquadratic in graph size
   \end{block}
 }
-    \only<7->{
-  \begin{block}{Latency\visible<8->{\donecheck{GG-GAN,$\approx$HCGD}} % and this, digress kinda gives this, hgd gives this
+    \only<4->{
+  \begin{block}{Latency\visible<4->{\donecheck{GG-GAN,$\approx$HCGD}} % and this, digress kinda gives this, hgd gives this
     }
   Produces sample fast enough to be used inside of optimization loops
   \end{block}
 }
-\only<9->{
-  \begin{block}{Scalability\visible<10->{\donecheck{HCGD}} % ggg kinda gives this, digress kinda , hgd does
+\only<5->{
+  \begin{block}{Scalability\visible<5->{\donecheck{HCGD}} % ggg kinda gives this, digress kinda , hgd does
     }
   Can theoretically be extended to thousands or more nodes to approach circuit sized graphs
   \end{block}
