@@ -9,7 +9,7 @@
 %step/reset myframerevealcnt
 \newcommand{\stepmfrc}{\stepcounter{myframerevealcnt}}
 \newcommand{\resetmfrc}{\setcounter{myframerevealcnt}{1}}
-\begin{frame}[label=done,t]
+\begin{frame}[label=circuitmatter,t]
   %NOTE
   %WHY do we care about this problem
   \frametitle{Motivation: Circuit Design Matters}
@@ -23,7 +23,7 @@ Source: \href{}{Statista}\\
 \vspace{1cm}
 }
 \end{frame}
-\begin{frame}[label=done,t]
+\begin{frame}[label=flows1,t]
   %TODO (nice to have) slide motivating circuit design (AI chips etc
   %%TODO (nice to have) cietation for the "dark art" thing
   %%TODO (nice to have) add image of a circuit, planning etc
@@ -46,40 +46,39 @@ Source: \href{}{Statista}\\
 }
 %%
 \stepmfrc{}
-\only<\mfrc{}-7>{
+\only<\mfrc{}-6>{
 \only<\mfrc{}->{
+  \todo[inline]{add images here}
   {\large 
-    \uncover<1-7>{\only<\mfrco{3}->{\emph{Automated }}\visible<\mfrc{}->{Circuit Design =}}\\
-    \stepmfrc{}
-%
-    \only<\mfrc{}>{Specification +\\ Circuit Topology Design +\\ Layout Creation}% we assume specification is a given and we implicitly condition on it
+    \uncover<1-6>{\visible<\mfrco{2}->{\emph{Automated }}\visible<\mfrc{}->{Circuit Design =\visible<0>{hackhackha}}}\\
+    \only<\mfrc{}>{Specification +\\ Circuit Topology Design +\visible<0>{hackhackh}\\ Layout Creation}% we assume specification is a given and we implicitly condition on it
       \stepmfrc{}
       \only<\mfrc{}->{\uncover<0>{Specification +}\\}
-      \only<\mfrc{}>{Circuit Topology Design +\\ Layout Creation}% human level, out of scope
+      \only<\mfrc{}>{Circuit Topology Design +\visible<0>{hackhacck}\\ Layout Creation}% human level, out of scope
       \stepmfrc{}
-      \only<\mfrc{}>{Circuit Topology \emph{Generation} +\\ Layout \emph{Generation}}% not technical
+      \only<\mfrc{}>{Circuit Topology \emph{Generation} +\visible<0>{hackhacckckc}\\ Layout \emph{Generation}}% not technical
       \stepmfrc{}
   \only<\mfrc{}->{
   \only<\mfrc{}>{\emph{Graph} Generation}
-  \only<\mfrco{1}>{$\underbrace{\text{\emph{Graph} Generation}}_{\text{this thesis}}$} +\\ \uncover<\mfrc{}>{
- \emph{Physics Constrained Graph Drawing} \ffootnote{\cite{aggarwalMultilayerGridEmbeddings1985,chungEmbeddingGraphsBooks1987,gebotysOptimalVLSIArchitectural2012,shaulyDesignRulesSemiconductor2022}}
+  \only<\mfrco{1}>{$\underbrace{\text{\emph{Graph} Generation}}_{\text{this thesis}}$} +\visible<0>{hack}\\ \uncover<\mfrc{}>{
+    \emph{Physics Constrained\visible<0>{ha}\\\visible<0>{ha}Graph Drawing} \ffootnote{\cite{aggarwalMultilayerGridEmbeddings1985,chungEmbeddingGraphsBooks1987,gebotysOptimalVLSIArchitectural2012,shaulyDesignRulesSemiconductor2022}}
 }
 }
   }%\large
 }%\only
 }
-\only<8->{
+\only<7->{
   \begin{columns}
   \begin{column}{0.5\textwidth}
-    \only<8-10>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow.pdf}}
+    \only<7>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow.pdf}}
     % these last 2 *briefly*, don't overfocus, since we need to rush through them
-    \only<11>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_proj.pdf}}
-      \only<12>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_both.pdf}}
+    %\only<8>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_proj.pdf}}
+      \only<8>{\includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow_with_both.pdf}}
   \end{column}
   \begin{column}{0.5\textwidth}
-    \only<8>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen.pdf}}
-    \only<9>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_topsyn.pdf}}
-    \only<10->{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_graphgen.pdf}}
+    %\only<5>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen.pdf}}
+    %\only<6>{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_topsyn.pdf}}
+    \only<6->{\includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen_with_graphgen.pdf}}
   \end{column}
   \end{columns}
 }
@@ -87,7 +86,7 @@ Source: \href{}{Statista}\\
 %TODO: maybe add images as interludes in the automation for constraints
 \end{frame}
 
-\begin{frame}[label=working,c]
+\begin{frame}[label=ruletograph,c]
   %WHAT is our approach and why is it novel
 \frametitle{Topology Synthesis: From Rules to Graphs}
 % motivate why the netlist is the right abstraction level *and* why prior art didn't deal with them directly
@@ -98,7 +97,7 @@ Source: \href{}{Statista}\\
       \begin{itemize}
         %\item industry has various subtly different variations: physical synthesis, high level synthesis,logic synthesis, topology synthesis\\\visible<2->{$\Rightarrow$ for our purposes, all the same }
         \visible<1->{
-          \item Strongly influenced by Church's problem \cite{churchApplicationRecursiveArithmetic1963}, hence solved with symbolic approaches (MILP,DP) or via evolutionary strategies\only<1->{\footnote[frame]{\small\cite{zhaoAutomatedTopologySynthesis2022a} }}
+          \item Most approaches symbolic (SAT,MILP,DP) or via evolutionary strategies,strongly influenced by Church's problem \only<1->{\footnote[frame]{\small\cite{zhaoAutomatedTopologySynthesis2022a,churchApplicationRecursiveArithmetic1963} }}
         }
         %\item prior work going back to 1957 generally approaches topology generation as a special instance of Church's problem \cite{churchApplicationRecursiveArithmetic1963}, i.e. special case of program generation, solved with rule based approaches and MILP solvers or via evolutionary strategies\footnote{For a detailed overview, see e.g. \cite[section 2.2.2]{zhaoAutomatedTopologySynthesis2022a} }
           \visible<2->{
@@ -128,42 +127,34 @@ Source: \href{}{Statista}\\
   \end{column}
 \end{columns}
 \end{frame}
-
-\if0
-\begin{frame}[label=working]
-\frametitle{Why Represent Topologies as Graphs}
-%WHY is it beneficial (also add abstraction as a virtue)
-\begin{itemize}
-  \item automatically encode topological isomorphisms (note: might not be enough for \emph{circuit} isomorphisms \cite{wangFunctionalityMattersNetlist2022c}
-  \item naturally captures relational and compositional structure
-  \item amenable to preserving notions of locality non-planar, high dimensional structure (important for multi-layer layouting)
-  \item naturally abstracts the level in the hierachy away and subsumes prior modeling - building blocks, devices, subcircuits all become nodes
-\end{itemize}
-\end{frame}
-\fi
-
-\if0
-\begin{frame}[label=working]
-  \frametitle{Topologies are Netlists are Graphs}
+\begin{frame}[label=ruletograph,t]
+  \frametitle{Why does nobody generate graphs directly yet?}
+  \centering
+  %WHY now and how will we deal with it?=> prepare for benefits of equivaraince
+  \only<1>{
+    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/eda_tools_2024-02-24_22-21.png}
+    Why no topology generation yet\ffootnote{\cite{loperaSurveyGraphNeural2021d}}?
+  }
+\only<2>{
+  \raggedright
   \begin{itemize}
-    \item For the purpose of the thesis, a circuit $\Circ$ is just an attributed graph $\gG\coloneq \lbrace\gE,\gV,\gY \rbrace$.
-    \item In general,we represent each edge,node and global feature as vectors $\edge_{ij},\node_i,\globaly_k \in \bbR{d_e/d_v/d_{y_k}}$ and aggregate them into tensors $\edges\in\bbR{n\times n \times d_e},\nodes\in\bbR{n\times d_v},\globalyall\in\bbR{d_y=\sum_k d_{y_k}}$
-    \item specific device and sub-circuits, their parametrization, special input/output nodes etc. are all encoded in these attributes
-    %\item further optimization, e.g. \cite{jangSimpleScalableRepresentation2023a}
+    \item Data is scarce\ffootnote{\cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}}...
+    \item ...and we need \emph{a lot} of data for pretraining\todo[inline]{add some images about sample complexity of RL, parametrizing things=> take from theis}
+    \item but even with data, we require suitable generative models to parametrize!
   \end{itemize}
+}
 \end{frame}
-
-\begin{frame}[label=working]
-\frametitle{SotA Topology Synthesis}
+\begin{frame}[label=ruletograph,t]
+  \frametitle{Desiderata}
+  \todo[inline]{make this an environment and do the bookend thing with it}
 \begin{itemize}
-  \item show \cite{zhaoAutomatedTopologySynthesis2022a} work, comment on it in images
-  \item show BAG, other sota
-  \item comment: all based on rewriting rules and constructions
-  \item ML based methods taxonomy
+    \visible<1->{\item Suitable inductive biases to efficiently learn generative model with...} %GNNs/set networks give this
+    \visible<2->{\item high fidelity ...} %digress, hgd gives this
+    \visible<3->{\item compact parametrization...} % GG-GAN gives this, digress *kinda* gives this, hgd does again
+    \visible<4->{\item fast sampling...} % and this, digress kinda gives this, hgd gives this
+    \visible<5->{\item while scaling to circuit sized graphs } % ggg kinda gives this, digress kinda , hgd does
 \end{itemize}
 \end{frame}
-\fi
 
-  
 \end{document}
 

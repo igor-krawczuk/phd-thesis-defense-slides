@@ -1,103 +1,20 @@
 % !TeX root = presentation.tex
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
-\begin{frame}[label=diffusion,t]
-  \frametitle{Also in 2019: Diffusion Models arrive on the scene}
-  \only<1>{
-  \includegraphics[width=\textwidth,keepaspectratio]{./images/denoising_diffusion_2024-02-25_02-16.png}
-}
-  \only<2>{
-  \includegraphics[width=\textwidth,keepaspectratio]{./images/generative_AI2024-02-25_02-17.png}
-}
-  \only<3>{
-  \includegraphics[width=\textwidth,keepaspectratio]{./images/GPT2024-02-25_02-17.png}
-}
-\end{frame}
-\begin{frame}[label=diffusion]
-  \frametitle{Denoising Diffusion Models}
-  \only<1-3>{
-  First introduced in \cite{sohl-dicksteinDeepUnsupervisedLearning2015b}, popularized by \citep{hoDenoisingDiffusionProbabilistic2020f,songMaximumLikelihoodTraining2021a}
-  \only<1>{
-  \begin{align}
-    %&start, &pre&post&commstart&commend\\
-     &\rvx_0\sim\func{q_{data}}{\rvx_0},\  \rvx_\infty\sim \func{q}{\rvx_\infty,\mathbf{0},\rvI}\mcomm{data/limit distribution}\nonumber\\
-     &\func{q}{\rvx_{1:T}\vert\rvx_0}\ \coloneqq\prod_{t=1}^T\func{q}{\rvx_{t}\vert\rvx_{t-1}}\nonumber\\
-     &\func{q}{\rvx_{t}\vert\rvx_{t-1}}\ \coloneqq\func{\mathcal{N}}{\rvx_{t};\sqrt{1-\beta_t}\rvx_t,\beta_t\rvI}\mcomm[n]{forward/noise process}\nonumber\\
-    &\func{p_\theta}{\rvx_{0:T}}\quad\ \coloneqq\func{p}{\rvx_T}\prod_{t=1}^T\func{p_\theta}{\rvx_{t-1}\vert\rvx_t}\nonumber\\
-    &\func{p_\theta}{\rvx_{t-1}\vert\rvx_t}\coloneqq\func{\mathcal{N}}{\rvx_{t-1};\func{\rvmu_\theta}{\rvx_t,t},\func{\rvSig_\theta}{\rvx_t,t}}\mcomm[n]{reverse/denoising process}\nonumber
-  \end{align}
-}
-\only<2-3>{
-\\
-Trained via
-\begin{align}
-  \arg\min_\theta L\coloneqq \mathbb{E}_q\bigl[&
-    \only<2>{
-    \fKL{\func{q}{\rvx_t\vert \rvx_0}}{\func{p}{\rvx_T}}
-  }
-    \only<3>{\underbrace{\fKL{\func{q}{\rvx_t\vert \rvx_0}}{\func{p}{\rvx_T}}}_{L_T}}
-    \only<4>{\uncover<3>{\underbrace{\fKL{\func{q}{\rvx_t\vert \rvx_0}}{\func{p}{\rvx_T}}}_{L_T}}}% skip this part
-    \nonumber\\
-    +&
-    \only<2>{
-    \sum_{t>1}\fKL{\func{q}{\rvx_{t-1} \vert \rvx_t,\rvx_0}}{\func{p_\theta}{\rvx_{t-1}\vert \rvx_1}}
-  }
-    \only<3-4>{\underbrace{
-    \sum_{t>1}\fKL{\func{q}{\rvx_{t-1} \vert \rvx_t,\rvx_0}}{\func{p_\theta}{\rvx_{t-1}\vert \rvx_1}}
-      }_{L_{t-1}}
-    }
-    \nonumber\\
-    -&
-    \only<2>{
-  \log\func{p_\theta}{\rvx_0\vert \rvx_1}
-}
-    \only<3-4>{\underbrace{
-  \log\func{p_\theta}{\rvx_0\vert \rvx_1}
-}_{L_0}
-    }
-\bigr]\nonumber  
-\end{align}
-}
-}
-\only<4->{
-  \only<4>{
-    Explicit likelihood model without need to estimate NC \emph{or} restrictions on $J_f$ as in Normalizing Flows!\\
-
-  Connection to \cite{niuPermutationInvariantGraph2020b} via \cite{songGenerativeModelingEstimating2019b}: Reparametrization of DDPM \citep{hoDenoisingDiffusionProbabilistic2020f} "unrolls" and tunes a Langevin dynamics sampler towards the data
-  \begin{align}
-    \rvx_{t}\coloneqq&\func{\rvx_t}{\rvx_0,\mathbf{\epsilon}}=\sqrt{\bar{\alpha}_t}\rvx_0+\sqrt{1-\bar{\alpha}_t}\mathbf{\epsilon};\ \mathbf{\epsilon}\sim\func{\mathcal{N}}{\mathbf{0},\rvI}\nonumber\\
-    \rvx_{t-1}=&\frac{1}{\sqrt{\alpha_t}}\left(\rvx_t-\frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\func{\mathbf{\epsilon}_\theta}{\rvx_t,t}\right)+\sigma_t\rvz;\ \rvz\sim\mathcal{N}\left(\mathbf{0},\rvI \right)\nonumber\\
-    L_{simple}\coloneqq&\mathbb{E}_{t,\rvx_0,\mathbf{\epsilon}}\bigl[ \Vert \mathbf{\epsilon}-\func{\mathbf{\epsilon}_\theta}{\sqrt{\bar{\alpha}_t}\rvx_0+\sqrt{1-\bar{\alpha}_t}\mathbf{\epsilon},t} \Vert^2 \bigr]\nonumber
-  \end{align}
-}
-  \only<5>{
-    \begin{columns}
-      \begin{column}{0.5\textwidth}
-  \includegraphics[width=\columnwidth]{./images/sdxl2024-02-25_16-45.png}
-  \cite{podellSDXLImprovingLatent2023a}
-      \end{column}
-      \begin{column}{0.5\textwidth}
-        \includegraphics[width=\columnwidth]{./images/sdvid_2024-02-25_16-45.png}
-    \cite{blattmannStableVideoDiffusion2023}
-      \end{column}
-    \end{columns}
-  }
-}
-\end{frame}
-
 \begin{frame}[t,label=digress]
   \frametitle{DiGress (\cite{vignacDiGressDiscreteDenoising2023b})}
   \vspace{-1cm}
 \footnotesize
 \begin{priorart}
 {\footnotesize
-    Prior SotA:Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b},Motif generators \citep{maziarzLearningExtendMolecular2021},GraphDF\citep{luoGraphDFDiscreteFlow2021d}
+    Prior Closest SotA:Diffusion\&Score Based Models \citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE \citep{martinkusSPECTRESpectralConditioning2022b}\\
+    Other SotA: Motif generators \citep{maziarzLearningExtendMolecular2021},GraphDF\citep{luoGraphDFDiscreteFlow2021d}
 \\
-Foundations: D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b},FilM\citep{perezFiLMVisualReasoning2018b}, GG-GAN features \citep{krawczukGGGANGeometricGraph2020}
+Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b}, \textit{F}eaturew\textit{i}se \textit{L}inear \textit{M}odulation (FilM) \citep{perezFiLMVisualReasoning2018b}, GG-GAN features
  }
   \end{priorart}
   \begin{contributions}
-    Powerful GraphTransformer, enable use of features with Discrete Graph Diffusion \& Limit Distribution Decomposition 
+    Powerful $\SnE$ GraphTransformer, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
   \end{contributions}
 %  \begin{columns}
 %        \tiny
@@ -123,6 +40,90 @@ Foundations: D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransfor
 %    \vspace{1cm}
   
 \end{frame}
+\begin{frame}[label=diffusion]
+  \frametitle{Denoising Diffusion Models}
+  \only<1-2>{
+  First introduced in \cite{sohl-dicksteinDeepUnsupervisedLearning2015b}, popularized by \citep{hoDenoisingDiffusionProbabilistic2020f,songMaximumLikelihoodTraining2021a}
+  \only<1>{
+  \begin{align}
+    %&start, &pre&post&commstart&commend\\
+     &\rvx_0\sim\func{q_{data}}{\rvx_0},\  \rvx_\infty\sim \func{q}{\rvx_\infty,\mathbf{0},\rvI}\mcomm{data/limit distribution}\nonumber\\
+     &\func{q}{\rvx_{1:T}\vert\rvx_0}\ \coloneqq\prod_{t=1}^T\func{q}{\rvx_{t}\vert\rvx_{t-1}}\nonumber\\
+     &\func{q}{\rvx_{t}\vert\rvx_{t-1}}\ \coloneqq\func{\mathcal{N}}{\rvx_{t};\sqrt{1-\beta_t}\rvx_t,\beta_t\rvI}\mcomm[n]{forward/noise process}\nonumber\\
+    &\func{p_\theta}{\rvx_{0:T}}\quad\ \coloneqq\func{p}{\rvx_T}\prod_{t=1}^T\func{p_\theta}{\rvx_{t-1}\vert\rvx_t}\nonumber\\
+    &\func{p_\theta}{\rvx_{t-1}\vert\rvx_t}\coloneqq\func{\mathcal{N}}{\rvx_{t-1};\func{\rvmu_\theta}{\rvx_t,t},\func{\rvSig_\theta}{\rvx_t,t}}\mcomm[n]{reverse/denoising process}\nonumber
+  \end{align}
+}
+\only<2>{
+\\
+Trained via
+\begin{align}
+  \arg\min_\theta L\coloneqq \mathbb{E}_q\bigl[&
+    \only<0>{
+    \fKL{\func{q}{\rvx_t\vert \rvx_0}}{\func{p}{\rvx_T}}
+  }
+    \only<0>{\underbrace{\fKL{\func{q}{\rvx_t\vert \rvx_0}}{\func{p}{\rvx_T}}}_{L_T}}
+    \only<2>{\uncover<2>{\underbrace{\fKL{\func{q}{\rvx_t\vert \rvx_0}}{\func{p}{\rvx_T}}}_{L_T}}}% skip this part
+    \nonumber\\
+    +&
+    \only<0>{
+    \sum_{t>1}\fKL{\func{q}{\rvx_{t-1} \vert \rvx_t,\rvx_0}}{\func{p_\theta}{\rvx_{t-1}\vert \rvx_1}}
+  }
+    \only<2>{\underbrace{
+    \sum_{t>1}\fKL{\func{q}{\rvx_{t-1} \vert \rvx_t,\rvx_0}}{\func{p_\theta}{\rvx_{t-1}\vert \rvx_1}}
+      }_{L_{t-1}}
+    }
+    \nonumber\\
+    -&
+    \only<0>{
+  \log\func{p_\theta}{\rvx_0\vert \rvx_1}
+}
+    \only<2>{\underbrace{
+  \log\func{p_\theta}{\rvx_0\vert \rvx_1}
+}_{L_0}
+    }
+\bigr]\nonumber  
+\end{align}
+}
+}
+\only<3->{
+  \only<3>{
+    Explicit likelihood model without need to estimate NC \emph{or} restrictions on $J_f$ as in Normalizing Flows!\\
+
+  Connection to \cite{niuPermutationInvariantGraph2020b} via \cite{songGenerativeModelingEstimating2019b}:\\ Reparametrization of DDPM \citep{hoDenoisingDiffusionProbabilistic2020f} "unrolls" and tunes a Langevin dynamics sampler towards the data
+  \begin{align}
+    \rvx_{t}\coloneqq&\func{\rvx_t}{\rvx_0,\mathbf{\epsilon}}=\sqrt{\bar{\alpha}_t}\rvx_0+\sqrt{1-\bar{\alpha}_t}\mathbf{\epsilon};\ \mathbf{\epsilon}\sim\func{\mathcal{N}}{\mathbf{0},\rvI}\nonumber\\
+    \rvx_{t-1}=&\frac{1}{\sqrt{\alpha_t}}\left(\rvx_t-\frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}\func{\mathbf{\epsilon}_\theta}{\rvx_t,t}\right)+\sigma_t\rvz;\ \rvz\sim\mathcal{N}\left(\mathbf{0},\rvI \right)\nonumber\\
+    L_{simple}\coloneqq&\mathbb{E}_{t,\rvx_0,\mathbf{\epsilon}}\bigl[ \Vert \mathbf{\epsilon}-\func{\mathbf{\epsilon}_\theta}{\sqrt{\bar{\alpha}_t}\rvx_0+\sqrt{1-\bar{\alpha}_t}\mathbf{\epsilon},t} \Vert^2 \bigr]\nonumber
+  \end{align}
+}
+  \only<4>{
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+  \includegraphics[width=\columnwidth]{./images/sdxl2024-02-25_16-45.png}
+  \cite{podellSDXLImprovingLatent2023a}
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \includegraphics[width=\columnwidth]{./images/sdvid_2024-02-25_16-45.png}
+    \cite{blattmannStableVideoDiffusion2023}
+      \end{column}
+    \end{columns}
+  }
+}
+\end{frame}
+\begin{frame}[label=diffusion,t]
+  \frametitle{The rapid rise of diffusion models}
+  \only<1>{
+  \includegraphics[width=\textwidth,keepaspectratio]{./images/denoising_diffusion_2024-02-25_02-16.png}
+}
+  \only<2>{
+  \includegraphics[width=\textwidth,keepaspectratio]{./images/generative_AI2024-02-25_02-17.png}
+}
+  \only<3>{
+  \includegraphics[width=\textwidth,keepaspectratio]{./images/GPT2024-02-25_02-17.png}
+}
+\end{frame}
+
 
 
 \begin{frame}[t,label=digress]
@@ -132,15 +133,15 @@ Foundations: D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransfor
 \begin{align}
   \rvx_{t+1}\vert\rvx_t&\coloneqq\rvx_{t}+\mathbf{\epsilon}_t;\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
   \mathbf{\epsilon}_t&\sim\func{\mathcal{N}}{\func{\mu_t}{\alpha_t,\beta_t,t},\func{\Sigma_t}{\alpha_t,\beta_t,t}}\nonumber\\
-  \visible<2->{\rvx_{t-1}\vert\rvx_t&\coloneqq\rvx_{t}-\func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t};\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
+  \visible<1->{\rvx_{t-1}\vert\rvx_t&\coloneqq\rvx_{t}-\func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t};\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
   \func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t}&\sim\func{\mathcal{N}}{\func{\mu_\theta}{\rvx_t,\alpha_t,\beta_t,t},\func{\Sigma_\theta}{\rvx_t,\alpha_t,\beta_t,t}}}\nonumber
 \end{align}
 \vspace{-0.5mm}
-\visible<3->{$\Downarrow$}
+\visible<2->{$\Downarrow$}
 \vspace{-0.5mm}
 \begin{align}
   \visible<3->{\rvz_{t+1}\vert \rvz_t&\sim Q_t\rvz_{t};\quad Q_t\in\mathbf{P}^n,\rvz_t\in\bm{1}_n}\nonumber\\
-\visible<4->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_tQ_t^T\odot \rvz_0\prod_{\tau=0}^{t-1}Q_\tau}{\rvz_0\left(\prod_{\tau=0}^{t}Q_\tau\right)\rvz_t}}\nonumber
+\visible<3->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_tQ_t^T\odot \rvz_0\prod_{\tau=0}^{t-1}Q_\tau}{\rvz_0\left(\prod_{\tau=0}^{t}Q_\tau\right)\rvz_t}}\nonumber
 \end{align}
 \vspace{-0.5mm}
 \visible<3->{
@@ -200,36 +201,34 @@ Let $P$ be an arbitrary distribution over graphs (seen as a tensor of order $n +
 \footnotesize
 \begin{priorart}
 {\footnotesize
-    Prior SotA:Diffusion\&Score Based Models\citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b},Motif generators \citep{maziarzLearningExtendMolecular2021},GraphDF\citep{luoGraphDFDiscreteFlow2021d}
+    Prior Closest SotA:Diffusion\&Score Based Models \citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE \citep{martinkusSPECTRESpectralConditioning2022b}\\
+    Other SotA: Motif generators \citep{maziarzLearningExtendMolecular2021},GraphDF\citep{luoGraphDFDiscreteFlow2021d}
 \\
-Foundations: D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b},FilM\citep{perezFiLMVisualReasoning2018b}, GG-GAN features \citep{krawczukGGGANGeometricGraph2020}
+Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b}, \textit{F}eaturew\textit{i}se \textit{L}inear \textit{M}odulation (FilM) \citep{perezFiLMVisualReasoning2018b}, GG-GAN features
  }
   \end{priorart}
   \begin{contributions}
-    Powerful GraphTransformer, enable use of features with Discrete Graph Diffusion \& Limit Distribution Decomposition 
+    Powerful $\SnE$ GraphTransformer, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
   \end{contributions}
   \vspace{-0.5cm}
   \begin{columns}
         \footnotesize
     \begin{column}{0.5\textwidth}
-  \visible<2->{
+  \visible<1->{
       \begin{outcomes}
         First PE singleshot model for Guacamol/MOSES,new SotA\\
-
         scaling to $n\approx  200$\textuparrow,training stability \textuparrow,fidelity\textuparrow,\textdownarrow sampling latency\textdownarrow$\mathcal{O}\left(n^2\right)$ representation
       \end{outcomes} 
 }
     \end{column}
     \begin{column}{0.5\textwidth}
-  \visible<3>{
+  \visible<2>{
       \begin{impact} 
           134 citations as of 2024-02-25,usage across domains from molecules \citep{vignacMiDiMixedGraph2023c} to combinatorial optimization,influenced investigations into discrete modeling and priors for the limit distribution \citep{haefeliDiffusionModelsGraphs2023a,martinkusAbDiffuserFullatomGeneration2024}
       \end{impact} 
   }
     \end{column}
   \end{columns}
-    \vspace{1cm}
-  
 \end{frame}
 
 \end{document}

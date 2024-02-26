@@ -1,111 +1,101 @@
 % !TeX root = presentation.tex
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
-\begin{frame}[label=working,t]
-  \frametitle{Why does nobody generate graphs directly yet? \visible<3->{Desiderata}
-  }
-  \centering
-  %WHY now and how will we deal with it?=> prepare for benefits of equivaraince
-\only<1-2>{
-  GNNs are very effective for EDA tasks \ffootnote{\cite{renWhyAreGraph2022b}}\\
-  \only<1>{
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/effective2024-02-24_22-24.png}
-  }
-  \only<2>{
-    So why no topology generation yet\ffootnote{\cite{loperaSurveyGraphNeural2021d}}?\\
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/eda_tools_2024-02-24_22-21.png}
-  }
-}
-\only<3->{
-  \raggedright
-  Data is sparse\ffootnote{\cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}} \emph{and} even with data, we require models that can...
-\begin{itemize}
-    \visible<4->{\item model relations and compositions naturally with...} %GNNs/set networks give this
-    \visible<5->{\item high fidelity ...} %digress, hgd gives this
-    \visible<6->{\item compact parametrization...} % GG-GAN gives this, digress *kinda* gives this, hgd does again
-    \visible<7->{\item fast sampling...} % and this, digress kinda gives this, hgd gives this
-    \visible<8->{\item while scaling to circuit sized graphs } % ggg kinda gives this, digress kinda , hgd does
-\end{itemize}
-}
+\begin{frame}[label=gggback,t]
+  \frametitle{Suitable Inductive Biases: Exploiting symmetries}
+    \textbf{Invariance,Equivariance,Symmetry}: A function $f:\mathcal{X}\to\mathcal{Y}$ is $G$-\emph{invariant} ($\GI$) if 
+
+    \begin{equation}
+  f(\phi(g)x)=f(x)\forall x \in \mathcal{X},g\in \G\nonumber
+    \end{equation}
+
+  and $\G$-\emph{equivariant} ($\GE$) if
+  \begin{equation}
+  f(\phi(g)x)=\rho(g)f(x) \forall x \in\mathcal{X},g\in \G\nonumber
+  \end{equation}
+
+  If $f(x;\theta)$ is $\GI/\GE$, then $\nabla_\theta f(\phi(g)x;\theta)=\nabla_\theta f(x;\theta)$\\
+
+  $\implies$ the network does not need to learn variation capture by $\G$ improving sample complexity for generalizeable learning
+  \footnote[frame]{\cite{elesedyProvablyStrictGeneralisation2021b}}, although caveats apply\ffootnote{\cite{abbeNonuniversalityDeepLearning2022c,kianiHardnessLearningSymmetries2024b}}
 \end{frame}
-\begin{frame}[label=working,t]
+
 %% WP1
-  \frametitle{Machine Learning for Relations: GNNs \& Geometric DL}
-  \only<1>{
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/rise_of_gnns_2024-02-24_23-01.png}\\
-  }
-  \only<2-6>{
+\begin{frame}[label=ggg,t,fragile]
+  \frametitle{Suitable Inductive Biases: Graph Neural Networks (GNNs)}
+  \vspace{-1cm}
+  \only<1-5>{
         \begin{itemize}
-          \item Graph Neural Networks: learn features representing structure of graphs\ffootnote{\cite{scarselliGraphNeuralNetwork2009}}\ffootnote{\cite{duvenaudConvolutionalNetworksGraphs2015,kipfSemiSupervisedClassificationGraph2017b,gilmerNeuralMessagePassing2017a,battagliaRelationalInductiveBiases2018k}}
-          \only<3-4>{
-        \item general MPNN form\ffootnote{\cite{xuHowPowerfulAre2019e}}}
-          \only<5->{
-          \item important for modern GNNs\footnotemark[4]: permutation equivariant/invariant parametrization of learnable functions on graphs!
-          }
-          \only<6->{
-          \item $\mathcal{O}\left(n\right)$ but expressivity constraints\footnotemark[5], $\mathcal{O}\left(n^3\right)$ for more expressive models \ffootnote{\cite{maronProvablyPowerfulGraph2019b,vignacBuildingPowerfulEquivariant2020,balcilarBreakingLimitsMessage2021b}}% either in model for for pre-computation
-          }
+          \item Graph Neural Networks: learn features representing structure of graphs up actions of the permutation group $\Sn$ (i.e., GNNs are $\SnE/\SnE$)\ffootnote{\cite{scarselliGraphNeuralNetwork2009}}\ffootnote{\cite{duvenaudConvolutionalNetworksGraphs2015,kipfSemiSupervisedClassificationGraph2017b,gilmerNeuralMessagePassing2017a,battagliaRelationalInductiveBiases2018k}}
+        \only<2-5>{
+        \item common form: Message Passing Neural Network (MPNN)\ffootnote{\cite{xuHowPowerfulAre2019e}}
+        }
+        \only<4-5>{
+          \item MPPN has $\mathcal{O}\left(n\right)$ but expressivity constraints\footnotemark[5], $\mathcal{O}\left(n^3\right)$ for more expressive models \ffootnote{\cite{maronProvablyPowerfulGraph2019b,vignacBuildingPowerfulEquivariant2020,balcilarBreakingLimitsMessage2021b}}% either in model for for pre-computation
+  }
+  \only<5>{
+  \item $\mathcal{O}\left(n^3\right)$ complexity might still be worth it since $\vert S_n \vert \sim n!$ and sample complexity benefits are proportional to group size\ffootnote{\cite{qinBenefitsPermutationEquivarianceAuction2022,tahmasebiExactSampleComplexity2023a,petracheApproximationGeneralizationTradeoffsApproximate2023,domingosEveryModelLearned2020b,chenEquivalenceNeuralNetwork2021}} 
+  }
         \end{itemize}
-        \only<3>{
+    \only<2>{
+      \small
           \begin{align}
             h_{x_i}^{(l+1)}=&\combine^{(l)}\left(h_{x_i}^{(l)},\aggregate^{(l)}\left(\lbrace h_{x_{j}}^{(l)} \forall x_j \in \mathcal{N}\left(x_i\right)\rbrace\right)\right)\\
           z_\mathcal{G}=&\readout\left(\lbrace h_{v_i}^{(l)} \forall v_i \in \mathcal{G} \rbrace\right)
         \end{align}
       }
-        \only<4>{
+      \only<3>{
+      \small
           \begin{align}
             h_{v_i}^{0}=&x_i&\text{\texttt{//initial node features}}\nonumber\\
             h_{v_i}^{(l+1)}=&MLP^{(l)}\left(\left(1+\epsilon^{(l)}\right)h_{v_i}^{(l)}+\sum_{x_j \in \mathcal{N}\left(x_i\right)}h_{v_{j}^{(l)}}\right)&\text{\texttt{//per layer update}}\nonumber\\
             z_\mathcal{G}=&\concat_{\forall l}\left(\sum_{v_i\in \mathcal{G}}h_{v_i}^{(l)} \right)&\text{\texttt{//final readout}}\nonumber
         \end{align}
       }
+}%end only1-5
+\end{frame}
+\begin{frame}[label=ggg]
+  \frametitle{Suitable Inductive Biases: Graph Neural Networks (GNNs)}
+    \centering
+  \only<1>{
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/rise_of_gnns_2024-02-24_23-01.png}
   }
-  \only<7->{
-    \textbf{Invariance,Equivariance,Symmetry}: A function $f:\mathcal{X}\to\mathcal{Y}$ is $G$-\emph{invariant} if 
-
-    \begin{equation}
-  f(\phi(g)x)=f(x)\forall x \in \mathcal{X},g\in G\nonumber
-    \end{equation}
-
-  and G-\emph{equivariant} if
-  \begin{equation}
-  f(\phi(g)x)=\rho(g)f(x) \forall x \in\mathcal{X},g\in G\nonumber
-  \end{equation}
-
-  If $f(x;\theta)$ is G-(in-/equi)-variant, $\nabla_\theta f(\phi(g)x;\theta)=\nabla_\theta f(x;\theta)$\\
-
-  $\implies$ the network does not need to learn variation capture by $G$ improving sample complexity for generalizeable learning
-  \footnote[frame]{\cite{elesedyProvablyStrictGeneralisation2021b}}, although caveats apply\ffootnote{\cite{abbeNonuniversalityDeepLearning2022c,kianiHardnessLearningSymmetries2024b}}
+  \only<2>{
+  GNNs are very effective for EDA tasks \ffootnote{\cite{renWhyAreGraph2022b}}
+  \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/effective2024-02-24_22-24.png}
 }
 \end{frame}
-\begin{frame}[t]
+
+\begin{frame}[t,label=ggg]
   \frametitle{Geometric Graph GAN (\cite{krawczukGGGANGeometricGraph2020})}
   \vspace{-1cm}
+  \small
   \begin{priorart}
-   Prior SotA:\cite{yangConditionalStructureGeneration2019e,decaoMolGANImplicitGenerative2022b}.\\
-   Foundations: GIN\cite{xuHowPowerfulAre2019e}, Transformers \cite{vaswaniAttentionAllYou2017c}, improved WGAN \cite{gulrajaniImprovedTrainingWasserstein2017d}
+  Closest Prior SotA:CondGen \citep{yangConditionalStructureGeneration2019e}, MolGAN \citep{decaoMolGANImplicitGenerative2022b}.\\
+   Foundations: GIN \citep{xuHowPowerfulAre2019e}, Multi-Head-Attention (MHA) Transformers \citep{vaswaniAttentionAllYou2017c}, improved WGAN \citep{gulrajaniImprovedTrainingWasserstein2017d}
   \end{priorart}
   \begin{contributions}
-    Geometric Graph Generation,Powerful Equivariant Generator, Graph Theoretic Features, Identification\&Resolution of Collision Problem
+    Geometric Graph Generation,Powerful $\SnE$ Generator, Graph Theoretic Features, Identification\&Resolution of Collision Problem
   \end{contributions}
 \end{frame}
 
-\begin{frame}[label=working]
+\begin{frame}[label=ggg]
   \frametitle{SotA Deep Graph Generative Models at outset (2019)}
   \small
-  4 main variants
+  4 main variants+newcomer
   \begin{itemize}
-    \item Autoregressive likelihood(AR)\ffootnote{ \cite{youGraphRNNGeneratingRealistic2018a,liaoEfficientGraphGeneration2019e,daiScalableDeepGenerative2020e}} $\centernot\implies$ order dependent\ffootnote{\cite{chenOrderMattersProbabilistic2021c}},high latency
+    \item Autoregressive likelihood(AR)\ffootnote{ \cite{youGraphRNNGeneratingRealistic2018a,liaoEfficientGraphGeneration2019e,daiScalableDeepGenerative2020e}} $\centernot\implies$ order dependent \emph{model}\ffootnote{\cite{chenOrderMattersProbabilistic2021c}},high latency
     \item GAN \ffootnote{\cite{decaoMolGANImplicitGenerative2022b}}% GAN, non PE generator, fixed size matrix  
-      $\centernot\implies$ non-PE generator, no size extrapolation,mode collapse
+      $\centernot\implies$ non-$\SnE$ generator, no size extrapolation,mode collapse
     \item VAE/VAE-GAN hybrid\ffootnote{\cite{yangConditionalStructureGeneration2019e,kipfVariationalGraphAutoEncoders2016b}}% V FNN generator
-      $\centernot\implies$ non-PE generator, no size extrapolation,VAE limitations \ffootnote{\cite{bousquetOptimalTransportGenerative2017a, genevayGANVAEOptimal2017e}}%we want to be blind to permutation *once done*; during *training* we can impose orderings/identities as long as it happens in the latent state and agnostic to the data?
-    \item Normalizing Flows\ffootnote{\cite{liuGraphNormalizingFlows2019a,madhawaGraphNVPInvertibleFlow2019a}}$\centernot\implies$ PE, slow training, limited expressivity
-    \item Score-Matching + Langevin Dynamics\ffootnote{\cite{niuPermutationInvariantGraph2020b}}  $\centernot\implies$ PE,but very slow sampling
+      $\centernot\implies$ non-$\SnE$ generator, no size extrapolation,VAE\ffootnote{Theory implies possible limitations \citep{bousquetOptimalTransportGenerative2017a, genevayGANVAEOptimal2017e},might not matter practically}%we want to be blind to permutation *once done*; during *training* we can impose orderings/identities as long as it happens in the latent state and agnostic to the data?
+    \item Normalizing Flows\ffootnote{\cite{liuGraphNormalizingFlows2019a,madhawaGraphNVPInvertibleFlow2019a}}$\centernot\implies$ $\SnE$, slow training, restrictions on $J_\theta$%limited expressivity
+    \item Score-Matching + Langevin Dynamics(LD)\ffootnote{\cite{niuPermutationInvariantGraph2020b}}  $\centernot\implies$ $\SnE$,but \emph{extremely} slow\&expensive sampling due to LD
   \end{itemize}
 \end{frame}
 
-\begin{frame}[label=working,t]
+
+\begin{frame}[label=ggg,t]
   \frametitle{Geometric Graph Generation}
   %need to explain this
   %https://en.wikipedia.org/wiki/Spatial_network
@@ -117,13 +107,13 @@
     \text{s.t.}&\quad K\left(d\left(\cdot,\phi\right)\right)\leq 1\nonumber
   \end{align}
   \vspace{-0.25cm}
-  Generator $g$: MHA-transformer, with final readout based on attention weights$\implies$PE, very expressive\\
-  Discriminator $d$: GIN, with spectral, orbit and other graph theoretic features$\implies$PE, very expressive
+  Generator $g$: MHA-transformer, with final readout based on attention weights$\implies\SnE$, very expressive\\
+  Discriminator $d$: GIN, with spectral, orbit and other graph theoretic features$\implies\SnI$, very expressive
 \end{frame}
 
 %PROBLEM: no big graphs=> why?
 
-\begin{frame}[label=working,t]
+\begin{frame}[label=ggg,t]
   \frametitle{Collision problem \only<2->{resolved}}
   \only<1-2>{
   \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/rsg.pdf}
@@ -134,10 +124,12 @@
 }
 \only<4>{
   \includegraphics[height=0.8\textheight,keepaspectratio]{./images/CollisionDecentiles-Att.pdf}\\
-  Green: Learning a single $\mathcal{G}$ with a PE $g$ without $\Phi$, orange: with $\Phi$
+  {\small
+  Overfitting a single graph with a $\SnE$generator,green without $\Phi$, orange with $\Phi$
+}
 }
 \end{frame}
-\begin{frame}[label=working,t]
+\begin{frame}[label=ggg,t]
   \frametitle{Results}
   \centering
     \includegraphics[width=\textwidth]{./images/ggg_results_2024-02-25_00-52.png}
@@ -145,7 +137,7 @@
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./images/drawing.pdf}
   }
 \end{frame}
-\begin{frame}[label=working,t]
+\begin{frame}[label=ggg,t]
   \frametitle{Results (latency)}
   \includegraphics[width=\textwidth]{./images/scale_jointFalse.pdf}
 \end{frame}
@@ -160,33 +152,34 @@
 %    \item \citep{martinkusSPECTRESpectralConditioning2022b} further improve the model with more powerful models and spectral conditioning, setting a new SotA in structure generation
 %  \end{itemize}
 %\end{frame}
-\begin{frame}[t]
+\begin{frame}[t,label=gggfin]
   \frametitle{Geometric Graph GAN (\cite{krawczukGGGANGeometricGraph2020})}
   \vspace{-1cm}
+  \small
   \begin{priorart}
-   Prior SotA:\cite{yangConditionalStructureGeneration2019e,decaoMolGANImplicitGenerative2022b}.\\
-   Foundations: GIN\cite{xuHowPowerfulAre2019e}, Transformers \cite{vaswaniAttentionAllYou2017c}, improved WGAN \cite{gulrajaniImprovedTrainingWasserstein2017d}
+  Closest Prior SotA:CondGen \citep{yangConditionalStructureGeneration2019e}, MolGAN \citep{decaoMolGANImplicitGenerative2022b}.\\
+   Foundations: GIN \citep{xuHowPowerfulAre2019e}, Multi-Head-Attention (MHA) Transformers \citep{vaswaniAttentionAllYou2017c}, improved WGAN \citep{gulrajaniImprovedTrainingWasserstein2017d}
   \end{priorart}
   \begin{contributions}
-    Geometric Graph Generation,Powerful Equivariant Generator, Graph Theoretic Features, Identification\&Resolution of Collision Problem
+    Geometric Graph Generation,Powerful $\SnE$ Generator, Graph Theoretic Features, Identification\&Resolution of Collision Problem
   \end{contributions}
   \begin{columns}
-  \visible<2->{
+  \visible<1->{
     \begin{column}{0.5\textwidth}
       \begin{outcomes}
       \strut
-        First fully PE implicit GGM,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,training stability \textdownarrow\vspace{6mm}
+        First fully $\SnE$ implicit model,scaling to $n\approx  100$\textuparrow,low latency \textuparrow\\training stability \textdownarrow\vspace{6mm}
       \strut
       \end{outcomes} 
     \end{column}
 }
-  \visible<3>{
+  \visible<2>{
     \begin{column}{0.5\textwidth}
       \begin{impact} 
-        \vspace{6.5mm}
         \small
           top-$n$ sampling \citep{vignacTopNEquivariantSet2021d} refined the latent identifier concept, 
           SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b} improved stability with spectral conditioning 
+        \vspace{3.5mm}
       \strut
       \end{impact} 
     \end{column}
