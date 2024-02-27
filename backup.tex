@@ -1,20 +1,114 @@
 % !TeX root = presentation.tex
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
+\begin{frame}[label=flows1,t]
+  %TODO (nice to have) slide motivating circuit design (AI chips etc
+  %%TODO (nice to have) cietation for the "dark art" thing
+  %%TODO (nice to have) add image of a circuit, planning etc
+  %NOTE
+  %WHAT does this thesis do
+  \frametitle{Motivation: Circuit Design to Graph Generation}
+  \centering
+  \resetmfrc{}
+%  \only<\mfrc{}>{Circuit Design =}
+%\stepmfrc{}
+\only<\mfrc{}>{
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+    \includegraphics[height=0.8\textheight]{./tikz-figs/designflow/flow.pdf}
+  \end{column}
+  \begin{column}{0.5\textwidth}
+    \includegraphics[height=0.8\textheight]{./tikz-figs/layout-gen/layoutgen.pdf}
+  \end{column}
+\end{columns}
+}
+\end{frame}
+%%
+\begin{frame}[label=ruletograph,c]
+  %WHAT is our approach and why is it novel
+\frametitle{Topology Synthesis: From Rules to Graphs}
+\vspace{-0.8cm}
+% motivate why the netlist is the right abstraction level *and* why prior art didn't deal with them directly
+\small
+\begin{columns}
+  \begin{column}{0.5\textwidth}
+  {
+      \begin{itemize}
+        %\item industry has various subtly different variations: physical synthesis, high level synthesis,logic synthesis, topology synthesis\\\visible<2->{$\Rightarrow$ for our purposes, all the same }
+        \visible<1->{
+          \item Most approaches symbolic (SAT,MILP,DP) or via evolutionary strategies,strongly influenced by Church's problem \only<1->{\footnote[frame]{\small\cite{zhaoAutomatedTopologySynthesis2022a,churchApplicationRecursiveArithmetic1963} }}
+        }
+        %\item prior work going back to 1957 generally approaches topology generation as a special instance of Church's problem \cite{churchApplicationRecursiveArithmetic1963}, i.e. special case of program generation, solved with rule based approaches and MILP solvers or via evolutionary strategies\footnote{For a detailed overview, see e.g. \cite[section 2.2.2]{zhaoAutomatedTopologySynthesis2022a} }
+          \visible<2->{
+          \item Even majority of latest work\footnotemark[1] \only<2->{\ffootnote{\small\cite{hakhamaneshiBagNetBerkeleyAnalog2019d,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023}}} does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of symbols} representing a hierarchy with a clear ordering
+       %\item Circuit topology is modeled as a string of symbols representing circuit functionality, from which a topology is then inferred. Some work explores other representations \citep{rojecAnalogCircuitTopology2018} but majority of work \citep{fanSpecificationTopologyAutomatic2021f,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023} does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of hierarchical symbols} with a clear ordering
+        }
+          \visible<3->{
+          \item Single Exception: \cite{fanSpecificationTopologyAutomatic2021d}
+          }
+     \end{itemize}
+   }
+  \end{column}%
+  \begin{column}{0.5\textwidth}
+  \centering
+  \only<1>{
+  \includegraphics[width=\columnwidth,height=0.80\textheight,keepaspectratio]{./images/oasys_2024-02-24_21-59.png}%netlist code,textual vis
+  From: \cite{harjaniOASYSFrameworkAnalog1989a}
+}
+  \only<2>{
+  \includegraphics[width=\columnwidth,height=0.80\textheight,keepaspectratio]{./images/graph_grammar_2024-02-24_21-39.png}
+  From: \cite{zhaoGraphGrammarBasedAnalogCircuit2019}
+}
+  \only<3>{
+  \includegraphics[width=\columnwidth,height=0.70\textheight,keepaspectratio]{./images/single_graph_related_2024-02-24_22-09.png}
+  From: \cite{fanSpecificationTopologyAutomatic2021d}
+}
+  \end{column}
+\end{columns}
+\end{frame}
 
-\begin{frame}[t,label=digressbackuparch]
-  \frametitle{Avoiding representational bottleneck with edge-diffusion}
-  \vspace{-0.8cm}
-  \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \includegraphics[height=0.8\textheight,keepaspectratio]{./images/architecture_full.png}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \includegraphics[width=\columnwidth,height=0.8\textheight,keepaspectratio]{./images/graph_transformer.png} 
-    \end{column}
-  \end{columns}
-\vspace{0.2cm}
-\hyperlink{digressintro}{\beamergotobutton{Return to main slide \ref{digressintro}}}
+\begin{frame}[label=ruletograph,t]
+  \frametitle{Why no learned graph generation for topology synthesis?}
+  \centering
+  %WHY now and how will we deal with it?=> prepare for benefits of equivaraince
+  \only<1>{
+    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/eda_tools_2024-02-24_22-21.png}
+    \cite{loperaSurveyGraphNeural2021d}}
+\end{frame}
+\begin{frame}[label=ggg]
+  \frametitle{Suitable Inductive Biases: Graph Neural Networks (GNNs)}
+    \centering
+  \only<1>{
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/rise_of_gnns_2024-02-24_23-01.png}
+  }
+  \only<2>{
+  GNNs are very effective for EDA tasks \ffootnote{\cite{renWhyAreGraph2022b}}
+  \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/effective2024-02-24_22-24.png}
+}
+\end{frame}
+
+\begin{frame}[label=diffusion,t]
+  \frametitle{The rapid rise of diffusion models}
+  \only<1>{
+  \includegraphics[width=\textwidth,keepaspectratio]{./images/denoising_diffusion_2024-02-25_02-16.png}
+}
+  \only<2>{
+  \includegraphics[width=\textwidth,keepaspectratio]{./images/generative_AI2024-02-25_02-17.png}
+}
+  \only<3>{
+  \includegraphics[width=\textwidth,keepaspectratio]{./images/GPT2024-02-25_02-17.png}
+}
+\end{frame}
+
+
+\begin{frame}[t,label=digress]
+  \frametitle{Using empirical noise distributions}
+Consider the class $\mathcal C = \{\prod_i u \times \prod_{i, j} v,~ (u, v) \in \mathcal P(\mathcal{X}) \times P(\mathcal E)\}$ of distributions over graphs that factorize as the product of a single distribution $u$ over $\mathcal X$ for the nodes and a single distribution $v$ over $\mathcal{E}$ for the edges.
+Let $P$ be an arbitrary distribution over graphs (seen as a tensor of order $n + n^2$) and $m_X, m_E$ its marginal distributions of node and edge types. Then $\pi^G = \prod_i m_X \times \prod_{i, j} m_E$ is the orthogonal projection of $P$ on $\mathcal{C}$: \vspace{-0.1cm}
+\[
+\pi^G  \in \argmin_{(u, v) \in \mathcal C}~ ||~P~ -  \prod_{1 \leq i \leq n} u \times \prod_{1 \leq i, j \leq n} v||^2_{2}
+\]
+(\cite{vignacDiGressDiscreteDenoising2023b} Theorem 4.1)
 \end{frame}
 
 \begin{frame}[label=hcgdbackuplouvain]

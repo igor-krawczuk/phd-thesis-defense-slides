@@ -17,6 +17,7 @@
 
   If $f(x;\theta)$ is $\GI/\GE$, then $\nabla_\theta f(\phi(g)x;\theta)=\nabla_\theta f(x;\theta)$\\
 
+  %NOTE: phi is the group action in X, \rho is the group action in f
   $\implies$ the network does not need to learn variation capture by $\G$ improving sample complexity for generalizeable learning
   \footnote[frame]{\cite{elesedyProvablyStrictGeneralisation2021b}}, although caveats apply\ffootnote{\cite{abbeNonuniversalityDeepLearning2022c,kianiHardnessLearningSymmetries2024b}}
 \end{frame}
@@ -55,19 +56,8 @@
       }
 }%end only1-5
 \end{frame}
-\begin{frame}[label=ggg]
-  \frametitle{Suitable Inductive Biases: Graph Neural Networks (GNNs)}
-    \centering
-  \only<1>{
-    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/rise_of_gnns_2024-02-24_23-01.png}
-  }
-  \only<2>{
-  GNNs are very effective for EDA tasks \ffootnote{\cite{renWhyAreGraph2022b}}
-  \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{./images/effective2024-02-24_22-24.png}
-}
-\end{frame}
 
-\begin{frame}[t,label=ggg]
+\begin{frame}[t,label=gggintro]
   \frametitle{Geometric Graph GAN (\cite{krawczukGGGANGeometricGraph2020})}
   \vspace{-1cm}
   \small
@@ -76,8 +66,32 @@
    Foundations: GIN \citep{xuHowPowerfulAre2019e}, Multi-Head-Attention (MHA) Transformers \citep{vaswaniAttentionAllYou2017c}, improved WGAN \citep{gulrajaniImprovedTrainingWasserstein2017d}
   \end{priorart}
   \begin{contributions}
-    Geometric Graph Generation,Powerful $\SnE$ Generator, Graph Theoretic Features, Identification\&Resolution of Collision Problem
+    Geometric Graph Generation,Expressive $\SnE$ MHA Generator, Graph Theoretic Features, Identification \& Resolution of Collision Problem
   \end{contributions}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{outcomes}
+  \phantom{
+    \begin{minipage}{\textwidth}
+    First fully $\SnE$ implicit model,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,$\mathcal{O}\left(n\right)$ latent space\textuparrow\\training stability \textdownarrow\\
+    \vspace{10.5mm}
+    \end{minipage}
+}
+      \end{outcomes}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{impact} 
+  \phantom{
+    \begin{minipage}{\textwidth}
+        \small
+          top-$n$ sampling \citep{vignacTopNEquivariantSet2021d} refined the latent identifier concept, 
+          SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b} improved stability with spectral conditioning,\newline
+          (personal): kickstarted string of collaborations
+    \end{minipage}
+  }
+      \end{impact} 
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[label=ggg]
@@ -163,26 +177,28 @@
    Foundations: GIN \citep{xuHowPowerfulAre2019e}, Multi-Head-Attention (MHA) Transformers \citep{vaswaniAttentionAllYou2017c}, improved WGAN \citep{gulrajaniImprovedTrainingWasserstein2017d}
   \end{priorart}
   \begin{contributions}
-    Geometric Graph Generation,Powerful $\SnE$ Generator, Graph Theoretic Features, Identification\&Resolution of Collision Problem
+    Geometric Graph Generation,Expressive $\SnE$ MHA Generator, Graph Theoretic Features, Identification \& Resolution of Collision Problem
   \end{contributions}
   \begin{columns}
   \visible<1->{
     \begin{column}{0.5\textwidth}
       \begin{outcomes}
-      \strut
-    First fully $\SnE$ implicit model,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,$\mathcal{O}\left(n\right)$ latent space\textuparrow\\training stability \textdownarrow\vspace{19mm}
-      \strut
+    \begin{minipage}{\textwidth}
+    First fully $\SnE$ implicit model,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,$\mathcal{O}\left(n\right)$ latent space\textuparrow\\training stability \textdownarrow\\
+    \vspace{10.5mm}
+      \end{minipage}
       \end{outcomes} 
     \end{column}
 }
   \visible<1>{
     \begin{column}{0.5\textwidth}
       \begin{impact} 
+    \begin{minipage}{\textwidth}
         \small
           top-$n$ sampling \citep{vignacTopNEquivariantSet2021d} refined the latent identifier concept, 
           SPECTRE\citep{martinkusSPECTRESpectralConditioning2022b} improved stability with spectral conditioning,\newline
           (personal): kickstarted string of collaborations
-      \strut
+    \end{minipage}
       \end{impact} 
     \end{column}
   }

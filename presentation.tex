@@ -4,11 +4,11 @@
 % Enter title of presentation PDF:
 \hypersetup{pdftitle={PhD Defense 2024-02-28: Graph generative deep learning models with an application to circuit topologies}}
 % Enter link to PDF file with figures:
-\newcommand{\pdf}{figures.pdf}
 
 \input{math.tex}
 % load subfiles last
 \usepackage{subfiles}
+%\includeonlyframes{title,gggfin,gggintro}
 %\includeonlyframes{title,desiderata,concdesiderata}
 %\includeonlyframes{title,hcgd}
 %\includeonlyframes{title,digress}
@@ -24,6 +24,13 @@
 \newcommand{\mcomm}[2][s]{\ifx s#1\ \else\ifx q\quad\fi\fi\text{\small\texttt{//#2}}}
 \newcommand{\donecheck}[1]{{\large \textcolor{ForestGreen}{\checkmark}}\textcolor{black!10!white}{\emph{#1}}\xspace}
 \newcommand{\missing}{{\huge\textcolor{red}{X}\xspace}}
+\newcounter{myframerevealcnt}[framenumber]
+%command to access value without/with an offset
+\newcommand{\mfrc}{\value{myframerevealcnt}}
+\newcommand{\mfrco}[1]{\numexpr{\value{myframerevealcnt}+#1}}
+%step/reset myframerevealcnt
+\newcommand{\stepmfrc}{\stepcounter{myframerevealcnt}}
+\newcommand{\resetmfrc}{\setcounter{myframerevealcnt}{1}}
 
 \begin{document}
 % Enter presentation title:
@@ -37,6 +44,11 @@
 % Enter presentation location and date (optional; comment line if not needed):
 {EPF Lausanne,  2024-02-28}
 \frame[label=title]{\titlepage}
+\begin{frame}[label=done,c]
+  \centering
+  \Huge Thank you all for serving as my jury committee
+\end{frame}
+
 
 \begin{frame}[label=done]
   \frametitle{Presentation Structure}

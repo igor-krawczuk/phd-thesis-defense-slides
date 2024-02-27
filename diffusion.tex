@@ -15,30 +15,28 @@ Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, Graph
   \end{priorart}
   \vspace{-0.25cm}
   \begin{contributions}
-    \hyperlink{digressbackuparch}{Powerful $\SnE$ GraphTransformer}, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
+    Improved Architecture $\SnE$ GraphTransformer +FiLM, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
   \end{contributions}
-%  \begin{columns}
-%        \tiny
-%    \begin{column}{0.5\textwidth}
-%  \visible<2->{
-%      \begin{outcomes}
-%        First PE singleshot model for Guacamol/MOSES,new SotA\\
-%
-%         scaling to $n\approx  200$\textuparrow,training stability \textuparrow,fidelity\textuparrow,\textdownarrow sampling latency\textdownarrow$\mathcal{O}\left(n^2\right)$ representation
-%      \end{outcomes} 
-%}
-%    \end{column}
-%    \begin{column}{0.5\textwidth}
-%  \visible<3>{
-%      \begin{impact} 
-%          134 citations as of 2024-02-25\\
-%          usage across domains from molecules \cite{vignacMiDiMixedGraph2023c} to combinatorial optimization\\
-%          influenced investigations into discrete modeling \cite{haefeliDiffusionModelsGraphs2023a}and priors for the limit distribution \cite{martinkusAbDiffuserFullatomGeneration2024} 
-%      \end{impact} 
-%  }
-%    \end{column}
-%  \end{columns}
-%    \vspace{1cm}
+  \vspace{-0.25cm}
+  \begin{columns}
+        \footnotesize
+    \begin{column}{0.5\textwidth}
+      \begin{outcomes}
+        \phantom{\begin{minipage}{\textwidth}
+        First PE singleshot model for Guacamol/MOSES,new SotA\\
+        scaling to $n\approx  200$\textuparrow,training stability \textuparrow,fidelity\textuparrow,\textdownarrow sampling latency\textdownarrow$\mathcal{O}\left(n^2\right)$ representation
+        \vspace{9mm}
+        \end{minipage}}
+      \end{outcomes} 
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{impact} 
+        \phantom{\begin{minipage}{\textwidth}
+          134 citations as of 2024-02-25,usage across domains from molecules \citep{vignacMiDiMixedGraph2023c} to combinatorial optimization,influenced investigations into discrete modeling and priors for the limit distribution \citep{haefeliDiffusionModelsGraphs2023a,martinkusAbDiffuserFullatomGeneration2024}
+      \end{minipage}}
+      \end{impact} 
+    \end{column}
+  \end{columns}
   
 \end{frame}
 \begin{frame}[label=diffusion]
@@ -113,18 +111,6 @@ Trained via
   }
 }
 \end{frame}
-\begin{frame}[label=diffusion,t]
-  \frametitle{The rapid rise of diffusion models}
-  \only<1>{
-  \includegraphics[width=\textwidth,keepaspectratio]{./images/denoising_diffusion_2024-02-25_02-16.png}
-}
-  \only<2>{
-  \includegraphics[width=\textwidth,keepaspectratio]{./images/generative_AI2024-02-25_02-17.png}
-}
-  \only<3>{
-  \includegraphics[width=\textwidth,keepaspectratio]{./images/GPT2024-02-25_02-17.png}
-}
-\end{frame}
 
 
 \begin{frame}[label=digress,c]
@@ -137,7 +123,7 @@ Trained via
   \frametitle{Structured state spaces with D3PM \citep{austinStructuredDenoisingDiffusion2021e}}
   \centering
   \vspace{-2cm}
-  \only<1-4>{
+  \only<1->{
 \begin{align}
   \rvx_{t+1}\vert\rvx_t&\coloneqq\rvx_{t}+\mathbf{\epsilon}_t;\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
   \mathbf{\epsilon}_t&\sim\func{\mathcal{N}}{\func{\mu_t}{\alpha_t,\beta_t,t},\func{\Sigma_t}{\alpha_t,\beta_t,t}}\nonumber\\
@@ -145,19 +131,24 @@ Trained via
   \func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t}&\sim\func{\mathcal{N}}{\func{\mu_\theta}{\rvx_t,\alpha_t,\beta_t,t},\func{\Sigma_\theta}{\rvx_t,\alpha_t,\beta_t,t}}}\nonumber
 \end{align}
 \vspace{-0.5mm}
-\visible<3->{$\Downarrow$}
+\visible<2->{$\Downarrow$}
 \vspace{-0.5mm}
 \begin{align}
-  \visible<3->{\rvz_{t+1}\vert \rvz_t&\sim Q_t\rvz_{t};\quad Q_t\in\mathbf{P}^n,\rvz_t\in\bm{1}_n}\nonumber\\
-  \visible<4->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_tQ_t^T\odot \func{z_\theta}{\rvz_t,t}\prod_{\tau=0}^{t-1}Q_\tau}{\func{z_\theta}{\rvz_t,t}\left(\prod_{\tau=0}^{t}Q_\tau\right)\rvz_t}}\nonumber
+  \visible<2->{\rvz_{t+1}\vert \rvz_t&\sim \func{Q_t}{\alpha_t,\beta_t,t}\rvz_{t};\quad \func{Q_t}{\alpha_t,\beta_t,t}\in\mathbf{P}^n,\rvz_t\in\bm{1}_n}\nonumber\\
+  \visible<3->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_t\func{Q_t}{\alpha_t,\beta_t,t}^T\odot \func{z_\theta}{\rvz_t,t}\prod_{\tau=0}^{t-1}\func{Q_\tau}{\alpha_t,\beta_t,t}}{\func{z_\theta}{\rvz_t,t}\left(\prod_{\tau=0}^{t}\func{Q_\tau}{\alpha_t,\beta_t,t}\right)\rvz_t}}\nonumber
 \end{align}
 \vspace{-0.5mm}
-\visible<3->{
+\visible<1->{
+{\raggedright
+  $\alpha_t,\beta_t$ are noise schedule parameters\\
+}
+}
+\visible<2->{
 {\raggedright
 $\mathbf{P}^n$ are n-dimensional doubly stochastic transition matrices\\
   \raggedright
   $\bm{1}_n$ are one-hot encoded states\\
-  \visible<4->{
+  \visible<3->{
 \raggedright
     $\func{z_{\theta}}{\rvz_t,t}$ predicts $\rvz_0$\\
   }
@@ -176,21 +167,26 @@ $\mathbf{P}^n$ are n-dimensional doubly stochastic transition matrices\\
 }
 \end{frame}
 
-\begin{frame}[t,label=digress]
-  \frametitle{Using empirical noise distributions}
-Consider the class $\mathcal C = \{\prod_i u \times \prod_{i, j} v,~ (u, v) \in \mathcal P(\mathcal{X}) \times P(\mathcal E)\}$ of distributions over graphs that factorize as the product of a single distribution $u$ over $\mathcal X$ for the nodes and a single distribution $v$ over $\mathcal{E}$ for the edges.
-Let $P$ be an arbitrary distribution over graphs (seen as a tensor of order $n + n^2$) and $m_X, m_E$ its marginal distributions of node and edge types. Then $\pi^G = \prod_i m_X \times \prod_{i, j} m_E$ is the orthogonal projection of $P$ on $\mathcal{C}$: \vspace{-0.1cm}
-\[
-\pi^G  \in \argmin_{(u, v) \in \mathcal C}~ ||~P~ -  \prod_{1 \leq i \leq n} u \times \prod_{1 \leq i, j \leq n} v||^2_{2}
-\]
-(\cite{vignacDiGressDiscreteDenoising2023b} Theorem 4.1)
-\end{frame}
 
 \begin{frame}[label=digress]
-  \frametitle{Results: Impact of Empirical Noise Distribution}
+  \frametitle{Benefits of the Empirical Noise Distribution}
   \only<1>{
   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./images/transition.png}
 }
+\end{frame}
+\begin{frame}[t,label=digressbackuparch]
+  \frametitle{Avoiding representational bottleneck with edge-diffusion}
+  \vspace{-0.8cm}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[height=0.8\textheight,keepaspectratio]{./images/architecture_full.png}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\columnwidth,height=0.8\textheight,keepaspectratio]{./images/graph_transformer.png} 
+    \end{column}
+  \end{columns}
+\vspace{0.2cm}
+%\hyperlink{digressintro}{\beamergotobutton{Return to main slide \ref{digressintro}}}
 \end{frame}
 
 \begin{frame}[label=digress]
@@ -209,12 +205,12 @@ Let $P$ be an arbitrary distribution over graphs (seen as a tensor of order $n +
     Prior Closest SotA:Diffusion\&Score Based Models \citep{niuPermutationInvariantGraph2020b,songGenerativeModelingEstimating2019b},SPECTRE \citep{martinkusSPECTRESpectralConditioning2022b}\\
     Other SotA: Motif generators \citep{maziarzLearningExtendMolecular2021},GraphDF\citep{luoGraphDFDiscreteFlow2021d}
 \\
-Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b}, \textit{F}eaturew\textit{i}se \textit{L}inear \textit{M}odulation (FilM) \citep{perezFiLMVisualReasoning2018b}, GG-GAN features
+Foundations: SPECTRE,D3PM \citep{austinStructuredDenoisingDiffusion2021e}, GraphTransformers \citep{vaswaniAttentionAllYou2017c,yunGraphTransformerNetworks2019b}, \textit{F}eaturew\textit{i}se \textit{L}inear \textit{M}odulation (FiLM) \citep{perezFiLMVisualReasoning2018b}, GG-GAN features
  }
   \end{priorart}
   \vspace{-0.25cm}
   \begin{contributions}
-    Powerful $\SnE$ GraphTransformer, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
+    Improved Architecture $\SnE$ GraphTransformer +FiLM, Discrete Graph Diffusion enables use of GGG-features, Limit Distribution Decomposition
   \end{contributions}
   \vspace{-0.25cm}
   \begin{columns}
