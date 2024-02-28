@@ -74,7 +74,7 @@
   \phantom{
     \begin{minipage}{\textwidth}
     First fully $\SnE$ implicit model,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,$\mathcal{O}\left(n\right)$ latent space\textuparrow\\training stability \textdownarrow\\
-    \vspace{10.5mm}
+    \vspace{5.5mm}
     \end{minipage}
 }
       \end{outcomes}
@@ -106,7 +106,7 @@
     \item VAE/VAE-GAN hybrid\ffootnote{\cite{yangConditionalStructureGeneration2019e,kipfVariationalGraphAutoEncoders2016b}}% V FNN generator
       $\centernot\implies$ non-$\SnE$ generator, no size extrapolation,VAE\ffootnote{Theory implies possible limitations \citep{bousquetOptimalTransportGenerative2017a, genevayGANVAEOptimal2017e},might not matter practically}%we want to be blind to permutation *once done*; during *training* we can impose orderings/identities as long as it happens in the latent state and agnostic to the data?
     \item Normalizing Flows\ffootnote{\cite{liuGraphNormalizingFlows2019a,madhawaGraphNVPInvertibleFlow2019a}}$\centernot\implies$ $\SnE$, slow training, restrictions on $J_\theta$%limited expressivity
-    \item Score-Matching + Langevin Dynamics(LD)\ffootnote{\cite{niuPermutationInvariantGraph2020b}}  $\centernot\implies$ $\SnE$,but \emph{extremely} slow\&expensive sampling due to LD
+    \item Score-Matching + Langevin Dynamics(LD)\ffootnote{\cite{niuPermutationInvariantGraph2020b}}  $\centernot\implies$ $\SnE$,but \emph{extremely} slow\&expensive sampling 
   \end{itemize}
 \end{frame}
 
@@ -123,23 +123,25 @@
     \text{s.t.}&\quad K\left(d\left(\cdot,\phi\right)\right)\leq 1\nonumber
   \end{align}
   \vspace{-0.25cm}
-  Generator $g$: MHA-transformer, with final readout based on attention weights$\implies\SnE$, very expressive\\
-  Discriminator $d$: GIN, with spectral, orbit and other graph theoretic features$\implies\SnI$, very expressive
+  Generator $g$: MHA-transformer, with final readout based on attention weights\\$\implies\SnE$, very expressive\\
+  Discriminator $d$: GIN, with spectral, orbit and other graph theoretic features\\$\implies\SnI$, very expressive
 \end{frame}
 
 %PROBLEM: no big graphs=> why?
 
 \begin{frame}[label=ggg,t]
-  \frametitle{Collision problem \only<2->{resolved}}
-  \only<1-2>{
-  \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/rsg.pdf}
-  \visible<2>{\includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/graphics_xxgan_2.pdf}}
+  \frametitle{Collision problem \only<3->{resolved}}
+  \only<1>{
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./images/rsg.pdf}
 }
+  \only<2>{
+  \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/rsg.pdf}\\
+  \includegraphics[width=\textwidth,height=0.45\textheight,keepaspectratio]{./images/graphics_xxgan_2.pdf}}
 \only<3>{
   \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./images/gg.pdf}
 }
 \only<4>{
-  \includegraphics[height=0.8\textheight,keepaspectratio]{./images/CollisionDecentiles-Att.pdf}\\
+  \includegraphics[height=0.7\textheight,keepaspectratio]{./images/CollisionDecentiles-Att.pdf}\\
   {\small
   Overfitting a single graph with a $\SnE$generator,green without $\Phi$, orange with $\Phi$
 }
@@ -148,14 +150,14 @@
 \begin{frame}[label=ggg,t]
   \frametitle{Results}
   \centering
-    \includegraphics[width=\textwidth]{./images/ggg_results_2024-02-25_00-52.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./images/ggg_results_2024-02-25_00-52.png}
   \visible<2>{
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./images/drawing.pdf}
   }
 \end{frame}
 \begin{frame}[label=ggg,t]
   \frametitle{Results (latency)}
-  \includegraphics[width=\textwidth]{./images/scale_jointFalse.pdf}
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{./images/scale_jointFalse.pdf}
 \end{frame}
 
 %backup slide: asymmetrical embeddings are important
@@ -185,7 +187,7 @@
       \begin{outcomes}
     \begin{minipage}{\textwidth}
     First fully $\SnE$ implicit model,scaling to $n\approx  100$\textuparrow,low latency \textuparrow,$\mathcal{O}\left(n\right)$ latent space\textuparrow\\training stability \textdownarrow\\
-    \vspace{10.5mm}
+    \vspace{5.5mm}
       \end{minipage}
       \end{outcomes} 
     \end{column}

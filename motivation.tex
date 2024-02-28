@@ -19,6 +19,9 @@ Source: \href{}{Statista}\\
 \begin{frame}[label=flowsabstraction,t]
   \frametitle{Motivation: Circuit Design to Graph Generation}
   \centering
+  \only<3-4>{
+  \vspace{-0.8cm}
+}
 \only<1->{
   {\large 
     \uncover<1-5>{\visible<5->{\emph{Automated }}\visible<1->{Circuit Design =\visible<0>{hackhackha}}}\\
@@ -46,7 +49,7 @@ Source: \href{}{Statista}\\
       From \cite{kupriyanovHighSpeedEventDrivenRTL2004}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \includegraphics[height=0.5\textheight,width=\columnwidth,keepaspectratio]{./images/magiclayout.png}
+      \includegraphics[height=0.5\textheight,width=\columnwidth,keepaspectratio]{./images/magiclayout.png}\\
       From \cite{edwardsMagicVLSI2024}
     \end{column}
   \end{columns}
@@ -62,17 +65,15 @@ Source: \href{}{Statista}\\
 \small
 \begin{columns}
   \begin{column}{0.5\textwidth}
-  {
      \begin{itemize}
           \item Most approaches symbolic (SAT,MILP,DP) or via evolutionary strategies,strongly influenced by Church's problem \only<1->{\footnote[frame]{\small\cite{zhaoAutomatedTopologySynthesis2022a,churchApplicationRecursiveArithmetic1963} }},including majority of latest work\footnotemark[1] \only<1->{\ffootnote{\small\cite{hakhamaneshiBagNetBerkeleyAnalog2019d,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023}}} %does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of symbols} representing a hierarchy with a clear ordering
-       %\item Circuit topology is modeled as a string of symbols representing circuit functionality, from which a topology is then inferred. Some work explores other representations \citep{rojecAnalogCircuitTopology2018} but majority of work \citep{fanSpecificationTopologyAutomatic2021f,zhaoAutomatedTopologySynthesis2022a,fayaziAnGeLFullyAutomatedAnalog2023a,dasilvaAutoTGReinforcementLearningBased2023} does not conceive of a circuit as a \emph{graph} but instead as a \emph{sequence of hierarchical symbols} with a clear ordering
-        }
+        
           \item Single Exception: \cite{fanSpecificationTopologyAutomatic2021d}
      \end{itemize}
   \end{column}%
   \begin{column}{0.5\textwidth}
   \centering
-  \includegraphics[width=\columnwidth,height=0.70\textheight,keepaspectratio]{./images/single_graph_related_2024-02-24_22-09.png}
+  \includegraphics[width=\columnwidth,height=0.70\textheight,keepaspectratio]{./images/single_graph_related_2024-02-24_22-09.png}\\
   From: \cite{fanSpecificationTopologyAutomatic2021d}
   \end{column}
 \end{columns}
