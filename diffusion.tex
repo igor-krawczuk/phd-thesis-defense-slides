@@ -130,9 +130,9 @@ Trained via
   \visible<1->{\rvx_{t-1}\vert\rvx_t&\coloneqq\rvx_{t}-\func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t};\ \mathbf{\epsilon}_t,\rvx_t \in \mathbb{R}^n\nonumber\\
   \func{\mathbf{\epsilon}_{\theta}}{\rvx_t,t}&\sim\func{\mathcal{N}}{\func{\mu_\theta}{\rvx_t,\alpha_t,\beta_t,t},\func{\Sigma_\theta}{\rvx_t,\alpha_t,\beta_t,t}}}\nonumber
 \end{align}
-\vspace{-0.5mm}
+\vspace{-5mm}
 \visible<2->{$\Downarrow$}
-\vspace{-0.5mm}
+\vspace{-5mm}
 \begin{align}
   \visible<2->{\rvz_{t+1}\vert \rvz_t&\sim \func{Q_t}{\alpha_t,\beta_t,t}\rvz_{t};\quad \func{Q_t}{\alpha_t,\beta_t,t}\in\mathbf{P}^n,\rvz_t\in\bm{1}_n}\nonumber\\
   \visible<3->{\rvz_{t-1}\vert \rvz_t&\sim \frac{\rvz_t\func{Q_t}{\alpha_t,\beta_t,t}^T\odot \func{z_\theta}{\rvz_t,t}\prod_{\tau=0}^{t-1}\func{Q_\tau}{\alpha_t,\beta_t,t}}{\func{z_\theta}{\rvz_t,t}\left(\prod_{\tau=0}^{t}\func{Q_\tau}{\alpha_t,\beta_t,t}\right)\rvz_t}}\nonumber
