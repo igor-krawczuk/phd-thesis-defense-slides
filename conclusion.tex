@@ -2,13 +2,6 @@
 \documentclass[./presentation.tex]{subfiles}
 \begin{document}
 
-\if0
-%TODO: if we manage to
-\begin{frame}[label=circuitdemo]
-  \frametitle{Evaluation on circuits}
-  \textcolor{red}{TODO: place experiments}
-\end{frame}
-\fi
 \begin{frame}[label=concdesiderata,t]
   \frametitle{Revisiting our Requirements}
   {
@@ -47,6 +40,24 @@
 \vspace{2mm}
   \end{desideratum}
 }
+\end{frame}
+\begin{frame}[label=circdemo]
+  \frametitle{Evaluation on circuits?}
+  \centering
+  \only<1>{
+    \large Topology data remains extremely scarce\ffootnote{
+    \cite{chowdhuryOpenABCDLargeScaleDataset2021e,chaiCircuitNetOpenSourceDataset2023b, panEDALearnComprehensiveRTLtoSignoff2023,weiHLSDatasetOpenSourceDataset2023}} and not readily accessible for researchers
+  }
+  \only<2>{
+    % include the pdf, scaling it to textwidth, 0.8 height and same ratio
+    \vspace{-0.5cm}
+    \includegraphics[width=\textwidth,height=0.95\textheight,keepaspectratio]{./images/circuitshalleluja.pdf}
+  }
+  \only<3>{
+    \vspace{-0.5cm}
+    % include the pdf, scaling it to textwidth, 0.8 height and same ratio
+    \includegraphics[width=\textwidth,height=0.95\textheight,keepaspectratio]{./images/has_learned_structure.pdf}
+  }
 \end{frame}
 \begin{frame}[label=done]
   \frametitle{Other work}
